@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Seminar 2</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Q&Q</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Seminar1final.html">Introduction to R</a>
+</li>
+<li>
+  <a href="Seminar2finalfinal.html">Functions, loops, conditions</a>
+</li>
+<li>
+  <a href="Seminar_3_-_Resharing_data___Descriptive_Statistics.html">Reshaping Data &amp; Descriptive Stats</a>
+</li>
+<li>
+  <a href="Introduction_to_ggplot2.html">ggplot2</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Seminar 2</h1>
+
+</div>
+
+
+<p>Today we will go further than it is allowed by base R and we will install and upload external packages.</p>
+<pre class="r"><code>install.packages(&quot;data.table&quot;, &quot;foreign&quot;, &quot;ggplot2&quot;)</code></pre>
+<pre class="r"><code>library(&quot;data.table&quot;)
+library(&quot;foreign&quot;)</code></pre>
+<p>You can consider a library as a set of functions (however, sometimes it is a little bit more than that). It is usually thematically organized and was created for rather specific things. For example, for importing data processed in other programs (<code>&quot;foreign&quot;</code> library). ….</p>
+<p>Let’s upload <a href="https://www.kaggle.com/mylesoneill/game-of-thrones">dataset about Game of Thrones</a>!</p>
+<div id="data-import" class="section level1">
+<h1>Data import</h1>
+<p>Importing data and preprocessing is usually the most difficult part of data analysis. Different programms generate different outputs in different formats. Sometimes you want to do something in MATLAB, then do something in Excel, then in R and finish analysis in SPSS. Well, at least analysis in two diffirent programms is rather common thing.</p>
+<p>There are infinite ways to do that! there are special packages for import and export data from R to MATLAB (or vice versa), special features in SPSS (late versions) to run some analysis in R… However, you will probably face up many problems with those tools.</p>
+<p>Therefore, I recommend you to transform your data in one format and don’t give a f**k about that.</p>
+<p>Maybe, the most common format to save tables in file is CSV format. CSV stands for Comma Separated Values. It is just a text, separated by commas (or semicolons). Open <code>character-deaths.csv</code> in Notepad (or Wordpad, or Notepad++ or gedit or whatever): First line contains variable names separated by comma. All other lines contains some values separated by comma</p>
+<pre class="r"><code>got &lt;- read.csv(&quot;files/character-deaths.csv&quot;) #use read.csv2() for csv with semicolons</code></pre>
+<p><em>Note:</em> empty cells (there is nothing between commas: <code>,,</code>) were interpreted as <code>NA</code> If you are not satisfied with how your data was imported with <code>read.csv()</code> or <code>read.csv2()</code> you can play with <code>read.table()</code> and its parameters. Important parameters:<br />
+* <code>file</code><br />
+* <code>header</code>: whether your first string contains variables names (TRUE or FALSE)<br />
+* <code>sep</code>: separator between two cells. For <code>read.csv()</code> it is <code>&quot;,&quot;</code> by default<br />
+* <code>dec</code>: character for decimal points: usually <code>&quot;.&quot;</code>, but in russian <code>&quot;,&quot;</code> is very likely, therefore some csv-files are separated by <code>&quot;;&quot;</code> but not <code>&quot;,&quot;</code><br />
+* <code>stringsAsFactors</code>: if <code>TRUE</code> character variables will be encoded as factors instead of simple character vector.<br />
+* <code>quote</code>: if you want to specify that some text with “.”, “,” or “;” is a part of one string (in your datafile) you can specify it with a <code>quote</code>. For example, <code>quote = &quot;\&quot;*&quot;</code> means that every piece of code separated by &quot; and * are singlelines of text<br />
+* <code>check.names</code>: if TRUE it will change headers if they cannot be used as variable names.</p>
+<p>Functions <code>read.csv()</code>, <code>read.csv2()</code> (for csv with “,” as decimal points and semicolon separated fields), <code>read.delim()</code>, and <code>read.delim2()</code> are the same as <code>read.table()</code> but with different default parameters.</p>
+<p>If you have <code>.sav</code> file (from SPSS) you can use function <code>read.spss()</code> from <code>foreign</code> package to upload data.</p>
+<pre class="r"><code>gotspss &lt;- as.data.frame(read.spss(&quot;files/got.sav&quot;))</code></pre>
+<pre><code>## Warning in read.spss(&quot;files/got.sav&quot;): files/got.sav: Unrecognized record
+## type 7, subtype 18 encountered in system file</code></pre>
+<pre class="r"><code>head(gotspss)</code></pre>
+<pre><code>##                                Name     Allegiances DeathYear BookofDeath
+## 1 Addam Marbrand                    Lannister              NA          NA
+## 2 Aegon Frey (Jinglebell)           None                  299           3
+## 3 Aegon Targaryen                   House Targaryen        NA          NA
+## 4 Adrack Humble                     House Greyjoy         300           5
+## 5 Aemon Costayne                    Lannister              NA          NA
+## 6 Aemon Estermont                   Baratheon              NA          NA
+##   DeathChapter BookIntroChapter Gender Nobility GoT CoK SoS FfC DwD
+## 1           NA               56   Male    Noble   1   1   1   1   0
+## 2           51               49   Male    Noble   0   0   1   0   0
+## 3           NA                5   Male    Noble   0   0   0   0   1
+## 4           20               20   Male    Noble   0   0   0   0   1
+## 5           NA               NA   Male    Noble   0   0   1   0   0
+## 6           NA               NA   Male    Noble   0   1   1   0   0</code></pre>
+<p>We have labels from SPSS!!</p>
+</div>
+<div id="subsetting" class="section level1">
+<h1>Subsetting</h1>
+<p>We need to explore our dataset a little bit:</p>
+<pre class="r"><code>str(got) #show variables, type of data etc</code></pre>
+<pre><code>## &#39;data.frame&#39;:    917 obs. of  13 variables:
+##  $ Name              : Factor w/ 916 levels &quot;Addam Marbrand&quot;,..: 1 3 4 2 5 6 7 8 9 10 ...
+##  $ Allegiances       : Factor w/ 21 levels &quot;Arryn&quot;,&quot;Baratheon&quot;,..: 13 16 10 6 13 2 15 16 6 15 ...
+##  $ Death.Year        : int  NA 299 NA 300 NA NA 300 300 NA NA ...
+##  $ Book.of.Death     : int  NA 3 NA 5 NA NA 4 5 NA NA ...
+##  $ Death.Chapter     : int  NA 51 NA 20 NA NA 35 NA NA NA ...
+##  $ Book.Intro.Chapter: int  56 49 5 20 NA NA 21 59 11 0 ...
+##  $ Gender            : int  1 1 1 1 1 1 1 0 1 1 ...
+##  $ Nobility          : int  1 1 1 1 1 1 1 1 1 0 ...
+##  $ GoT               : int  1 0 0 0 0 0 1 1 0 0 ...
+##  $ CoK               : int  1 0 0 0 0 1 0 1 1 0 ...
+##  $ SoS               : int  1 1 0 0 1 1 1 1 0 1 ...
+##  $ FfC               : int  1 0 0 0 0 0 1 0 1 0 ...
+##  $ DwD               : int  0 0 1 1 0 0 0 1 0 0 ...</code></pre>
+<pre class="r"><code>head(got) #show the first 6 rows</code></pre>
+<pre><code>##                      Name     Allegiances Death.Year Book.of.Death
+## 1          Addam Marbrand       Lannister         NA            NA
+## 2 Aegon Frey (Jinglebell)            None        299             3
+## 3         Aegon Targaryen House Targaryen         NA            NA
+## 4           Adrack Humble   House Greyjoy        300             5
+## 5          Aemon Costayne       Lannister         NA            NA
+## 6         Aemon Estermont       Baratheon         NA            NA
+##   Death.Chapter Book.Intro.Chapter Gender Nobility GoT CoK SoS FfC DwD
+## 1            NA                 56      1        1   1   1   1   1   0
+## 2            51                 49      1        1   0   0   1   0   0
+## 3            NA                  5      1        1   0   0   0   0   1
+## 4            20                 20      1        1   0   0   0   0   1
+## 5            NA                 NA      1        1   0   0   1   0   0
+## 6            NA                 NA      1        1   0   1   1   0   0</code></pre>
+<pre class="r"><code>table(got$Allegiances) #frequency table</code></pre>
+<pre><code>## 
+##           Arryn       Baratheon         Greyjoy     House Arryn 
+##              23              56              51               7 
+## House Baratheon   House Greyjoy House Lannister   House Martell 
+##               8              24              21              12 
+##     House Stark House Targaryen     House Tully    House Tyrell 
+##              35              19               8              11 
+##       Lannister         Martell   Night&#39;s Watch            None 
+##              81              25             116             253 
+##           Stark       Targaryen           Tully          Tyrell 
+##              73              17              22              15 
+##        Wildling 
+##              40</code></pre>
+<p>How can we access and change parts of our dataframe? We can handle data.frames as matrices: we will use two coordinates to select a subset of our data.frame. We refer to the parts of dataframe with this syntax: <code>dataframe[rows, columns]</code></p>
+<pre class="r"><code>got[100:115, 1:2]</code></pre>
+<pre><code>##                 Name   Allegiances
+## 100        Blue Bard  House Tyrell
+## 101    Bonifer Hasty     Lannister
+## 102           Borcas Night&#39;s Watch
+## 103  Boremund Harlaw       Greyjoy
+## 104     Boros Blount     Baratheon
+## 105           Borroq      Wildling
+## 106      Bowen Marsh Night&#39;s Watch
+## 107       Bran Stark   House Stark
+## 108   Brandon Norrey         Stark
+## 109          Brenett          None
+## 110 Brienne of Tarth         Stark
+## 111            Bronn     Lannister
+## 112    Brown Bernarr Night&#39;s Watch
+## 113           Brusco          None
+## 114   Bryan Fossoway     Baratheon
+## 115      Bryce Caron     Baratheon</code></pre>
+<p>Moreover, we can use column names!</p>
+<pre class="r"><code>got[508:515, &quot;Name&quot;]</code></pre>
+<pre><code>## [1] Mance Rayder    Mandon Moore    Maric Seaworth  Marei          
+## [5] Margaery Tyrell Marillion       Maris           Marissa Frey   
+## 916 Levels: Addam Marbrand Adrack Humble ... Zollo</code></pre>
+<p>or several column names:</p>
+<pre class="r"><code>got[508:515, c(&quot;Name&quot;, &quot;Allegiances&quot;, &quot;Gender&quot;)]</code></pre>
+<pre><code>##                Name     Allegiances Gender
+## 508    Mance Rayder        Wildling      1
+## 509    Mandon Moore       Baratheon      1
+## 510  Maric Seaworth House Baratheon      1
+## 511           Marei            None      0
+## 512 Margaery Tyrell    House Tyrell      0
+## 513       Marillion           Arryn      1
+## 514           Maris        Wildling      0
+## 515    Marissa Frey            None      0</code></pre>
+<p>In addition, we can access one column and handle it like an atomic vector. We need to use<code>data.frame$column.name</code> for that (like for lists):</p>
+<pre class="r"><code>Houses &lt;- got$Allegiances
+unique(Houses) #display all unique values in a vector</code></pre>
+<pre><code>##  [1] Lannister       None            House Targaryen House Greyjoy  
+##  [5] Baratheon       Night&#39;s Watch   Arryn           House Stark    
+##  [9] House Tyrell    Tyrell          Stark           Greyjoy        
+## [13] House Lannister Martell         House Martell   Wildling       
+## [17] Targaryen       House Arryn     House Tully     Tully          
+## [21] House Baratheon
+## 21 Levels: Arryn Baratheon Greyjoy House Arryn ... Wildling</code></pre>
+<p>However, we need also specify columns. For this situation (and for the most real-life situations) we need all columns from the original dataset. You can do it by leaving <code>columns</code> empty.</p>
+<pre class="r"><code>head(got[got$Allegiances == &quot;Night&#39;s Watch&quot;,])</code></pre>
+<pre><code>##                                 Name   Allegiances Death.Year
+## 7  Aemon Targaryen (son of Maekar I) Night&#39;s Watch        300
+## 10                            Aethan Night&#39;s Watch         NA
+## 13                     Alan of Rosby Night&#39;s Watch        300
+## 16                            Albett Night&#39;s Watch         NA
+## 24                    Alliser Thorne Night&#39;s Watch         NA
+## 49                             Arron Night&#39;s Watch         NA
+##    Book.of.Death Death.Chapter Book.Intro.Chapter Gender Nobility GoT CoK
+## 7              4            35                 21      1        1   1   0
+## 10            NA            NA                  0      1        0   0   0
+## 13             5             4                 18      1        1   0   1
+## 16            NA            NA                 26      1        0   1   0
+## 24            NA            NA                 19      1        0   1   1
+## 49            NA            NA                 75      1        0   0   0
+##    SoS FfC DwD
+## 7    1   1   0
+## 10   1   0   0
+## 13   1   0   1
+## 16   0   0   0
+## 24   1   0   1
+## 49   1   0   1</code></pre>
+<p>What we have actually done: we created boolean vector (with TRUE or FALSE) after comparison of each <code>got$Allegiances</code> with “Night’s Watch”:</p>
+<pre class="r"><code>night &lt;- got$Allegiances == &quot;Night&#39;s Watch&quot;
+head(night)</code></pre>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<p>Then we used it as indeces for rows to subset only “Night’s Watch”:</p>
+<pre class="r"><code>head(got[night,])</code></pre>
+<pre><code>##                                 Name   Allegiances Death.Year
+## 7  Aemon Targaryen (son of Maekar I) Night&#39;s Watch        300
+## 10                            Aethan Night&#39;s Watch         NA
+## 13                     Alan of Rosby Night&#39;s Watch        300
+## 16                            Albett Night&#39;s Watch         NA
+## 24                    Alliser Thorne Night&#39;s Watch         NA
+## 49                             Arron Night&#39;s Watch         NA
+##    Book.of.Death Death.Chapter Book.Intro.Chapter Gender Nobility GoT CoK
+## 7              4            35                 21      1        1   1   0
+## 10            NA            NA                  0      1        0   0   0
+## 13             5             4                 18      1        1   0   1
+## 16            NA            NA                 26      1        0   1   0
+## 24            NA            NA                 19      1        0   1   1
+## 49            NA            NA                 75      1        0   0   0
+##    SoS FfC DwD
+## 7    1   1   0
+## 10   1   0   0
+## 13   1   0   1
+## 16   0   0   0
+## 24   1   0   1
+## 49   1   0   1</code></pre>
+<p>If we don’t want to skip any values in raw or column, we can keep empty space here. However, do not forget about comma!</p>
+<pre class="r"><code>head(got[night,]) #all columns but only rows that contains &quot;Night&#39;s Watch&quot; in &quot;Allegiances&quot;</code></pre>
+<pre><code>##                                 Name   Allegiances Death.Year
+## 7  Aemon Targaryen (son of Maekar I) Night&#39;s Watch        300
+## 10                            Aethan Night&#39;s Watch         NA
+## 13                     Alan of Rosby Night&#39;s Watch        300
+## 16                            Albett Night&#39;s Watch         NA
+## 24                    Alliser Thorne Night&#39;s Watch         NA
+## 49                             Arron Night&#39;s Watch         NA
+##    Book.of.Death Death.Chapter Book.Intro.Chapter Gender Nobility GoT CoK
+## 7              4            35                 21      1        1   1   0
+## 10            NA            NA                  0      1        0   0   0
+## 13             5             4                 18      1        1   0   1
+## 16            NA            NA                 26      1        0   1   0
+## 24            NA            NA                 19      1        0   1   1
+## 49            NA            NA                 75      1        0   0   0
+##    SoS FfC DwD
+## 7    1   1   0
+## 10   1   0   0
+## 13   1   0   1
+## 16   0   0   0
+## 24   1   0   1
+## 49   1   0   1</code></pre>
+<pre class="r"><code>head(got[,c(&quot;Name&quot;, &quot;Gender&quot;)]) #all rows but only two columns</code></pre>
+<pre><code>##                      Name Gender
+## 1          Addam Marbrand      1
+## 2 Aegon Frey (Jinglebell)      1
+## 3         Aegon Targaryen      1
+## 4           Adrack Humble      1
+## 5          Aemon Costayne      1
+## 6         Aemon Estermont      1</code></pre>
+<pre class="r"><code>head(got[,]) #all dataframe. Note, that got[,] is equal to got</code></pre>
+<pre><code>##                      Name     Allegiances Death.Year Book.of.Death
+## 1          Addam Marbrand       Lannister         NA            NA
+## 2 Aegon Frey (Jinglebell)            None        299             3
+## 3         Aegon Targaryen House Targaryen         NA            NA
+## 4           Adrack Humble   House Greyjoy        300             5
+## 5          Aemon Costayne       Lannister         NA            NA
+## 6         Aemon Estermont       Baratheon         NA            NA
+##   Death.Chapter Book.Intro.Chapter Gender Nobility GoT CoK SoS FfC DwD
+## 1            NA                 56      1        1   1   1   1   1   0
+## 2            51                 49      1        1   0   0   1   0   0
+## 3            NA                  5      1        1   0   0   0   0   1
+## 4            20                 20      1        1   0   0   0   0   1
+## 5            NA                 NA      1        1   0   0   1   0   0
+## 6            NA                 NA      1        1   0   1   1   0   0</code></pre>
+<p>Another option is a <code>subset()</code> function:</p>
+<pre class="r"><code>nightwatch &lt;- subset(got, Allegiances == &quot;Night&#39;s Watch&quot;, select = -Allegiances)
+head(nightwatch)</code></pre>
+<pre><code>##                                 Name Death.Year Book.of.Death
+## 7  Aemon Targaryen (son of Maekar I)        300             4
+## 10                            Aethan         NA            NA
+## 13                     Alan of Rosby        300             5
+## 16                            Albett         NA            NA
+## 24                    Alliser Thorne         NA            NA
+## 49                             Arron         NA            NA
+##    Death.Chapter Book.Intro.Chapter Gender Nobility GoT CoK SoS FfC DwD
+## 7             35                 21      1        1   1   0   1   1   0
+## 10            NA                  0      1        0   0   0   1   0   0
+## 13             4                 18      1        1   0   1   1   0   1
+## 16            NA                 26      1        0   1   0   0   0   0
+## 24            NA                 19      1        0   1   1   1   0   1
+## 49            NA                 75      1        0   0   0   1   0   1</code></pre>
+</div>
+<div id="creating-new-variables" class="section level1">
+<h1>Creating new variables</h1>
+<p>We are missing one important variable in the dataset: whether a character is still alive? It is easy to derive from our data! If we have NA in <code>$Book.of.Death</code> variable, it means, well, that this character is not dead yet.</p>
+<p>There are several ways to do that. The easiest way we already know:</p>
+<pre class="r"><code>got$IsAlive &lt;- is.na(got$Book.of.Death)</code></pre>
+<p>However, it is helpful to know more than one way to do such staff.</p>
+</div>
+<div id="if-else-else-if-ifelse" class="section level1">
+<h1>If, else, else if, ifelse()</h1>
+<pre class="r"><code>naslovah &lt;- &quot;Leo Tolstoy&quot;
+#naslovah &lt;- readline(&quot;Who are you? &quot;)
+if (naslovah == &quot;Leo Tolstoy&quot;){
+  nadele = &quot;h** prostoy&quot;
+} else if (naslovah == &quot;Alexey Tolstoy&quot;){
+  nadele = &quot;Leo Tolstoy&quot;
+} else 
+  nadele = naslovah
+
+paste(&quot;Na slovah ty&quot;, naslovah, &quot;, a na dele&quot;, nadele)</code></pre>
+<pre><code>## [1] &quot;Na slovah ty Leo Tolstoy , a na dele h** prostoy&quot;</code></pre>
+<p>If and else expressions look scary, right? R has a nice built-in function to use instead called <code>ifelse()</code>:</p>
+<pre class="r"><code>nadele &lt;- ifelse (naslovah == &quot;Leo Tolstoy&quot;, &quot;h** prostoy&quot;, naslovah)</code></pre>
+</div>
+<div id="creating-functions" class="section level1">
+<h1>Creating functions</h1>
+<p>One important feature of R is creating new functions. It is very helpful sometimes</p>
+<pre class="r"><code>checkLeo &lt;- function (naslovah) {
+  nadele &lt;- ifelse (naslovah == &quot;Leo Tolstoy&quot;, &quot;h** prostoy&quot;, naslovah)
+  paste(&quot;Na slovah ty&quot;, naslovah, &quot;, a na dele&quot;, nadele)
+} 
+
+checkLeo(&quot;Leo Tolstoy&quot;)</code></pre>
+<pre><code>## [1] &quot;Na slovah ty Leo Tolstoy , a na dele h** prostoy&quot;</code></pre>
+<pre class="r"><code>checkLeo(&quot;Fyodor Dostoyevsky&quot;)</code></pre>
+<pre><code>## [1] &quot;Na slovah ty Fyodor Dostoyevsky , a na dele Fyodor Dostoyevsky&quot;</code></pre>
+</div>
+<div id="for-loops" class="section level1">
+<h1>For loops</h1>
+<p>Now we can create variable <code>$Alive</code> with<code>ifelse()</code> function. We need for loops for that.</p>
+<pre class="r"><code>got$IsAlive &lt;- NULL #delete variable
+got$IsAlive &lt;- NA #variable contains only NA
+
+for (i in 1:length(got$Book.of.Death)){
+  got$IsAlive[i] &lt;- ifelse(is.na(got$Book.of.Death[i]), &quot;Alive&quot;, &quot;Dead&quot;)
+}
+got$IsAlive &lt;- as.factor(got$IsAlive) #char -&gt; factor</code></pre>
+<p>However, it is not really used in R. For loops are slow and not recommended in general.</p>
+<p>For example, in this case you can do the same without any loops:</p>
+<pre class="r"><code>got$IsAlive &lt;- as.factor(ifelse(is.na(got$Book.of.Death), &quot;Alive&quot;, &quot;Dead&quot;))</code></pre>
+<p>Instead of “for” loops you can use <code>apply()</code> family of functions.</p>
+</div>
+<div id="apply-family" class="section level1">
+<h1>Apply() family</h1>
+<p>First, create matrix 10x5 with random numbers:</p>
+<pre class="r"><code>m &lt;- matrix (round(rnorm(50, mean = 5, sd = 2)), nrow = 10)</code></pre>
+<p>with apply() function you can “apply” <em>function</em> to every vector of this matrix and get output for each row or column (or row <em>and</em> column). Syntax for <code>apply()</code>: <code>apply(X, MARGIN, FUN, ...)</code>, where X is your data, MARGIN is 1 (for rows), 2 (for columns), <code>c(1,2)</code> for both, and FUN is function that you want to apply without brackets <code>()</code></p>
+<pre class="r"><code>apply(m, 1, sum)</code></pre>
+<pre><code>##  [1] 25 28 22 22 20 28 30 25 34 20</code></pre>
+<pre class="r"><code>apply(m, 2, sum)</code></pre>
+<pre><code>## [1] 50 60 54 49 41</code></pre>
+<pre class="r"><code>#apply(m, c(1,2), sum) #mean of one value...</code></pre>
+<p>I found some visualization of <code>apply()</code>, it can help you to understand it:<br />
+<img src="images/Apply_function.png" alt="apply" /></p>
+<p>If you want something more complicated you can create “anonymous” function inside <code>apply()</code> with <code>function (x) FUN</code></p>
+<pre class="r"><code>apply(m, 2, function (x) mean(x) - 5)</code></pre>
+<pre><code>## [1]  0.0  1.0  0.4 -0.1 -0.9</code></pre>
+<pre class="r"><code>apply(m, c(1,2), function (x) (x-5)^2)</code></pre>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5]
+##  [1,]    0    9    1    0   16
+##  [2,]    4    4    0    4    1
+##  [3,]    4    1    4    9    9
+##  [4,]    1    1    0   16    1
+##  [5,]    9    1    1    1    1
+##  [6,]    1    0    1    0    1
+##  [7,]   16    9    4    9    1
+##  [8,]    1    4    1    1    1
+##  [9,]    4    1    9    4    1
+## [10,]    0    4    1    1    1</code></pre>
+<p>Indeed, we usually want to do something with a vector (or list) but not the whole matrix or dataframe. For this purposes <code>sapply()</code> is the best option. Ok, we are ready to apply <code>sapply()</code> to our dataset!</p>
+<pre class="r"><code>got$IsAlive &lt;- NA
+got$IsAlive &lt;- as.factor(sapply(got$Book.of.Death, function (x) ifelse(is.na(x), &quot;Alive&quot;, &quot;Dead&quot;)))</code></pre>
+<p>Another option is <code>lapply()</code>, it is the same as <code>sapply()</code> but will return a list.</p>
+</div>
+<div id="variety-of-r-experience" class="section level1">
+<h1>Variety of R experience</h1>
+<p>To sum up, we can do the same task (e.g. creating <code>got$IsAlive</code> column) in many ways:</p>
+<ol style="list-style-type: decimal">
+<li><p>Just apply some function to one column to create another one.</p></li>
+<li><p>“For” loops. It is the most convinient way in other languages, but not recommended in R</p></li>
+<li><p><code>ifelse()</code> function.</p></li>
+<li><p><code>apply()</code> family of function.</p></li>
+</ol>
+</div>
+<div id="data.table" class="section level1">
+<h1>Data.table</h1>
+<p>Data.Frame has some limitations. Moreover, it lacks some important functions. There are improvements of the original data.frame in several packages. These packages change the logic of working with R, i.e. they have their own syntax and ideology behind them. The most known are <code>data.table</code> and <code>dplyr</code>. In general, these two packages don’t like each other. We will work with <code>data.table</code>: it is faster than original data.frame and syntax is very easy.</p>
+<p>Let’s install it first:</p>
+<pre class="r"><code>#install.packages(&quot;data.table&quot;)</code></pre>
+<p>And attach it:</p>
+<pre class="r"><code>library(&quot;data.table&quot;)</code></pre>
+<p>What is data.table? Data.table is like Data Frame but with additional features. We can apply function <code>as.data.table()</code> to create data.table:</p>
+<pre class="r"><code>gotdt &lt;- as.data.table(got)
+class(gotdt)</code></pre>
+<pre><code>## [1] &quot;data.table&quot; &quot;data.frame&quot;</code></pre>
+<p>..or we can use superfast function <code>fread()</code> to read our data:</p>
+<pre class="r"><code>gotdt2 &lt;- fread(&quot;files/character-deaths.csv&quot;) #very similar to read.table() but faster</code></pre>
+<p><em>Note!</em> Our dataset is rather small, but if you have hundreds MB dataset you will feel the difference.</p>
+<p>Data.table has its own syntax that reminds SQL (if you don’t know SQL you are happy!): <code>DT[i, j, by]</code> where: i = rows that you want to select (similar to data frame!) j = what do you want to do (not columns!) by = aggregation by</p>
+<pre class="r"><code>gotdt[Allegiances == &quot;Stark&quot;, mean(Death.Year, na.rm = T), by = Nobility]</code></pre>
+<pre><code>##    Nobility       V1
+## 1:        1 298.6818
+## 2:        0 298.4000</code></pre>
+<p>Almost everything that works for data.frames works for data.tables too. There is one important exception:</p>
+<pre class="r"><code>gotdt[1,5]</code></pre>
+<pre><code>##    Death.Chapter
+## 1:            NA</code></pre>
+<p>What? It means that you can’t use numbers of columns as indeces in data.table. It will just compute <code>5</code> instead of subsetting 5th column</p>
+<p>If you want to create a new column in data.table you should use <code>:=</code>:</p>
+<pre class="r"><code>gotdt$IsAlive &lt;- NULL
+gotdt[, IsAlive := is.na(Death.Year)]</code></pre>
+</div>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>We have learned</p>
+<ol style="list-style-type: decimal">
+<li>how to work with dataframes:
+<ul>
+<li>import data<br />
+</li>
+<li>subset dataframes<br />
+</li>
+<li>create new columns in dataframes</li>
+</ul></li>
+<li>how to work with “for” loops and if-else statements (plus function <code>elseif()</code>)</li>
+<li>how to apply <code>apply()</code> family functions</li>
+<li>how to work with data.tables</li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

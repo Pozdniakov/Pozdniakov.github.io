@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Seminar 3: Resharing data &amp; Descriptive Statistics</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Q&Q</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Seminar1final.html">Introduction to R</a>
+</li>
+<li>
+  <a href="Seminar2finalfinal.html">Functions, loops, conditions</a>
+</li>
+<li>
+  <a href="Seminar_3_-_Resharing_data___Descriptive_Statistics.html">Reshaping Data &amp; Descriptive Stats</a>
+</li>
+<li>
+  <a href="Introduction_to_ggplot2.html">ggplot2</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Seminar 3: Resharing data &amp; Descriptive Statistics</h1>
+
+</div>
+
+
+<pre class="r"><code>library(&quot;data.table&quot;)</code></pre>
+<p>We are going to use dataset about battles in Game of Thrones. Each row represent a battle with information about army sizes, commanders, location etc. <a href="https://www.kaggle.com/mylesoneill/game-of-thrones">Look here for more information</a>.</p>
+<pre class="r"><code>bat &lt;- fread(&quot;files/battles.csv&quot;)</code></pre>
+<div id="reshaping-data" class="section level1">
+<h1>Reshaping data</h1>
+<div id="wide-and-long-data-formats" class="section level2">
+<h2>Wide and long data formats</h2>
+<p>What if you have several observations for one variable? How are you going to store different observations of one variable - as different variables or as one variable with additional “grouping” variable that will store information about observation?</p>
+<p>Both options are possible. Moreover, different functions and packages will ask you to provide data in <em>long</em> or <em>wide</em> format as input.</p>
+<div id="wide-format" class="section level3">
+<h3>Wide format</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Student</th>
+<th>Weight.before.Q&amp;Q</th>
+<th>Weight.after.Q&amp;Q</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tanya</td>
+<td>80</td>
+<td>75</td>
+</tr>
+<tr class="even">
+<td>Raj</td>
+<td>76</td>
+<td>74</td>
+</tr>
+<tr class="odd">
+<td>Sasha</td>
+<td>86</td>
+<td>78</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="long-format" class="section level3">
+<h3>Long format</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Student</th>
+<th>Measurement</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tanya</td>
+<td>Weight.before.Q&amp;Q</td>
+<td>80</td>
+</tr>
+<tr class="even">
+<td>Raj</td>
+<td>Weight.before.Q&amp;Q</td>
+<td>76</td>
+</tr>
+<tr class="odd">
+<td>Sasha</td>
+<td>Weight.before.Q&amp;Q</td>
+<td>86</td>
+</tr>
+<tr class="even">
+<td>Tanya</td>
+<td>Weight.after.Q&amp;Q</td>
+<td>75</td>
+</tr>
+<tr class="odd">
+<td>Raj</td>
+<td>Weight.after.Q&amp;Q</td>
+<td>74</td>
+</tr>
+<tr class="even">
+<td>Sasha</td>
+<td>Weight.after.Q&amp;Q</td>
+<td>78</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="reshaping-with-data.table-melt-and-dcast" class="section level2">
+<h2>Reshaping with data.table: melt() and dcast()</h2>
+<p>Therefore, we need to learn how to convert long tables into wide tables and vice versa. It can be rather challenging but with data.table it is rather easy. There are two functions for that:</p>
+<ul>
+<li><p><code>melt()</code> - from <em>wide</em> to <em>long</em></p></li>
+<li><p><code>dcast.data.table()</code> - from <em>long</em> to <em>wide</em></p></li>
+</ul>
+<div id="example-1-melt-army-sizes" class="section level3">
+<h3>Example 1: melt() army sizes</h3>
+<p>In our dataset <code>bat</code> (about GoT battles) we have two columns that tell us about army sizes: <code>attacker_size</code> and <code>defender_size</code>.</p>
+<pre class="r"><code>head(bat[, .(name, year, attacker_size, defender_size)])</code></pre>
+<table style="width:96%;">
+<colgroup>
+<col width="41%" />
+<col width="9%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">name</th>
+<th align="center">year</th>
+<th align="center">attacker_size</th>
+<th align="center">defender_size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Battle of the Golden Tooth</td>
+<td align="center">298</td>
+<td align="center">15000</td>
+<td align="center">4000</td>
+</tr>
+<tr class="even">
+<td align="center">Battle at the Mummer’s Ford</td>
+<td align="center">298</td>
+<td align="center">NA</td>
+<td align="center">120</td>
+</tr>
+<tr class="odd">
+<td align="center">Battle of Riverrun</td>
+<td align="center">298</td>
+<td align="center">15000</td>
+<td align="center">10000</td>
+</tr>
+<tr class="even">
+<td align="center">Battle of the Green Fork</td>
+<td align="center">298</td>
+<td align="center">18000</td>
+<td align="center">20000</td>
+</tr>
+<tr class="odd">
+<td align="center">Battle of the Whispering Wood</td>
+<td align="center">298</td>
+<td align="center">1875</td>
+<td align="center">6000</td>
+</tr>
+<tr class="even">
+<td align="center">Battle of the Camps</td>
+<td align="center">298</td>
+<td align="center">6000</td>
+<td align="center">12625</td>
+</tr>
+</tbody>
+</table>
+<p>We want to collect army sizes in one variable <code>bat$army_size</code> and create grouping variable <code>battle_role</code>:</p>
+<pre class="r"><code>batlong &lt;- melt(bat, measure.vars = c(&quot;attacker_size&quot;, &quot;defender_size&quot;),variable.name = &quot;battle_role&quot;, value.name = &quot;army_size&quot;)</code></pre>
+<p>Important parameters of <code>melt()</code>:</p>
+<ul>
+<li>data - your data.table</li>
+<li>id.vars - vector of names with “id”: your case identificators.</li>
+<li><p>measure.vars - names of columns that we want to “melt” <em>Note:</em> <code>melt()</code> will delete from the new data.table all other columns than mentioned in “id.vars” and “measure.vars”. If you want to save all your colum ns in a new data.table, you need to omit “id.vars” like in my example.</p></li>
+<li>variable.name - name for the new “grouping” column</li>
+<li><p>value.name - name for column with values from “measure.vars” columns</p></li>
+</ul>
+</div>
+<div id="example-2-dcast-army-sizes" class="section level3">
+<h3>Example 2: dcast() army sizes</h3>
+<p><code>dcast()</code> function uses formulas. Formulas in R are specific objects that looks like <code>y ~ x1 + x2 * x3</code>:</p>
+<pre class="r"><code>class(y ~ x1 + x2 * x3)</code></pre>
+<pre><code>## [1] &quot;formula&quot;</code></pre>
+<p>We will use them later for statistical tests (e.g., for linear regression and ANOVA).</p>
+<p>Let’s return to <code>dcast()</code></p>
+<pre class="r"><code>batwide &lt;- dcast(batlong,  name~ battle_role, value.var = &quot;army_size&quot;)</code></pre>
+<pre class="r"><code>head(batwide)</code></pre>
+<table style="width:83%;">
+<colgroup>
+<col width="38%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">name</th>
+<th align="center">attacker_size</th>
+<th align="center">defender_size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Battle at the Mummer’s Ford</td>
+<td align="center">NA</td>
+<td align="center">120</td>
+</tr>
+<tr class="even">
+<td align="center">Battle of Castle Black</td>
+<td align="center">1e+05</td>
+<td align="center">1240</td>
+</tr>
+<tr class="odd">
+<td align="center">Battle of Deepwood Motte</td>
+<td align="center">1000</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">Battle of Duskendale</td>
+<td align="center">3000</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">Battle of Moat Cailin</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">Battle of Oxcross</td>
+<td align="center">6000</td>
+<td align="center">10000</td>
+</tr>
+</tbody>
+</table>
+<p>You don’t want to omit other columns, right? Use “…” instead of “name” in formula!</p>
+<pre class="r"><code>batwide &lt;- dcast(batlong,  ...~ battle_role, value.var = &quot;army_size&quot;)</code></pre>
+</div>
+</div>
+<div id="merging-data.framesdata.tables-with-cbind-rbid-merge" class="section level2">
+<h2>Merging data.frames/data.tables with cbind(), rbid(), merge()</h2>
+<p>Assume that you have two data.tables:</p>
+<pre class="r"><code>bat_at &lt;- batlong[battle_role == &quot;attacker_size&quot;,]
+bat_def &lt;- batlong[battle_role == &quot;defender_size&quot;,]</code></pre>
+<p>We want to bind them together. In this case we have two options: combine horizontally or vertically.</p>
+<div id="horizontal-combination" class="section level3">
+<h3>Horizontal combination</h3>
+<pre class="r"><code>h_bat &lt;-cbind(bat_at, bat_def) #c stands for columns</code></pre>
+<p><code>h_bat</code> is a wide data.table with many extra variables</p>
+</div>
+<div id="vertical-combination" class="section level3">
+<h3>Vertical combination</h3>
+<pre class="r"><code>v_bat &lt;- rbind(bat_at, bat_def) #r stands for rows</code></pre>
+<p>Assume the situation where we have repeated rows:</p>
+<pre class="r"><code>v_rep &lt;- rbind(v_bat, bat_at)</code></pre>
+<p>We can use function <code>unique()</code> to delete extra rows</p>
+<pre class="r"><code>v_un &lt;- unique(v_rep, by = NULL)</code></pre>
+</div>
+<div id="merge-function" class="section level3">
+<h3>merge() function</h3>
+<p>Function <code>merge()</code> is a very useful tool to combine two data.tables if you worked with them separately. You need to choose two datasets, id column (<code>by=</code>) that will have the same name for both datasets (if they are different use <code>by.x=</code> and <code>by.y=</code> instead). Then, you need to decide what do you want to do in case when some cases (identified by id column) are different in these datasets:</p>
+<ul>
+<li><code>all = T</code>: will add extra rows that are not preseny either in or y. It means that you will receive all rows from x and all rows from y. Something like logical “OR” for choosing rows to merge.</li>
+<li><code>all.x = T, all.y = F</code>: will take all rows from x. If there are additional rows in y, <code>merge()</code> will ignore them.</li>
+<li><code>all.x = F, all.y = T</code>: will take all rows from y but ignore all aditional rows from x.</li>
+<li><code>all.x = F, all.y = F</code>: will take only rows that intersect in both x and y and ignore all other rows from x and y. Something like logical “AND” for choosing rows to merge.</li>
+</ul>
+<pre class="r"><code>mergedbat &lt;- merge(bat_def, bat_at, by = &quot;name&quot;, all = TRUE)</code></pre>
+</div>
+</div>
+</div>
+<div id="descriptive-statistics" class="section level1">
+<h1>Descriptive statistics</h1>
+<p>With <strong>descriptive statistics</strong> you can describe your data. We assume that our data represent the whole population.<br />
+Whereas with <strong>inferential statistics</strong> you try to draw some conclusions about population based on your sample (that is only a part of population you are interested in). It is a way we study brain and cognition: we cannot observe all humans but we collect data from small sample and test our hypotheses on them.</p>
+<p>Descriptive statistics is very simple. So, let’s start!</p>
+<div id="central-tendency" class="section level2">
+<h2>Central tendency</h2>
+<p>Central tendency is some estimation of the “center” of our distribution.<br />
+1. The most common is a mean. It is just sum divided by N:</p>
+<p><span class="math inline">\(\mu= \frac{\sum\limits_{i=1}^{n} x_{i}} {n}\)</span></p>
+<p>We are already know the function for that in R: <code>mean()</code> (do not forget na.rm = T)</p>
+<ul>
+<li>Try to write your own function to calculate mean with sum() and length() functions. Do not forget about NA!<br />
+</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Median is the <em>middle</em> value in distribution. Assume that you want to calculate mean salary in Moscow. Indeed, this middle salary will be noticably biased by few billionairs. Therefore, sometimes median is more representative measure of central tendency than mean. Use <code>median()</code> to calculate it.<br />
+</li>
+</ol>
+<ul>
+<li>Create a function to calculate median. Use sort(). <em>Note:</em> if length is an odd number you need to calculate mean of two values around the middle. Modulo of division you can check with <code>number %% 2</code>. <code>sort()</code> function can be helpful!</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Trimmed mean (or truncated mean) - is something between mean and median. Trim is a mean after discarding some parts at the high and low end. You can calculate trimmed mean in R with function <code>mean()</code> and parameter <code>trim =</code>. Trim varies from 0 (simple mean) to 0.5 (median, i.e. we cut half of our values from both tails -&gt; we get value in the middle)</p></li>
+<li><p>Mode is the most frequent value in a distribution. It can be used to describe data in nominal scale, e.g., <code>got$Allegiances</code>. Unfortunately, there is no built-in function for mode in R. Try to create your own, but it is a little bit beyond of what we know.</p></li>
+</ol>
+<pre class="r"><code>mymode &lt;- function(x){names(which.max(table(x)))}</code></pre>
+</div>
+<div id="variability" class="section level2">
+<h2>Variability</h2>
+<p>There is a joke about a statistician that couldn’t swim. He decided to ford a river with mean 1 meter depth and drowned. He hadn’t took in account variability of river’s depth.</p>
+<p>The most simple measure of variability is range. Range is a difference between minimum and maximum:</p>
+<pre class="r"><code>range(bat_at$army_size, na.rm = TRUE)</code></pre>
+<pre><code>## [1]     20 100000</code></pre>
+<pre class="r"><code>diff(range(bat_at$army_size, na.rm = TRUE))</code></pre>
+<pre><code>## [1] 99980</code></pre>
+<p>However, it doesn’t tell us much about variability and depends on minimum and maximum only.</p>
+<p>Another measure is a variance.</p>
+<p><span class="math inline">\(\sigma^{2} = \frac{\sum\limits_{i=1}^{n} \left(x_{i} - \bar{x}\right)^{2}} {n}\)</span></p>
+<pre class="r"><code>var(bat_at$army_size, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 411403824</code></pre>
+<p>This value is very big, right? Because we calculated squared differences to the mean!</p>
+<p>Standard deviation is a more common measure of variability. It is just a square root of variance:</p>
+<p><span class="math inline">\(\sigma = \sqrt{\frac{\sum\limits_{i=1}^{n} \left(x_{i} - \bar{x}\right)^{2}} {n}}\)</span></p>
+<pre class="r"><code>sd(bat_at$army_size, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 20283.09</code></pre>
+<p>Let’s check:</p>
+<pre class="r"><code>sqrt(var(bat_at$army_size, na.rm = TRUE))</code></pre>
+<pre><code>## [1] 20283.09</code></pre>
+</div>
+<div id="skewness-and-kurtosis" class="section level2">
+<h2>Skewness and kurtosis</h2>
+<p><strong>Skewness</strong> tell us whether a distribution is symmetrical. “Right-skewed” or positive skewness means that tail on the right side of probability density distribution is longer than on the left side. “Left-skewed” or negative skewness means that the left tail is longer than the right one.</p>
+<div class="figure">
+<img src="images/image676.png" alt="skewness" />
+<p class="caption">skewness</p>
+</div>
+<p>Right-skewed distriburion is a very often situation in cognitive science. For example, reaction time is usually right-skewed.</p>
+<p><strong>Kurtosis</strong> measures the flatness of a distribution:</p>
+<div class="figure">
+<img src="images/20-2_Guidi_GC.,_Salvagno_GL._Figure_04.jpg" alt="kurtosis" />
+<p class="caption">kurtosis</p>
+</div>
+<p>Unfortunately, base R does not give you functions for skewness and kurtosis. I recommend you to use package <code>psych</code> and functions <code>skew()</code> and <code>kurtosi()</code> from this package:</p>
+<pre class="r"><code>#install.packages(&quot;psych&quot;)
+library(&quot;psych&quot;)
+skew(bat_at$army_size)</code></pre>
+<pre><code>## [1] 3.62074</code></pre>
+<p>Skewness is 3.62 - it means that distribuion is very right-skewed.</p>
+<pre class="r"><code>kurtosi(bat_at$army_size)</code></pre>
+<pre><code>## [1] 13.21869</code></pre>
+<p>Kurtosis is 13.22 - it means that distribution is highly leptokurtic, i.e. “thin”.</p>
+</div>
+<div id="functions-for-summary-descriptive-statistics" class="section level2">
+<h2>Functions for summary descriptive statistics</h2>
+<p>There is base function for descriptive statistics called <code>summary()</code>. It will give you quartiles, minimum and maximum, median and mean and number of missing values.</p>
+<pre class="r"><code>summary(bat_at$army_size)</code></pre>
+<table style="width:79%;">
+<colgroup>
+<col width="9%" />
+<col width="13%" />
+<col width="12%" />
+<col width="9%" />
+<col width="13%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Min.</th>
+<th align="center">1st Qu.</th>
+<th align="center">Median</th>
+<th align="center">Mean</th>
+<th align="center">3rd Qu.</th>
+<th align="center">Max.</th>
+<th align="center">NA’s</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">20</td>
+<td align="center">1375</td>
+<td align="center">4000</td>
+<td align="center">9943</td>
+<td align="center">8250</td>
+<td align="center">1e+05</td>
+<td align="center">14</td>
+</tr>
+</tbody>
+</table>
+<p><code>summary()</code> is a <em>generic function</em> - it means that it has different behavior for diffirent objects. For example:</p>
+<pre class="r"><code>summary(bat_at$name)</code></pre>
+<table style="width:40%;">
+<colgroup>
+<col width="12%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Length</th>
+<th align="center">Class</th>
+<th align="center">Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">38</td>
+<td align="center">character</td>
+<td align="center">character</td>
+</tr>
+</tbody>
+</table>
+<p>If you want to get more descriptive statistics it is better to use <code>describe()</code> function from <code>psych</code> package:</p>
+<pre class="r"><code>describe(bat_at$army_size)</code></pre>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="11%" />
+<col width="9%" />
+<col width="5%" />
+<col width="9%" />
+<col width="7%" />
+<col width="11%" />
+<col width="12%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">vars</th>
+<th align="center">n</th>
+<th align="center">mean</th>
+<th align="center">sd</th>
+<th align="center">median</th>
+<th align="center">trimmed</th>
+<th align="center">mad</th>
+<th align="center">min</th>
+<th align="center">max</th>
+<th align="center">range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>X1</strong></td>
+<td align="center">1</td>
+<td align="center">24</td>
+<td align="center">9943</td>
+<td align="center">20283</td>
+<td align="center">4000</td>
+<td align="center">5875</td>
+<td align="center">4077</td>
+<td align="center">20</td>
+<td align="center">1e+05</td>
+<td align="center">99980</td>
+</tr>
+</tbody>
+</table>
+<table style="width:43%;">
+<colgroup>
+<col width="12%" />
+<col width="9%" />
+<col width="15%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">skew</th>
+<th align="center">kurtosis</th>
+<th align="center">se</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>X1</strong></td>
+<td align="center">3.621</td>
+<td align="center">13.22</td>
+<td align="center">4140</td>
+</tr>
+</tbody>
+</table>
+<p>It is very useful to use it together with aggregation with <code>by =</code> in data.table:</p>
+<pre class="r"><code>batlong[, describe(army_size), by = battle_role]</code></pre>
+<table style="width:100%;">
+<caption>Table continues below</caption>
+<colgroup>
+<col width="18%" />
+<col width="9%" />
+<col width="5%" />
+<col width="9%" />
+<col width="8%" />
+<col width="12%" />
+<col width="13%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">battle_role</th>
+<th align="center">vars</th>
+<th align="center">n</th>
+<th align="center">mean</th>
+<th align="center">sd</th>
+<th align="center">median</th>
+<th align="center">trimmed</th>
+<th align="center">mad</th>
+<th align="center">min</th>
+<th align="center">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">attacker_size</td>
+<td align="center">1</td>
+<td align="center">24</td>
+<td align="center">9943</td>
+<td align="center">20283</td>
+<td align="center">4000</td>
+<td align="center">5875</td>
+<td align="center">4077</td>
+<td align="center">20</td>
+<td align="center">1e+05</td>
+</tr>
+<tr class="even">
+<td align="center">defender_size</td>
+<td align="center">1</td>
+<td align="center">19</td>
+<td align="center">6428</td>
+<td align="center">6225</td>
+<td align="center">6000</td>
+<td align="center">6002</td>
+<td align="center">5930</td>
+<td align="center">100</td>
+<td align="center">20000</td>
+</tr>
+</tbody>
+</table>
+<table style="width:42%;">
+<colgroup>
+<col width="11%" />
+<col width="9%" />
+<col width="15%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">range</th>
+<th align="center">skew</th>
+<th align="center">kurtosis</th>
+<th align="center">se</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">99980</td>
+<td align="center">3.621</td>
+<td align="center">13.22</td>
+<td align="center">4140</td>
+</tr>
+<tr class="even">
+<td align="center">19900</td>
+<td align="center">0.8631</td>
+<td align="center">-0.2604</td>
+<td align="center">1428</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

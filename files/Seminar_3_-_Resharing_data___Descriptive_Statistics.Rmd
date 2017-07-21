@@ -1,0 +1,308 @@
+---
+title: "Seminar 3: Resharing data & Descriptive Statistics"
+author: "Ivan Pozdniakov"
+date: "17.10.2016"
+output: 
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+---
+
+
+
+```{r, echo = F, message=F, warning=F}
+library("pander")
+```
+
+\newpage 
+
+```{r}
+library("data.table")
+```
+
+We are going to use dataset about battles in Game of Thrones. Each row represent a battle with information about army sizes, commanders, location etc. [Look here for more information](https://www.kaggle.com/mylesoneill/game-of-thrones).
+
+```{r, warning=F}
+bat <- fread("battles.csv")
+```
+
+#Reshaping data
+
+##Wide and long data formats
+
+What if you have several observations for one variable? How are you going to store different observations of one variable - as different variables or as one variable with additional "grouping" variable that will store information about observation?
+
+Both options are possible. Moreover, different functions and packages will ask you to provide data in *long* or *wide* format as input.
+
+###Wide format  
+
+Student |Weight.before.Q&Q | Weight.after.Q&Q
+--------|----------------  | ----------------
+Tanya   |80                | 75
+Raj     |76                | 74
+Sasha   |86                | 78
+
+###Long format
+
+Student |Measurement       | Weight
+--------|----------------  | ----------------
+Tanya   |Weight.before.Q&Q | 80
+Raj     |Weight.before.Q&Q | 76
+Sasha   |Weight.before.Q&Q | 86
+Tanya   |Weight.after.Q&Q  | 75
+Raj     |Weight.after.Q&Q  | 74
+Sasha   |Weight.after.Q&Q  | 78
+
+## Reshaping with data.table: melt() and dcast()
+
+Therefore, we need to learn how to convert long tables into wide tables and vice versa. It can be rather challenging but with data.table it is rather easy. There are two functions for that:  
+
++ `melt()` - from *wide* to *long*  
+
++ `dcast.data.table()` - from *long* to *wide*  
+
+### Example 1: melt() army sizes
+
+In our dataset `bat` (about GoT battles) we have two columns that tell us about army sizes: `attacker_size` and `defender_size`.
+```{r, echo = T, message=F, warning=F, eval = F}
+head(bat[, .(name, year, attacker_size, defender_size)])
+```
+ 
+```{r, echo=FALSE, message=F, warning=FALSE}
+pander(head(bat[, .(name, year, attacker_size, defender_size)]))
+```
+
+ 
+We want to collect army sizes in one variable `bat$army_size` and create grouping variable `battle_role`:  
+
+```{r}
+batlong <- melt(bat, measure.vars = c("attacker_size", "defender_size"),variable.name = "battle_role", value.name = "army_size")
+```
+
+Important parameters of `melt()`:  
+
++ data - your data.table
++ id.vars - vector of names with "id": your case identificators. 
++ measure.vars - names of columns that we want to "melt"
+*Note:* `melt()` will delete from the new data.table all other columns than mentioned in "id.vars" and "measure.vars". If you want to save all your colum ns in a new data.table, you need to omit "id.vars" like in my example.  
+
++ variable.name - name for the new "grouping" column
++ value.name - name for column with values from "measure.vars" columns
+
+###Example 2: dcast() army sizes
+
+`dcast()` function uses formulas. Formulas in R are specific objects that looks like `y ~ x1 + x2 * x3`:
+```{r}
+class(y ~ x1 + x2 * x3)
+```
+
+We will use them later for statistical tests (e.g., for linear regression and ANOVA).
+
+Let's return to `dcast()`
+```{r, echo = T, message=F, warning=F}
+batwide <- dcast(batlong,  name~ battle_role, value.var = "army_size")
+```
+
+```{r, echo = T, message=F, warning=F, eval = F}
+head(batwide)
+```
+
+
+```{r, echo = F, message=F, warning=F}
+pander(head(batwide))
+```
+
+
+You don't want to omit other columns, right? Use "..." instead of "name" in formula!  
+
+```{r}
+batwide <- dcast(batlong,  ...~ battle_role, value.var = "army_size")
+```
+
+## Merging data.frames/data.tables with cbind(), rbid(), merge()
+
+Assume that you have two data.tables:  
+```{r}
+bat_at <- batlong[battle_role == "attacker_size",]
+bat_def <- batlong[battle_role == "defender_size",]
+```
+
+We want to bind them together. In this case we have two options: combine horizontally or vertically.
+ 
+### Horizontal combination   
+
+```{r}
+h_bat <-cbind(bat_at, bat_def) #c stands for columns
+```
+
+`h_bat` is a wide data.table with many extra variables
+
+###Vertical combination
+
+```{r}
+v_bat <- rbind(bat_at, bat_def) #r stands for rows
+```
+
+Assume the situation where we have repeated rows:
+
+```{r}
+v_rep <- rbind(v_bat, bat_at)
+```
+
+We can use function `unique()` to delete extra rows  
+
+```{r}
+v_un <- unique(v_rep, by = NULL)
+```
+
+### merge() function
+
+Function `merge()` is a very useful tool to combine two data.tables if you worked with them separately. You need to choose two datasets, id column (`by=`) that will have the same name for both datasets (if they are different use `by.x=` and `by.y=` instead). Then, you need to decide what do you want to do in case when some cases (identified by id column) are different in these datasets:  
+
++ `all = T`: will add extra rows that are not preseny either in or y. It means that you will receive all rows from x and all rows from y. Something like logical "OR" for choosing rows to merge.
++ `all.x = T, all.y = F`: will take all rows from x. If there are additional rows in y, `merge()` will ignore them.
++ `all.x = F, all.y = T`: will take all rows from y but ignore all aditional rows from x.
++ `all.x = F, all.y = F`: will take only rows that intersect in both x and y and ignore all other rows from x and y. Something like logical "AND" for choosing rows to merge.
+
+
+```{r}
+mergedbat <- merge(bat_def, bat_at, by = "name", all = T)
+```
+
+
+#Descriptive statistics
+
+With **descriptive statistics** you can describe your data. We assume that our data represent the whole population.   
+Whereas with **inferential statistics** you try to draw some conclusions about population based on your sample (that is only a part of population you are interested in). It is a way we study brain and cognition: we cannot observe all humans but we collect data from small sample and test our hypotheses on them.
+
+Descriptive statistics is very simple. So, let's start!
+
+## Central tendency
+Central tendency is some estimation of the "center" of our distribution.  
+1. The most common is a mean. It is just sum divided by N:  
+
+$\mu= \frac{\sum\limits_{i=1}^{n} x_{i}} {n}$
+
+We are already know the function for that in R: `mean()` (do not forget na.rm = T)  
+
+* Try to write your own function to calculate mean with sum() and length() functions. Do not forget about NA!  
+2. Median is the *middle* value in distribution. Assume that you want to calculate mean salary in Moscow. Indeed, this middle salary will be noticably biased by few billionairs. Therefore, sometimes median is more representative measure of central tendency than mean. Use `median()` to calculate it.  
+* Create a function to calculate median. Use sort(). *Note:* if length is an odd number you need to calculate mean of two values around the middle. Modulo of division you can check with `number %% 2`. `sort()` function can be helpful!  
+
+3. Trimmed mean (or truncated mean) - is something between mean and median. Trim is a mean after discarding some parts at the high and low end. You can calculate trimmed mean in R with function `mean()` and parameter `trim =`. Trim varies from 0 (simple mean) to 0.5 (median, i.e. we cut half of our values from both tails -> we get value in the middle)
+
+3. Mode is the most frequent value in a distribution. It can be used to describe data in nominal scale, e.g., `got$Allegiances`. Unfortunately, there is no built-in function for mode in R. Try to create your own, but it is a little bit beyond of what we know.  
+
+```{r}
+mymode <- function(x){names(which.max(table(x)))}
+```
+
+
+##Variability  
+
+There is a joke about a statistician that couldn't swim. He decided to ford a river with mean 1 meter depth and drowned. He hadn't took in account variability of river's depth.  
+
+The most simple measure of variability is range. Range is a difference between minimum and maximum:  
+
+```{r, echo = T, message=F, warning=F, eval = T}
+range(bat_at$army_size, na.rm = T)
+diff(range(bat_at$army_size, na.rm = T))
+```
+
+However, it doesn't tell us much about variability and depends on minimum and maximum only.
+
+Another measure is a variance.
+
+$\sigma^{2} = \frac{\sum\limits_{i=1}^{n} \left(x_{i} - \bar{x}\right)^{2}} {n}$
+
+```{r, echo = T, message=F, warning=F, eval = T}
+var(bat_at$army_size, na.rm = T)
+```
+
+This value is very big, right? Because we calculated squared differences to the mean!
+
+Standard deviation is a more common measure of variability. It is just a square root of variance:  
+
+$\sigma = \sqrt{\frac{\sum\limits_{i=1}^{n} \left(x_{i} - \bar{x}\right)^{2}} {n}}$
+
+```{r, echo = T, message=F, warning=F, eval = T}
+sd(bat_at$army_size, na.rm = T)
+```
+
+
+Let's check:  
+```{r, echo = T, message=F, warning=F, eval = T}
+sqrt(var(bat_at$army_size, na.rm = T))
+```
+
+
+##Skewness and kurtosis
+
+**Skewness** tell us whether a distribution is symmetrical. "Right-skewed" or positive skewness means that tail on the right side of probability density distribution is longer than on the left side. "Left-skewed" or negative skewness means that the left tail is longer than the right one.
+
+![skewness](image676.png)
+
+Right-skewed distriburion is a very often situation in cognitive science. For example, reaction time is usually right-skewed. 
+
+**Kurtosis** measures the flatness of a distribution:  
+
+![kurtosis](20-2_Guidi_GC.,_Salvagno_GL._Figure_04.jpg)
+
+Unfortunately, base R does not give you functions for skewness and kurtosis. I recommend you to use package `psych` and functions `skew()` and `kurtosi()` from this package:
+
+```{r}
+#install.packages("psych")
+library("psych")
+skew(bat_at$army_size)
+```
+
+Skewness is `r round(skew(bat_at$army_size),2)` - it means that distribuion is very right-skewed.
+
+```{r}
+kurtosi(bat_at$army_size)
+```
+
+Kurtosis is `r round(kurtosi(bat_at$army_size),2)` - it means that distribution is highly leptokurtic, i.e. "thin".
+
+##Functions for summary descriptive statistics
+
+There is base function for descriptive statistics called `summary()`. It will give you quartiles, minimum and maximum, median and mean and number of missing values.
+```{r, echo = T, message=F, warning=F, eval = F}
+summary(bat_at$army_size)
+```
+
+```{r, echo = F, message=F, warning=F}
+pander(summary(bat_at$army_size))
+```
+
+`summary()` is a *generic function* - it means that it has different behavior for diffirent objects. For example:
+
+```{r, echo = T, message=F, warning=F, eval = F}
+summary(bat_at$name)
+```
+
+```{r, echo = F, message=F, warning=F}
+pander(summary(bat_at$name))
+```
+
+If you want to get more descriptive statistics it is better to use `describe()` function from `psych` package:
+
+```{r, echo = T, message=F, warning=F, eval = F}
+describe(bat_at$army_size)
+```
+
+```{r, echo = F, message=F, warning=F}
+pander(describe(bat_at$army_size))
+```
+
+It is very useful to use it together with aggregation with `by =` in data.table:
+
+```{r, echo = T, message=F, warning=F, eval = F}
+batlong[, describe(army_size), by = battle_role]
+```
+
+```{r, echo = F, message=F, warning=F}
+pander(batlong[, describe(army_size), by = battle_role])
+```
+

@@ -46,4 +46,8 @@ My other academic interests include philosophy of mind and digital humanities. I
 ✅ Yes to respect
 
 ✅ Yes to love
+
+## Some other projects
+
+-   [Live-coding streaming of data analysis in R](https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ)
 :::

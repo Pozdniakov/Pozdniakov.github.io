@@ -12,39 +12,38 @@ about:
       href: https://github.com/Pozdniakov
 ---
 
-:::{#hero-heading}
+::: {#hero-heading}
 ## Who am I
 
-My name is Ivan Pozdniakov. I teach data analysis and statistics in R, both as courses at universities and as a tutor. I have a free book (in Russian) ["Data Analysis and Statistics in R"](https://pozdniakov.github.io/tidy_stats/). I currently live in Tbilisi, Georgia, where I left after Putin started full-scale invasion in Ukraine.
+My name is Ivan Pozdniakov. I teach data analysis and statistics in R, both as courses at universities and as a tutor. I have a free book (in Russian) ["Data Analysis and Statistics in R"](https://pozdniakov.github.io/tidy_stats/). I currently live in Tbilisi, Georgia, where I left after Putin started a full-scale invasion of Ukraine.
+
+## Plans and interests
+
+I am in the process of returning to science after working in IT and teaching. My main area of interest is computational neuroscience and [I am looking for a PhD position in this field.]{.underline}
+
+My other academic interests include philosophy of mind and digital humanities. I have collaborated with the DraCor team for years, in particular, I've developed a CRAN-published R package `{rdracor}` and the [Shiny web application](https://github.com/dracor-org/dracor-shiny). I am also interested in history, politics, philosophy (the hard problem of consciousness especially), activism, data journalism, data science, generative art, R and tidyverse. If you are interested in collaboration, e-mail me at `ivanspozdniakov@gmail.com`
 
 ## What do I stand for
 
-❌ War
+❌ No to war
 
-❌ Putin
+❌ No to Putin
 
-❌ Xenophobia
+❌ No to xenophobia
 
-❌ Sexism
+❌ No to sexism
 
-❌ Homophobia
+❌ No to homophobia
 
-❌ Transphobia
+❌ No to transphobia
 
-✅ Democracy
+✅ Yes to democracy
 
-✅ Human rights
+✅ Yes to human rights
 
-✅ Empathy
+✅ Yes to empathy
 
-✅ Respect
+✅ Yes to respect
 
-✅ Love
-
-## What are my plans and interests
-
-I am in the process of returning to science after working in IT and teaching. My main area of interest is computational neuroscience and I am looking for a PhD position in this field.
-
-My other academic interests include philosophy of mind and digital humanities. I have collaborated with the DraCor team for years, in particular I developed the CRAN published R package `{rdracor}` and the [Shiny web application](https://github.com/dracor-org/dracor-shiny). I am also interested in history, politics, philosophy (especially the hard problem of consciousness), activism, data journalism, data science, generative art, R and tidyverse. If you are interested in collaborating, email me at `ivanspozdniakov@gmail.com`
-
+✅ Yes to love
 :::

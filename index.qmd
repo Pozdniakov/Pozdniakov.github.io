@@ -1,0 +1,41 @@
+---
+title: "Pozdniakov Ivan"
+about:
+  template: trestles
+  image: telegram-peer-photo-size-2-1068414630490122163-1-0-0.jpg
+  links:
+    - icon: twitter
+      text: twitter
+      href: https://twitter.com/pozdniakov_is
+    - icon: github
+      text: Github
+      href: https://github.com/Pozdniakov
+---
+
+My name is Ivan Pozdniakov I teach data analysis and statistics in R, both as courses at universities and as a tutor. I have a free book (in Russian) ["Data Analysis and Statistics in R"](https://pozdniakov.github.io/tidy_stats/). I currently live in Tbilisi, Georgia, where I left after Putin's invasion of Ukraine started.
+
+❌ War
+
+❌ Putin
+
+❌ Xenophobia
+
+❌ Sexism
+
+❌ Homophobia
+
+❌ Transphobia
+
+✅ Democracy
+
+✅ Human rights
+
+✅ Empathy
+
+✅ Respect
+
+✅ Love
+
+I am in the process of returning to science after working in IT and teaching. My main area of interest is computational neuroscience and I am looking for a PhD position in this field.
+
+My other academic interests include philosophy of mind and digital humanities. I have collaborated with the DraCor team for years, in particular I developed the CRAN published R package `{rdracor}` and the [Shiny web application](https://github.com/dracor-org/dracor-shiny). I am also interested in history, politics, philosophy (especially the hard problem of consciousness), activism, data journalism, data science, generative art, R and tidyverse. If you are interested in collaborating, email me at `ivanspozdniakov@gmail.com`

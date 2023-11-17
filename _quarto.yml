@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "an island universe"
+  page-footer: 
+    left: "Pozdniakov Ivan" 
+    right: 
+      - icon: github
+        href: https://github.com/Pozdniakov
+      - icon: twitter 
+        href: https://twitter.com/pozdniakov_is
+
+
+format:
+  html:
+    theme: pulse
+    css: styles.css
+    toc: true
+
+editor: visual
+

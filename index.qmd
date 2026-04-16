@@ -2,7 +2,7 @@
 title: "Ivan Pozdniakov"
 about:
   template: trestles
-  image: images/profile.jpg
+  image: images/profile_old.jpg
   image-shape: rounded
   image-width: 16em
   links:

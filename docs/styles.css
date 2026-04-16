@@ -40,8 +40,15 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
+}
+
+/* Content above canvas */
+.quarto-about-trestles,
+.nav-footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* ── 4. Fade-in on load ───────────────────────────────── */
@@ -193,4 +200,36 @@ a:hover {
 pre, code {
   background-color: var(--bg-card);
   border: 1px solid var(--border);
+}
+
+/* ── Mobile (trestles switches at 991.98px) ───────────── */
+@media (max-width: 991.98px) {
+  .quarto-about-trestles .about-entity {
+    align-items: center !important;
+    text-align: center !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    margin-bottom: 1rem;
+  }
+
+  .quarto-about-trestles .about-contents {
+    padding-left: 0 !important;
+  }
+
+  .about-links {
+    align-items: center !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about-link {
+    justify-content: center !important;
+    width: auto !important;
+  }
+
+  .about-link::after {
+    left: 0 !important;
+    right: auto !important;
+  }
 }

@@ -146,8 +146,8 @@ ul.task-list li input[type="checkbox"] {
   const MOUSE_D = 240;
   let W, H, nodes, mouse = { x: -999, y: -999 }, resizeTimer;
   function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
   }
   function initNodes() {
     nodes = Array.from({ length: COUNT }, () => ({

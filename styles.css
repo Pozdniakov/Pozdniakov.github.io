@@ -204,6 +204,9 @@ pre, code {
 
 /* ── Mobile (trestles switches at 991.98px) ───────────── */
 @media (max-width: 991.98px) {
+  #bg-canvas { opacity: 0.3; }
+}
+@media (max-width: 991.98px) {
   .quarto-about-trestles .about-entity {
     align-items: center !important;
     text-align: center !important;

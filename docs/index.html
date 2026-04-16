@@ -140,13 +140,17 @@ ul.task-list li input[type="checkbox"] {
   const canvas = document.getElementById('bg-canvas');
   document.body.appendChild(canvas); /* move out of trestles container */
   const ctx    = canvas.getContext('2d');
-  const ACCENT  = '20,184,166';   /* teal-500 */
-  const COUNT   = 70;
-  const LINK_D  = 200;
-  const MOUSE_D = 240;
-  let W, H, nodes, mouse = { x: -999, y: -999 }, resizeTimer;
+  const ACCENT   = '20,184,166';   /* teal-500 */
+  const mobile   = window.innerWidth < 992;
+  const COUNT    = mobile ? 28 : 70;
+  const LINK_D   = mobile ? 130 : 200;
+  const MOUSE_D  = mobile ? 160 : 240;
+  let W, H, nodes, mouse = { x: -999, y: -999 }, resizeTimer, lastW = 0;
   function resize() {
-    W = canvas.width  = window.innerWidth;
+    const newW = window.innerWidth;
+    if (newW === lastW) return;   /* ignore iOS address-bar height flicker */
+    lastW = newW;
+    W = canvas.width  = newW;
     H = canvas.height = window.innerHeight;
   }
   function initNodes() {

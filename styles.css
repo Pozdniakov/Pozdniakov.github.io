@@ -1,1 +1,196 @@
-/* css styles */
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap');
+
+/* Custom font */
+@font-face {
+  font-family: 'QuaziNote';
+  src: url('fonts/QuaziNote-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'QuaziNote';
+  src: url('fonts/QuaziNote-Condensed.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Dark academic — animated graph bg + teal accent */
+
+:root {
+  --bg:       #060d1a;
+  --bg-card:  #0f1f35;
+  --border:   #1e3a5f;
+  --text:     #e2e8f0;
+  --muted:    #94a3b8;
+  --accent:   #14b8a6;
+  --accent-h: #5eead4;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ── 4. Fade-in on load ───────────────────────────────── */
+.quarto-about-trestles {
+  animation: fadeIn 0.9s ease both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Outfit headings */
+h1, h2, h3, h4 {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Links */
+a, a:visited {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent-h);
+}
+
+/* About entity */
+.quarto-about-trestles .about-entity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  padding-right: 1.5rem !important;
+  border-right: 1px solid var(--border);  /* ── 1. vertical divider */
+}
+
+.quarto-about-trestles .about-contents {
+  padding-left: 2.5rem;
+}
+
+/* ── 5. Photo teal ring on hover ─────────────────────── */
+.quarto-about-trestles .about-entity .about-image {
+  border-radius: 6px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.3s ease;
+}
+.quarto-about-trestles .about-entity .about-image:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.6), 0 0 0 3px var(--accent);
+}
+
+/* About link buttons — flat text with underline animation */
+.about-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+.about-link {
+  display: flex !important;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25em 0 !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--muted) !important;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  width: 100%;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.about-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.about-link:hover {
+  color: var(--text) !important;
+  background: transparent !important;
+  text-decoration: none;
+}
+
+.about-link:hover::after {
+  width: 100%;
+}
+
+/* Section dividers */
+.about-contents > section {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* ── 3. Project item hover ────────────────────────────── */
+.project-item {
+  border-left: 2px solid var(--accent);
+  padding: 0.4rem 0 0.4rem 1.1rem;
+  margin-bottom: 1.25rem;
+  transition: border-left-width 0.2s ease, border-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.project-item:hover {
+  border-left-width: 3px;
+  border-color: var(--accent-h);
+  padding-left: 1.3rem;
+}
+
+.project-item h3 {
+  font-size: 0.95rem;
+  margin: 0 0 0.3rem 0;
+  color: var(--text);
+}
+
+/* Font project — show name in the font itself */
+.project-item.font-showcase h3 {
+  font-family: 'QuaziNote', serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+}
+
+.project-item p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin: 0 0 0.4rem 0;
+  line-height: 1.5;
+}
+
+/* Footer */
+.nav-footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Code blocks */
+pre, code {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+}

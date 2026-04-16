@@ -1,53 +1,170 @@
 ---
-title: "Pozdniakov Ivan"
+title: "Ivan Pozdniakov"
 about:
   template: trestles
-  image: telegram-peer-photo-size-2-1068414630490122163-1-0-0.jpg
+  image: images/profile.jpg
+  image-shape: rounded
+  image-width: 16em
   links:
-    - icon: twitter
-      text: twitter
-      href: https://twitter.com/pozdniakov_is
+    - icon: telegram
+      text: Telegram
+      href: https://t.me/pozdniakovivan
     - icon: github
-      text: Github
+      text: GitHub
       href: https://github.com/Pozdniakov
+    - icon: envelope
+      text: Email
+      href: mailto:ivanspozdniakov@gmail.com
+    - icon: file-earmark-pdf
+      text: CV
+      href: cv/cv_germany.pdf
 ---
 
-::: {#hero-heading}
-## Who am I
+## About
 
-My name is Ivan Pozdniakov. I teach data analysis and statistics in R, both as courses at universities and as a tutor. I have a free book (in Russian) ["Data Analysis and Statistics in R"](https://pozdniakov.github.io/tidy_stats/). I currently live in Tbilisi, Georgia, where I left after Putin started a full-scale invasion of Ukraine.
+Researcher, R developer, and statistics educator based in Kiel, Germany.
+MSc in Cognitive Sciences (HSE, Moscow); background in brain stimulation and
+neuroimaging — TMS, tACS, EEG, MEG.
 
-## Plans and interests
+My trajectory runs from experimental neuroscience toward computational modeling —
+a deliberate accumulation of empirical, statistical, and programming skills built
+over a decade of research and teaching. Looking for a PhD position at the
+intersection of computation, cognition, and neural dynamics.
 
-I am in the process of returning to science after working in IT and teaching. My main area of interest is computational neuroscience and [I am looking for a PhD position in this field.]{.underline}
+My curiosity extends well beyond neuroscience — to philosophy of mind, digital
+humanities, history, and a few other rabbit holes.
 
-My other academic interests include philosophy of mind and digital humanities. I have collaborated with the DraCor team for years, in particular, I've developed a CRAN-published R package `{rdracor}` and the [Shiny web application](https://github.com/dracor-org/dracor-shiny). I am also interested in history, politics, philosophy (the hard problem of consciousness especially), activism, data journalism, data science, generative art, R and tidyverse. If you are interested in collaboration, e-mail me at `ivanspozdniakov@gmail.com`
 
-## What do I stand for
+## Projects
 
-❌ No to war
+::: {.project-item}
+### Data Analysis and Statistics in R
+Free textbook (Russian) on wrangling, visualization, statistics, and reproducible
+workflows with R and the tidyverse.
 
-❌ No to Putin
-
-❌ No to xenophobia
-
-❌ No to sexism
-
-❌ No to homophobia
-
-❌ No to transphobia
-
-✅ Yes to democracy
-
-✅ Yes to human rights
-
-✅ Yes to empathy
-
-✅ Yes to respect
-
-✅ Yes to love
-
-## Some other projects
-
--   [Live-coding streaming of data analysis in R](https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ)
+[Read the book](https://pozdniakov.github.io/tidy_stats/) · [Source](https://github.com/Pozdniakov/tidy_stats)
 :::
+
+::: {.project-item}
+### {rdracor} — CRAN Package
+R client for the DraCor API — programmatic access to multilingual drama corpora
+in TEI-XML. Play texts, metadata, character networks.
+
+[CRAN](https://cran.r-project.org/package=rdracor) · [GitHub](https://github.com/dracor-org/rdracor)
+:::
+
+::: {.project-item}
+### DraCor Shiny App
+Interactive visualization of drama corpus data — character interaction networks,
+corpus statistics, text exploration.
+
+[GitHub](https://github.com/dracor-org/dracor-shiny)
+:::
+
+::: {.project-item}
+### Live-Coding Data Analysis — YouTube
+Unscripted streams working through real datasets in R: wrangling, modeling,
+visualization.
+
+[Watch on YouTube](https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ)
+:::
+
+::: {.project-item .font-showcase}
+### QuaziNote — Free Typeface
+A free typeface in two styles — Regular and Condensed. Available to download and use freely.
+
+[Download Regular](fonts/QuaziNote-Regular.otf) · [Download Condensed](fonts/QuaziNote-Condensed.otf)
+:::
+
+```{=html}
+<canvas id="bg-canvas"></canvas>
+<script>
+(function () {
+  const canvas = document.getElementById('bg-canvas');
+  document.body.appendChild(canvas); /* move out of trestles container */
+  const ctx    = canvas.getContext('2d');
+
+  const ACCENT  = '20,184,166';   /* teal-500 */
+  const COUNT   = 70;
+  const LINK_D  = 200;
+  const MOUSE_D = 240;
+
+  let W, H, nodes, mouse = { x: -999, y: -999 }, resizeTimer;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function initNodes() {
+    nodes = Array.from({ length: COUNT }, () => ({
+      x:  Math.random() * W,
+      y:  Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r:  Math.random() * 2.2 + 1.8,
+    }));
+  }
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 150);
+  });
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+  resize();
+  initNodes();
+
+  function drawLink(ax, ay, bx, by, alpha) {
+    ctx.strokeStyle = `rgba(${ACCENT},${alpha})`;
+    ctx.lineWidth   = 1.0;
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    ctx.lineTo(bx, by);
+    ctx.stroke();
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+
+    /* node–node links */
+    for (let i = 0; i < COUNT; i++) {
+      for (let j = i + 1; j < COUNT; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const d  = Math.sqrt(dx * dx + dy * dy);
+        if (d < LINK_D) drawLink(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y,
+                                  (1 - d / LINK_D) * 0.35);
+      }
+    }
+
+    /* cursor links */
+    for (const n of nodes) {
+      const dx = n.x - mouse.x;
+      const dy = n.y - mouse.y;
+      const d  = Math.sqrt(dx * dx + dy * dy);
+      if (d < MOUSE_D) drawLink(n.x, n.y, mouse.x, mouse.y,
+                                 (1 - d / MOUSE_D) * 0.55);
+    }
+
+    /* nodes */
+    for (const n of nodes) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${ACCENT},0.75)`;
+      ctx.fill();
+
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+})();
+</script>
+```

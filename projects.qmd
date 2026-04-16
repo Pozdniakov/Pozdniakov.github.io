@@ -1,0 +1,64 @@
+---
+title: "Projects"
+---
+
+## R Textbook
+
+::: {.project-card}
+### Data Analysis and Statistics in R
+A freely available textbook (in Russian) covering data wrangling, visualization,
+statistical testing, regression, and reproducible workflows using R and the tidyverse.
+
+[Read the book](https://pozdniakov.github.io/tidy_stats/){.btn .btn-outline-primary .btn-sm}
+[Source](https://github.com/Pozdniakov/tidy_stats){.btn .btn-outline-secondary .btn-sm}
+
+[R]{.tech-badge} [tidyverse]{.tech-badge} [bookdown]{.tech-badge} [statistics]{.tech-badge}
+:::
+
+## Drama Corpora Project (DraCor)
+
+::: {.project-card}
+### {rdracor} — CRAN Package
+An R client for the DraCor API providing programmatic access to the Drama
+Corpora Project — a multilingual collection of plays in TEI-XML. Retrieve
+play texts, metadata, network data, and stage directions directly from R.
+
+[CRAN](https://cran.r-project.org/package=rdracor){.btn .btn-outline-primary .btn-sm}
+[GitHub](https://github.com/dracor-org/rdracor){.btn .btn-outline-secondary .btn-sm}
+
+[R]{.tech-badge} [CRAN]{.tech-badge} [API]{.tech-badge} [digital humanities]{.tech-badge}
+:::
+
+::: {.project-card}
+### DraCor Shiny Application
+An interactive web application for exploring the Drama Corpora Project data —
+character interaction networks, corpus statistics, and dramatic text visualization.
+
+[GitHub](https://github.com/dracor-org/dracor-shiny){.btn .btn-outline-secondary .btn-sm}
+
+[R]{.tech-badge} [Shiny]{.tech-badge} [network analysis]{.tech-badge}
+:::
+
+## Teaching & Streaming
+
+::: {.project-card}
+### Live-Coding Data Analysis — YouTube
+Unscripted live streams working through real datasets in R: wrangling, visualization,
+modeling, and reproducible research workflows.
+
+[Watch on YouTube](https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ){.btn .btn-outline-primary .btn-sm}
+
+[R]{.tech-badge} [data analysis]{.tech-badge} [live-coding]{.tech-badge}
+:::
+
+## Research
+
+::: {.project-card}
+### Research Direction
+My background is in experimental brain stimulation (TMS, tACS) and neuroimaging.
+I am now moving toward computational modeling — bridging neural dynamics, cognition,
+and behavior through mathematical models. I am looking for a PhD position
+in this area and am also interested in the philosophy of mind.
+
+[computational cognition]{.tech-badge} [neural dynamics]{.tech-badge} [modeling]{.tech-badge} [philosophy of mind]{.tech-badge}
+:::

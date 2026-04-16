@@ -1,23 +1,25 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - index.qmd
 
 website:
-  title: "an island universe"
-  page-footer: 
-    left: "Pozdniakov Ivan" 
-    right: 
+  title: "Ivan Pozdniakov"
+  page-footer:
+    left: "&copy; 2026 Ivan Pozdniakov"
+    right:
       - icon: github
         href: https://github.com/Pozdniakov
-      - icon: twitter 
-        href: https://twitter.com/pozdniakov_is
-
+      - icon: telegram
+        href: https://t.me/pozdniakovivan
+      - icon: envelope
+        href: mailto:ivanspozdniakov@gmail.com
 
 format:
   html:
-    theme: pulse
+    theme: darkly
     css: styles.css
-    toc: true
+    toc: false
 
 editor: visual
-

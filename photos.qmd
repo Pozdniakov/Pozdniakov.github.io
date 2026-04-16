@@ -1,0 +1,32 @@
+---
+title: "Tbilisi, February 2026"
+subtitle: "Shot on Fujifilm"
+lightbox:
+  match: auto
+  effect: fade
+---
+
+::: {.gallery-grid}
+![](images/gallery/DSCF9234.jpg){group="tbilisi"}
+![](images/gallery/DSCF8854.jpg){group="tbilisi"}
+![](images/gallery/DSCF9408.jpg){group="tbilisi"}
+![](images/gallery/DSCF9420_1.jpg){group="tbilisi"}
+![](images/gallery/DSCF9319.jpg){group="tbilisi"}
+![](images/gallery/DSCF9325.jpg){group="tbilisi"}
+![](images/gallery/DSCF9364.jpg){group="tbilisi"}
+![](images/gallery/DSCF9011.jpg){group="tbilisi"}
+![](images/gallery/DSCF9113.jpg){group="tbilisi"}
+![](images/gallery/DSCF9125_1.jpg){group="tbilisi"}
+![](images/gallery/DSCF9142.jpg){group="tbilisi"}
+![](images/gallery/DSCF9157.jpg){group="tbilisi"}
+![](images/gallery/DSCF9178.jpg){group="tbilisi"}
+![](images/gallery/DSCF8876.jpg){group="tbilisi"}
+![](images/gallery/DSCF9246.jpg){group="tbilisi"}
+![](images/gallery/DSCF9253.jpg){group="tbilisi"}
+![](images/gallery/DSCF9256.jpg){group="tbilisi"}
+![](images/gallery/DSCF9266.jpg){group="tbilisi"}
+![](images/gallery/DSCF9268.jpg){group="tbilisi"}
+![](images/gallery/DSCF8957.jpg){group="tbilisi"}
+![](images/gallery/DSCF9071.jpg){group="tbilisi"}
+![](images/gallery/DSCF9100.jpg){group="tbilisi"}
+:::

@@ -2,8 +2,15 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Pozdniakov Ivan",
+    "title": "Ivan Pozdniakov",
     "section": "",
-    "text": "My name is Ivan Pozdniakov. I teach data analysis and statistics in R, both as courses at universities and as a tutor. I have a free book (in Russian) “Data Analysis and Statistics in R”. I currently live in Tbilisi, Georgia, where I left after Putin started a full-scale invasion of Ukraine.\n\n\n\nI am in the process of returning to science after working in IT and teaching. My main area of interest is computational neuroscience and I am looking for a PhD position in this field.\nMy other academic interests include philosophy of mind and digital humanities. I have collaborated with the DraCor team for years, in particular, I’ve developed a CRAN-published R package {rdracor} and the Shiny web application. I am also interested in history, politics, philosophy (the hard problem of consciousness especially), activism, data journalism, data science, generative art, R and tidyverse. If you are interested in collaboration, e-mail me at ivanspozdniakov@gmail.com\n\n\n\n❌ No to war\n❌ No to Putin\n❌ No to xenophobia\n❌ No to sexism\n❌ No to homophobia\n❌ No to transphobia\n✅ Yes to democracy\n✅ Yes to human rights\n✅ Yes to empathy\n✅ Yes to respect\n✅ Yes to love"
+    "text": "Researcher, R developer, and statistics educator based in Kiel, Germany. MSc in Cognitive Sciences (HSE, Moscow); background in brain stimulation and neuroimaging — TMS, tACS, EEG, MEG.\nMy trajectory runs from experimental neuroscience toward computational modeling — a deliberate accumulation of empirical, statistical, and programming skills built over a decade of research and teaching. Looking for a PhD position at the intersection of computation, cognition, and neural dynamics.\nMy curiosity extends well beyond neuroscience — to philosophy of mind, digital humanities, history, and a few other rabbit holes."
+  },
+  {
+    "objectID": "index.html#projects",
+    "href": "index.html#projects",
+    "title": "Ivan Pozdniakov",
+    "section": "Projects",
+    "text": "Projects\n\nData Analysis and Statistics in R\nFree textbook (Russian) on wrangling, visualization, statistics, and reproducible workflows with R and the tidyverse.\nRead the book · Source\n\n\n{rdracor} — CRAN Package\nR client for the DraCor API — programmatic access to multilingual drama corpora in TEI-XML. Play texts, metadata, character networks.\nCRAN · GitHub\n\n\nDraCor Shiny App\nInteractive visualization of drama corpus data — character interaction networks, corpus statistics, text exploration.\nGitHub\n\n\nLive-Coding Data Analysis — YouTube\nUnscripted streams working through real datasets in R: wrangling, modeling, visualization.\nWatch on YouTube\n\n\nQuaziNote — Free Typeface\nA free typeface in two styles — Regular and Condensed. Available to download and use freely.\nDownload Regular · Download Condensed"
   }
 ]

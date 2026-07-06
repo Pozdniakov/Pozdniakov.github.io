@@ -11,25 +11,29 @@ Hand-written static site, no build step, no frameworks. GitHub Pages serves the
 docs/
 ├── index.html          ← the whole site (single page)
 ├── assets/
-│   ├── style.css       ← all styles (design tokens at the top)
-│   └── main.js         ← neural canvas, scroll reveal, lightbox
-├── images/
-│   ├── profile.jpg     ← About-section portrait
-│   └── gallery/        ← photo strip (Tbilisi, Feb 2026)
+│   ├── style.css       ← all styles; three palettes defined at the top
+│   └── main.js         ← colour-scheme switcher (the only JS)
+├── images/profile.jpg  ← portrait
 ├── cv/                 ← CV PDFs (compiled from the CV project)
 ├── fonts/              ← QuaziNote typeface
 └── favicon.svg
 ```
 
+## Colour schemes
+
+Three palettes switchable via the dots in the top-right corner (persisted in
+localStorage; defaults follow `prefers-color-scheme`):
+
+- **paper** — warm cream, umber ink, madder-red accent (default)
+- **cyanotype** — Prussian blue with pale exposure, straw accent
+- **ink** — quiet near-black, dry-sage accent
+
+Each palette is ~6 CSS custom properties in `docs/assets/style.css` — edit or
+add a theme there and mirror it in `THEME_COLOR` in `main.js`.
+
 ## Editing
 
-- **Content** — edit `docs/index.html` directly; every section is marked with
-  an `<!-- ===== SECTION ===== -->` comment.
-- **Colors / typography** — CSS custom properties at the top of
-  `docs/assets/style.css` (`:root`).
-- **CV update** — recompile in the CV project, then copy the PDFs into
-  `docs/cv/`.
-- **Photos** — drop images into `docs/images/gallery/` and add an `<img>` tag
-  to the strip in `index.html`.
+- **Content** — edit `docs/index.html`; sections are marked with comments.
+- **CV update** — recompile in the CV project, then copy the PDFs into `docs/cv/`.
 
 Publishing = pushing to `master`. No render step required.

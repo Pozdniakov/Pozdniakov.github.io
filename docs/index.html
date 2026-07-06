@@ -1,250 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="paper">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ivan Pozdniakov — researcher, R developer, statistics educator</title>
-<meta name="description" content="Researcher, R developer, and statistics educator based in Kiel, Germany. Moving from experimental neuroscience toward computational models of cognition.">
+<title>Ivan Pozdniakov</title>
+<meta name="description" content="Researcher, R developer, and statistics educator based in Kiel, Germany. Interested in computation, cognition, and neural dynamics.">
 <link rel="canonical" href="https://pozdniakov.github.io/">
-<meta name="theme-color" content="#0a0b0f">
+<meta name="theme-color" content="#f6f1e7">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ivan Pozdniakov">
-<meta property="og:description" content="Researcher, R developer, and statistics educator — moving from experimental neuroscience toward computational models of cognition.">
+<meta property="og:description" content="Researcher, R developer, and statistics educator — computation, cognition, and neural dynamics.">
 <meta property="og:url" content="https://pozdniakov.github.io/">
 <meta property="og:image" content="https://pozdniakov.github.io/images/profile.jpg">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=2">
+<script>
+/* set theme before first paint */
+(function () {
+  var t = null;
+  try { t = localStorage.getItem('theme'); } catch (e) {}
+  if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'ink' : 'paper';
+  document.documentElement.dataset.theme = t;
+})();
+</script>
 </head>
 <body>
 
-<div class="noise" aria-hidden="true"></div>
+<main>
 
-<header class="nav" id="nav">
-  <a class="nav-mark" href="#top" aria-label="Home">I<span>·</span>P</a>
-  <nav class="nav-links" aria-label="Sections">
-    <a href="#about">About</a>
-    <a href="#research">Research</a>
-    <a href="#projects">Projects</a>
-    <a href="#photos">Photos</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <a class="nav-cv" href="cv/cv_germany.pdf">CV<span class="nav-cv-ext">&nbsp;· PDF</span></a>
-</header>
-
-<main id="top">
-
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <canvas id="neural" aria-hidden="true"></canvas>
-    <div class="hero-inner">
-      <p class="hero-badge reveal-load" style="--d:0"><span class="pulse-dot" aria-hidden="true"></span>Open to PhD positions</p>
-      <h1 class="hero-name" aria-label="Ivan Pozdniakov">
-        <span class="line"><span class="w reveal-load" style="--d:1">Ivan</span></span>
-        <span class="line"><span class="w reveal-load" style="--d:2">Pozdniakov</span></span>
-      </h1>
-      <p class="hero-sub reveal-load" style="--d:3">Researcher, R developer &amp; statistics educator — moving from experimental neuroscience toward <em>computational models of cognition</em>.</p>
-      <div class="hero-meta reveal-load" style="--d:4">
-        <span class="mono">54.32°N&thinsp;·&thinsp;10.13°E — Kiel, Germany</span>
-      </div>
-      <div class="hero-actions reveal-load" style="--d:5">
-        <a class="btn btn-solid" href="cv/cv_germany.pdf">Download CV</a>
-        <a class="btn btn-ghost" href="mailto:ivanspozdniakov@gmail.com">ivanspozdniakov@gmail.com</a>
-      </div>
-      <div class="hero-links reveal-load" style="--d:6">
-        <a href="https://github.com/Pozdniakov">GitHub</a>
-        <a href="https://scholar.google.com/citations?user=-mCcIXEAAAAJ&amp;sortby=pubdate">Google Scholar</a>
-        <a href="https://t.me/pozdniakovivan">Telegram</a>
-        <a href="https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ">YouTube</a>
-      </div>
+  <!-- ============ MASTHEAD ============ -->
+  <header class="masthead">
+    <div class="theme-dots" role="group" aria-label="Colour scheme">
+      <button data-set-theme="paper" title="Paper" aria-label="Paper theme"></button>
+      <button data-set-theme="cyanotype" title="Cyanotype" aria-label="Cyanotype theme"></button>
+      <button data-set-theme="ink" title="Ink" aria-label="Ink theme"></button>
     </div>
-    <a class="hero-scroll" href="#about" aria-label="Scroll to About"><span></span></a>
-  </section>
+    <div class="masthead-grid">
+      <div class="masthead-text">
+        <h1>Ivan Pozdniakov</h1>
+        <p class="role">Researcher, R developer &amp; statistics educator<br>Kiel, Germany</p>
+        <p class="seeking">Currently looking for a PhD position — at the intersection of computation, cognition&nbsp;&amp;&nbsp;neural&nbsp;dynamics.</p>
+        <nav class="contact-row mono" aria-label="Contact links">
+          <a href="mailto:ivanspozdniakov@gmail.com">email</a>
+          <a href="cv/cv_germany.pdf">cv, pdf</a>
+          <a href="https://scholar.google.com/citations?user=-mCcIXEAAAAJ&amp;sortby=pubdate">google scholar</a>
+          <a href="https://github.com/Pozdniakov">github</a>
+          <a href="https://t.me/pozdniakovivan">telegram</a>
+          <a href="https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ">youtube</a>
+        </nav>
+      </div>
+      <img class="portrait" src="images/profile.jpg" alt="Ivan Pozdniakov" width="667" height="1000">
+    </div>
+  </header>
+
+  <hr class="rule-double">
 
   <!-- ============ ABOUT ============ -->
-  <section class="section" id="about">
-    <div class="section-head reveal">
-      <span class="kicker mono">01 — About</span>
-      <h2>A decade of asking <em>how minds compute</em></h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p class="lede">I trained as a cognitive neuroscientist — brain stimulation and neuroimaging: TMS, tACS, EEG, MEG — and spent the last decade deliberately layering statistics, programming, and teaching on top of the experimental foundation.</p>
-        <p>That arc was intentional: from psychophysiology at Lomonosov MSU, through an MSc in Cognitive Sciences at HSE and years of stimulation research, to a visiting fellowship at the University of Potsdam — accumulating the empirical, statistical, and computational toolkit for the questions I care about. Now, based in Kiel, I'm looking for a PhD at the intersection of <strong>computation, cognition, and neural dynamics</strong>.</p>
-        <p>I teach statistics and R the way I wish they were taught to me — ten years of university courses, intensives, a free textbook, and a weekly live-coding stream. Beyond the lab: philosophy of mind, digital humanities, photography, and the occasional typeface.</p>
-        <div class="about-stats">
-          <div class="stat"><span class="stat-n serif">10+</span><span class="stat-l">years teaching<br>statistics &amp; R</span></div>
-          <div class="stat"><span class="stat-n serif">4</span><span class="stat-l">peer-reviewed<br>articles</span></div>
-          <div class="stat"><span class="stat-n serif">1</span><span class="stat-l">R package<br>on CRAN</span></div>
-          <div class="stat"><span class="stat-n serif">6</span><span class="stat-l">open projects<br>&amp; counting</span></div>
-        </div>
-      </div>
-      <figure class="about-photo reveal">
-        <img src="images/profile.jpg" alt="Ivan Pozdniakov" width="667" height="1000">
-        <figcaption class="mono">Kiel · 2026</figcaption>
-      </figure>
-    </div>
+  <section id="about">
+    <h2 class="mono">§ 1 · About</h2>
+    <p>I'm a cognitive neuroscientist by training — brain stimulation and neuroimaging: TMS, tACS, EEG, MEG — with a decade of statistics, programming, and teaching layered on top of the experimental foundation.</p>
+    <p>My research background is in non-invasive brain stimulation: I studied how transcranial alternating current stimulation entrains the motor cortex, and when its effects outlast the stimulation itself. I was also one of the analyst teams in a large many-analysts project on how strongly empirical results depend on analytic choices. These days I think about cognition computationally — neural dynamics, decision-making, and the statistical machinery that connects models to behavioral data.</p>
+    <p>I teach statistics and R the way I wish they were taught to me: university courses, industry intensives, a free textbook, and a weekly live-coding stream. Beyond work — philosophy of mind, digital humanities, photography, and the occasional typeface.</p>
   </section>
 
-  <!-- ============ RESEARCH ============ -->
-  <section class="section" id="research">
-    <div class="section-head reveal">
-      <span class="kicker mono">02 — Research</span>
-      <h2>From stimulated cortex<br>to <em>models of cognition</em></h2>
-    </div>
-    <div class="research-grid">
-      <div class="research-text reveal">
-        <p>My experimental work probed the primary motor cortex with transcranial alternating current stimulation — asking when oscillatory entrainment does and does not outlast the stimulation itself. I was also one of the analyst teams in a landmark many-analysts project on how radically research outcomes depend on analytic choices.</p>
-        <p>These days I think about cognition computationally: neural dynamics, decision-making, and the statistical machinery that connects models to messy behavioral data.</p>
-        <a class="arrow-link" href="https://scholar.google.com/citations?user=-mCcIXEAAAAJ&amp;sortby=pubdate">All publications on Google Scholar</a>
-      </div>
-      <ol class="pubs reveal" reversed>
-        <li class="pub">
-          <span class="pub-year mono">2021</span>
-          <div>
-            <a class="pub-title" href="https://doi.org/10.1038/s41598-021-83449-w">Online and offline effects of transcranial alternating current stimulation of the primary motor cortex</a>
-            <span class="pub-venue">Scientific Reports — first author</span>
-          </div>
-        </li>
-        <li class="pub">
-          <span class="pub-year mono">2021</span>
-          <div>
-            <a class="pub-title" href="https://doi.org/10.1016/j.obhdp.2021.02.003">Same data, different conclusions: radical dispersion in empirical results…</a>
-            <span class="pub-venue">Organizational Behavior and Human Decision Processes — one of 29 analyst teams</span>
-          </div>
-        </li>
-        <li class="pub">
-          <span class="pub-year mono">2019</span>
-          <div>
-            <a class="pub-title" href="https://doi.org/10.1523/ENEURO.0481-18.2019">Transcranial direct current stimulation effects on memory consolidation: timing matters</a>
-            <span class="pub-venue">eNeuro</span>
-          </div>
-        </li>
-        <li class="pub">
-          <span class="pub-year mono">2018</span>
-          <div>
-            <span class="pub-title">Transcranial electrical stimulation: possibilities and limitations</span>
-            <span class="pub-venue">The Russian Journal of Cognitive Science</span>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
+  <hr class="rule">
 
   <!-- ============ PROJECTS ============ -->
-  <section class="section" id="projects">
-    <div class="section-head reveal">
-      <span class="kicker mono">03 — Projects</span>
-      <h2>Things I've <em>built &amp; shipped</em></h2>
-    </div>
-    <div class="cards">
-      <a class="card reveal" href="https://pozdniakov.github.io/tidy_stats/">
-        <span class="card-tag mono">Textbook · 2020 →</span>
-        <h3>Data Analysis &amp; Statistics in R</h3>
-        <p>Free, continuously updated Russian-language textbook — wrangling, visualization, statistics, and reproducible workflows with the tidyverse.</p>
-        <span class="card-cta mono">Read online ↗</span>
-      </a>
-      <a class="card reveal" href="https://aesthetics-ranking.vercel.app">
-        <span class="card-tag mono">Web app · 2026</span>
-        <h3>Æsthetics Ranking</h3>
-        <p>Pairwise comparisons of visual aesthetics from the CARI archive — an adaptive top-5 algorithm, personal taste profiles, global rankings. Next.js, TypeScript, Supabase.</p>
-        <span class="card-cta mono">Try it live ↗</span>
-      </a>
-      <a class="card reveal" href="https://cran.r-project.org/package=rdracor">
-        <span class="card-tag mono">R package · CRAN</span>
-        <h3>{rdracor}</h3>
-        <p>R client for the DraCor API — programmatic access to multilingual drama corpora: play texts, metadata, character networks.</p>
-        <span class="card-cta mono">CRAN ↗</span>
-      </a>
-      <a class="card reveal" href="https://pozdniakov.shinyapps.io/Dracor/">
-        <span class="card-tag mono">Shiny app</span>
-        <h3>DraCor Shiny</h3>
-        <p>Interactive exploration of drama corpora — character interaction networks, corpus statistics, text views.</p>
-        <span class="card-cta mono">Open app ↗</span>
-      </a>
-      <a class="card reveal" href="https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ">
-        <span class="card-tag mono">Live coding</span>
-        <h3>Sunday ScReencast</h3>
-        <p>Weekly unscripted live streams working through real datasets in R — wrangling, modeling, visualization, mistakes included.</p>
-        <span class="card-cta mono">Watch on YouTube ↗</span>
-      </a>
-      <div class="card card-font reveal">
-        <span class="card-tag mono">Typeface</span>
-        <h3 class="quazi">QuaziNote</h3>
-        <p>A free typeface in two styles, drawn by hand and used right here on this card. Download and use freely.</p>
-        <span class="card-cta mono"><a href="fonts/QuaziNote-Regular.otf" download>Regular ↓</a>&ensp;·&ensp;<a href="fonts/QuaziNote-Condensed.otf" download>Condensed ↓</a></span>
-      </div>
-    </div>
+  <section id="projects">
+    <h2 class="mono">§ 2 · Projects</h2>
+
+    <article class="project">
+      <h3>Data Analysis and Statistics in R</h3>
+      <p>Free, continuously updated Russian-language textbook — data wrangling, visualization, statistics, and reproducible workflows with the tidyverse.</p>
+      <p class="project-links mono"><a href="https://pozdniakov.github.io/tidy_stats/">read online</a> <a href="https://github.com/Pozdniakov/tidy_stats">source</a></p>
+    </article>
+
+    <article class="project">
+      <h3>Æsthetics Ranking</h3>
+      <p>A web application for pairwise comparison and ranking of visual aesthetics from the CARI archive — personal top-5, taste profiles, global rankings. Next.js, TypeScript, Supabase.</p>
+      <p class="project-links mono"><a href="https://aesthetics-ranking.vercel.app">live app</a></p>
+    </article>
+
+    <article class="project">
+      <h3>{rdracor}</h3>
+      <p>R client for the DraCor API — programmatic access to multilingual drama corpora: play texts, metadata, character networks. Published on CRAN.</p>
+      <p class="project-links mono"><a href="https://cran.r-project.org/package=rdracor">cran</a> <a href="https://github.com/dracor-org/rdracor">github</a></p>
+    </article>
+
+    <article class="project">
+      <h3>DraCor Shiny</h3>
+      <p>Interactive exploration of drama corpora — character interaction networks, corpus statistics, text views. Built with R Shiny.</p>
+      <p class="project-links mono"><a href="https://pozdniakov.shinyapps.io/Dracor/">app</a> <a href="https://github.com/dracor-org/dracor-shiny">github</a></p>
+    </article>
+
+    <article class="project">
+      <h3>Sunday ScReencast</h3>
+      <p>Weekly unscripted live streams working through real datasets in R — wrangling, modeling, visualization, mistakes included.</p>
+      <p class="project-links mono"><a href="https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ">youtube</a></p>
+    </article>
+
+    <article class="project">
+      <h3 class="quazi">QuaziNote</h3>
+      <p>A free typeface in two styles, drawn by hand — and used for this very heading.</p>
+      <p class="project-links mono"><a href="fonts/QuaziNote-Regular.otf" download>regular</a> <a href="fonts/QuaziNote-Condensed.otf" download>condensed</a></p>
+    </article>
   </section>
 
-  <!-- ============ PHOTOS ============ -->
-  <section class="section section-wide" id="photos">
-    <div class="section-head reveal">
-      <span class="kicker mono">04 — Photos</span>
-      <h2>Tbilisi, <em>February 2026</em></h2>
-      <p class="section-note mono">Shot on Fujifilm · drag or scroll sideways</p>
-    </div>
-    <div class="strip reveal" id="strip" tabindex="0" aria-label="Photo gallery, scrolls horizontally">
-      <img src="images/gallery/DSCF9234.jpg" alt="Tbilisi portrait 1" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF8854.jpg" alt="Tbilisi portrait 2" loading="lazy" width="960" height="1200">
-      <img src="images/gallery/DSCF9408.jpg" alt="Tbilisi portrait 3" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9420_1.jpg" alt="Tbilisi portrait 4" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9319.jpg" alt="Tbilisi portrait 5" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9325.jpg" alt="Tbilisi portrait 6" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9364.jpg" alt="Tbilisi portrait 7" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9011.jpg" alt="Tbilisi portrait 8" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9113.jpg" alt="Tbilisi portrait 9" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9125_1.jpg" alt="Tbilisi portrait 10" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9142.jpg" alt="Tbilisi portrait 11" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9157.jpg" alt="Tbilisi portrait 12" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9178.jpg" alt="Tbilisi portrait 13" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF8876.jpg" alt="Tbilisi portrait 14" loading="lazy" width="960" height="1200">
-      <img src="images/gallery/DSCF9246.jpg" alt="Tbilisi portrait 15" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9253.jpg" alt="Tbilisi portrait 16" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9256.jpg" alt="Tbilisi portrait 17" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9266.jpg" alt="Tbilisi portrait 18" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9268.jpg" alt="Tbilisi portrait 19" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF8957.jpg" alt="Tbilisi portrait 20" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9071.jpg" alt="Tbilisi portrait 21" loading="lazy" width="800" height="1200">
-      <img src="images/gallery/DSCF9100.jpg" alt="Tbilisi portrait 22" loading="lazy" width="800" height="1200">
-    </div>
-  </section>
+  <hr class="rule">
 
   <!-- ============ CONTACT ============ -->
-  <section class="section" id="contact">
-    <div class="contact reveal">
-      <span class="kicker mono">05 — Contact</span>
-      <h2 class="contact-title">Let's <em>talk.</em></h2>
-      <p class="contact-sub">PhD conversations, collaborations, teaching, or just an interesting question —</p>
-      <a class="contact-mail serif" href="mailto:ivanspozdniakov@gmail.com">ivanspozdniakov@gmail.com</a>
-      <div class="contact-links">
-        <a href="https://github.com/Pozdniakov">GitHub</a>
-        <a href="https://scholar.google.com/citations?user=-mCcIXEAAAAJ&amp;sortby=pubdate">Google Scholar</a>
-        <a href="https://t.me/pozdniakovivan">Telegram</a>
-        <a href="https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ">YouTube</a>
-        <a href="cv/cv_germany.pdf">CV (PDF)</a>
-      </div>
-    </div>
+  <section id="contact">
+    <h2 class="mono">§ 3 · Contact</h2>
+    <p>The fastest way to reach me is email — <a href="mailto:ivanspozdniakov@gmail.com">ivanspozdniakov@gmail.com</a> — or <a href="https://t.me/pozdniakovivan">Telegram</a>. Happy to talk about PhD opportunities, collaborations, teaching, or an interesting question.</p>
   </section>
 
 </main>
 
-<footer class="footer">
-  <span>© 2026 Ivan Pozdniakov · Kiel, Germany</span>
-  <span class="mono footer-note">Set in Fraunces &amp; Inter · No trackers, no cookies</span>
+<footer class="colophon">
+  <hr class="rule-double">
+  <p class="mono">© 2026 Ivan Pozdniakov · set in Newsreader &amp; IBM Plex Mono · no trackers, no cookies</p>
 </footer>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
-  <button class="lb-close" id="lbClose" aria-label="Close">×</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
-  <img id="lbImg" src="" alt="">
-  <button class="lb-next" id="lbNext" aria-label="Next photo">›</button>
-  <span class="lb-count mono" id="lbCount"></span>
-</div>
-
-<script src="assets/main.js" defer></script>
+<script src="assets/main.js?v=2" defer></script>
 </body>
 </html>

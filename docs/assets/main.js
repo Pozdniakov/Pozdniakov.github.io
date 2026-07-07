@@ -3,13 +3,22 @@
 (function () {
   'use strict';
 
-  var THEME_COLOR = { paper: '#f6f1e6', cyanotype: '#113a5d', ink: '#17181c' };
+  var THEME_COLOR = {
+    paper: '#f6f1e6',
+    manuscript: '#f1e6cb',
+    cyanotype: '#113a5d',
+    terminal: '#060b07',
+    macintosh: '#ffffff',
+    ink: '#17181c'
+  };
+
   var buttons = document.querySelectorAll('[data-set-theme]');
   var meta = document.querySelector('meta[name="theme-color"]');
 
   function apply(theme, persist) {
+    if (!THEME_COLOR.hasOwnProperty(theme)) theme = 'paper';
     document.documentElement.dataset.theme = theme;
-    if (meta) meta.setAttribute('content', THEME_COLOR[theme] || '#f6f1e6');
+    if (meta) meta.setAttribute('content', THEME_COLOR[theme]);
     buttons.forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.setTheme === theme));
     });

@@ -19,17 +19,23 @@ docs/
 └── favicon.svg
 ```
 
-## Colour schemes
+## Themes
 
-Three palettes switchable via the dots in the top-right corner (persisted in
-localStorage; defaults follow `prefers-color-scheme`):
+Six schemes switchable via the picker in the top-right corner (persisted in
+localStorage; defaults follow `prefers-color-scheme`). A theme = colours +
+optionally its own typography and small decorations:
 
 - **paper** — warm cream, umber ink, madder-red accent (default)
-- **cyanotype** — Prussian blue with pale exposure, straw accent
+- **manuscript** — parchment, EB Garamond, rubricated drop cap, justified text, fleuron dividers
+- **cyanotype** — Prussian blue with pale exposure, straw accent, blue-print portrait
+- **terminal** — green phosphor CRT: VT323, scanlines, blinking cursor, inverse-video links
+- **macintosh** — 1-bit early GUI: black on white, Silkscreen pixel headings, hard shadows
 - **ink** — quiet near-black, dry-sage accent
 
-Each palette is ~6 CSS custom properties in `docs/assets/style.css` — edit or
-add a theme there and mirror it in `THEME_COLOR` in `main.js`.
+Colour variables live at the top of `docs/assets/style.css`; per-theme details
+in the "Theme details" block below them. New theme = a `[data-theme='…']`
+variable block + a button in `index.html` + an entry in `THEME_COLOR` in
+`main.js`. Bump the `?v=` query on asset links when changing CSS/JS.
 
 ## Editing
 

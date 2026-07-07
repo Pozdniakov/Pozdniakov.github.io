@@ -183,6 +183,51 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='atelier'] {
+  /* between dawn, vapor, riso and paper: warm paper with a
+     rose–lilac wash, high-contrast elegant serif */
+  --bg: #f8f1ec;
+  --ink: #38313d;
+  --muted: #8d8496;
+  --accent: #b05377;
+  --rule: #e8d9dc;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='atlas'] {
+  /* old cartography: sepia stock, graticule, compass red */
+  --bg: #efe3c8;
+  --ink: #43351d;
+  --muted: #85714b;
+  --accent: #a44a35;
+  --rule: #d9c9a4;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='opera'] {
+  /* velvet & gold: burgundy dark, ivory, gilded details */
+  --bg: #1e0e14;
+  --ink: #f3e6d0;
+  --muted: #b39b84;
+  --accent: #d4af37;
+  --rule: rgba(212, 175, 55, 0.35);
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='brutalist'] {
+  /* raw web concrete: Times, default-blue links, marker yellow */
+  --bg: #ffffff;
+  --ink: #000000;
+  --muted: #333333;
+  --accent: #0000ee;
+  --rule: #000000;
+  --font-body: 'Times New Roman', Times, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='amber'] {
   /* secret: amber phosphor terminal */
   --bg: #100a02;
@@ -1003,6 +1048,206 @@ section p:last-child { margin-bottom: 0; }
 [data-theme='dawn'] .rule,
 [data-theme='dawn'] .rule-double { border-top-color: rgba(58, 61, 82, 0.2); }
 
+/* ---------- atelier: rose–lilac wash, high-contrast serif ---------- */
+
+[data-theme='atelier'] body {
+  font-size: 1.26rem;
+  line-height: 1.62;
+  background: linear-gradient(155deg, #f9f2ec 0%, #f5edf0 55%, #eeeaf4 100%) fixed;
+}
+
+[data-theme='atelier'] h1 {
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2.3rem, 5.4vw, 3rem);
+  letter-spacing: 0.01em;
+}
+
+[data-theme='atelier'] h2 { color: var(--accent); }
+
+[data-theme='atelier'] .project h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+[data-theme='atelier'] .rule {
+  border: 0;
+  text-align: center;
+}
+[data-theme='atelier'] .rule::after {
+  content: '· ✦ ·';
+  color: var(--accent);
+  opacity: 0.6;
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
+}
+
+[data-theme='atelier'] .portrait {
+  border: 1px solid rgba(176, 83, 119, 0.35);
+  border-radius: 14px;
+  filter: saturate(1.05);
+  box-shadow: 0 12px 28px -16px rgba(176, 83, 119, 0.55);
+}
+
+[data-theme='atelier'] .seeking { font-size: 1.15rem; }
+
+/* ---------- atlas: graticule, small-caps headings ---------- */
+
+[data-theme='atlas'] body {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(67, 53, 29, 0.07) 0 1px, transparent 1px 36px),
+    repeating-linear-gradient(90deg, rgba(67, 53, 29, 0.07) 0 1px, transparent 1px 36px);
+  background-attachment: fixed;
+}
+
+[data-theme='atlas'] h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-variant: small-caps;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='atlas'] .project h3 {
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+}
+
+[data-theme='atlas'] h2 { color: var(--accent); }
+
+[data-theme='atlas'] .rule,
+[data-theme='atlas'] .rule-double { border-top-style: dashed; }
+[data-theme='atlas'] .rule-double::after { border-top-style: dashed; }
+[data-theme='atlas'] .rule {
+  border: 0;
+  text-align: center;
+}
+[data-theme='atlas'] .rule::after {
+  content: '✧';
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+[data-theme='atlas'] .portrait {
+  filter: sepia(0.55) saturate(0.85) contrast(1.04);
+  border: 1px solid var(--muted);
+  border-radius: 2px;
+}
+
+/* ---------- opera: stage light, gilded frame ---------- */
+
+[data-theme='opera'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(55vw 45vh at 50% -6%, rgba(212, 175, 55, 0.13), transparent 70%),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+[data-theme='opera'] h1,
+[data-theme='opera'] .project h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+}
+[data-theme='opera'] h1 {
+  font-size: clamp(2.2rem, 5.2vw, 2.9rem);
+  background: linear-gradient(100deg, #d4af37 15%, #f5e6b3 50%, #b8860b 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+[data-theme='opera'] .project h3 { font-size: 1.5rem; }
+
+[data-theme='opera'] h2 { color: var(--accent); }
+
+[data-theme='opera'] a:hover { color: var(--accent); }
+
+[data-theme='opera'] .portrait {
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  border-radius: 4px;
+  box-shadow:
+    0 0 0 4px rgba(212, 175, 55, 0.1),
+    0 0 0 5px rgba(212, 175, 55, 0.35),
+    0 14px 30px -14px rgba(0, 0, 0, 0.7);
+}
+
+/* ---------- brutalist: no manners ---------- */
+
+[data-theme='brutalist'] body {
+  font-size: 1.06rem;
+  line-height: 1.5;
+}
+
+[data-theme='brutalist'] h1 {
+  font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.8rem, 4.6vw, 2.5rem);
+}
+
+[data-theme='brutalist'] h2 {
+  color: #000;
+  background: #ffe600;
+  display: inline-block;
+  padding: 0.05em 0.4em;
+}
+
+[data-theme='brutalist'] .project h3 {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+}
+
+[data-theme='brutalist'] a {
+  color: #0000ee;
+  text-decoration-color: #0000ee;
+  text-decoration-thickness: 2px;
+}
+[data-theme='brutalist'] a:hover {
+  background: #ffe600;
+  color: #000;
+}
+
+[data-theme='brutalist'] .rule,
+[data-theme='brutalist'] .rule-double { border-top: 3px solid #000; }
+[data-theme='brutalist'] .rule-double::after { border-top: 3px solid #000; top: 5px; }
+
+[data-theme='brutalist'] .portrait {
+  border: 3px solid #000;
+  border-radius: 0;
+  filter: none;
+}
+
+[data-theme='brutalist'] .contact-row a,
+[data-theme='brutalist'] .project-links a { color: #0000ee; }
+
+/* ---------- synapse divider (hand-drawn neuron) ---------- */
+
+.synapse {
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  margin: clamp(1.6rem, 4vh, 2.4rem) auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  opacity: 0.8;
+  cursor: pointer;
+  transition: color 0.3s, opacity 0.3s;
+}
+.synapse:hover { color: var(--ink); opacity: 1; }
+.synapse:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+.synapse svg { display: block; width: 100%; height: auto; }
+.synapse .impulse { fill: var(--accent); }
+
 /* ---------- small screens ---------- */
 
 @media (max-width: 560px) {
@@ -1014,6 +1259,11 @@ section p:last-child { margin-bottom: 0; }
     order: -1;
     width: 108px;
   }
+}
+
+/* dim the graph on small screens so text stays first */
+@media (max-width: 700px) {
+  #graph { opacity: 0.5; }
 }
 
 /* ---------- print ---------- */

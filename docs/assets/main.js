@@ -14,7 +14,8 @@
   var BASE_THEMES = [
     'paper', 'manuscript', 'cyanotype', 'terminal', 'macintosh',
     'gameboy', 'riso', 'punchcard', 'herbarium', 'workbench',
-    'darkroom', 'notebook', 'swiss', 'dawn', 'vapor', 'ink'
+    'darkroom', 'notebook', 'swiss', 'dawn', 'atelier', 'vapor',
+    'atlas', 'opera', 'brutalist', 'ink'
   ];
 
   var COLORS = {
@@ -32,7 +33,11 @@
     notebook:   { bg: '#fdfdfa', fg: '#d23b2e' },
     swiss:      { bg: '#ffffff', fg: '#e30613' },
     dawn:       { bg: '#f6e7d7', fg: '#c96f4a' },
+    atelier:    { bg: '#f8f1ec', fg: '#b05377' },
     vapor:      { bg: '#120e1e', fg: '#f472b6' },
+    atlas:      { bg: '#efe3c8', fg: '#a44a35' },
+    opera:      { bg: '#1e0e14', fg: '#d4af37' },
+    brutalist:  { bg: '#ffffff', fg: '#0000ee' },
     ink:        { bg: '#17181c', fg: '#a4c9ab' },
     amber:      { bg: '#100a02', fg: '#ffb000' }
   };
@@ -363,6 +368,25 @@
 
     resize();
     if (reducedMotion && graphOn) drawFrame(true);
+  }
+
+  /* ================= neuron divider ================= */
+
+  var neuron = document.getElementById('neuron');
+  var impulseMove = document.getElementById('impulseMove');
+
+  function fireNeuron() {
+    if (impulseMove && typeof impulseMove.beginElement === 'function') {
+      try { impulseMove.beginElement(); } catch (e) {}
+    }
+  }
+
+  if (neuron && impulseMove) {
+    neuron.addEventListener('click', fireNeuron);
+    if (!reducedMotion) {
+      setTimeout(fireNeuron, 1500); /* a greeting spike */
+      setInterval(fireNeuron, 9000 + Math.random() * 5000);
+    }
   }
 
   /* ================= boot ================= */

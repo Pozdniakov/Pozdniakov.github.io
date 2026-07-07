@@ -21,7 +21,7 @@ docs/
 
 ## Themes
 
-Sixteen schemes (plus one secret); a theme = colours + optionally its own
+Twenty schemes (plus one secret); a theme = colours + optionally its own
 typography and details:
 
 - **paper** — warm cream, umber ink, madder-red accent (default)
@@ -38,14 +38,22 @@ typography and details:
 - **notebook** — squared exercise book: graph paper, red margin line, QuaziNote headings
 - **swiss** — International Typographic Style: white, black, Helvetica, Swiss red
 - **dawn** — soft utopian morning: gradient sky, slate ink, terracotta gradient headline
+- **atelier** — rose–lilac wash on warm paper, elegant Cormorant Garamond, italic headline
 - **vapor** — vaporwave grown up: dusk indigo, drifting aurora haze, holographic pink–cyan headline, faint horizon grid
+- **atlas** — old cartography: sepia stock, graticule grid, small-caps headings, compass red
+- **opera** — velvet & gold: burgundy dark, stage-light glow, gilded gradient headline, framed portrait
+- **brutalist** — raw web: Times, Arial Black caps, marker-yellow highlights, default-blue links
 - **ink** — quiet near-black, dry-sage accent
 - **amber** — hidden until a certain 10-key sequence is entered
 
 An interactive node graph drifts behind every theme — nodes link to each other
 and to the cursor, signals pulse along edges, and the colours are inherited
 from the active scheme. `[graph]` in the picker turns it off (persisted);
-it renders a single static frame under `prefers-reduced-motion`.
+it renders a single static frame under `prefers-reduced-motion` and is dimmed
+on small screens.
+
+Between About and Projects sits a hand-drawn neuron divider: an impulse fires
+along the axon on click (and occasionally on its own).
 
 Switching: click a name in the top-right picker · press `t` to cycle ·
 digits `1`–`9` jump directly · `??` picks at random · `?theme=terminal` in the

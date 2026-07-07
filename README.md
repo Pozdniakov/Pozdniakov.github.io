@@ -21,7 +21,7 @@ docs/
 
 ## Themes
 
-Twelve schemes (plus one secret); a theme = colours + optionally its own
+Fifteen schemes (plus one secret); a theme = colours + optionally its own
 typography and details:
 
 - **paper** — warm cream, umber ink, madder-red accent (default)
@@ -34,16 +34,23 @@ typography and details:
 - **punchcard** — IBM manila card: punched top row, cut corner, IBM-blue print
 - **herbarium** — pressed-plant archive: sage paper, rust stamps, ❦ dividers, specimen portrait
 - **workbench** — Amiga 1.3: blue/white/orange/black, checker drag-bar, hard shadows
-- **darkroom** — safelight: red-on-black, heavy vignette, red-duotone portrait
+- **darkroom** — safelight: red-on-black, heavy vignette, film grain, red-duotone portrait
+- **notebook** — squared exercise book: graph paper, red margin line, QuaziNote headings
+- **swiss** — International Typographic Style: white, black, Helvetica, Swiss red
+- **dawn** — soft utopian morning: gradient sky, slate ink, terracotta gradient headline
 - **ink** — quiet near-black, dry-sage accent
 - **amber** — hidden until a certain 10-key sequence is entered
 
+An interactive node graph drifts behind every theme — nodes link to each other
+and to the cursor, signals pulse along edges, and the colours are inherited
+from the active scheme. `[graph]` in the picker turns it off (persisted);
+it renders a single static frame under `prefers-reduced-motion`.
+
 Switching: click a name in the top-right picker · press `t` to cycle ·
 digits `1`–`9` jump directly · `??` picks at random · `?theme=terminal` in the
-URL makes a shareable link · the portrait swaps on click. The choice persists
-in localStorage and defaults to `prefers-color-scheme`; favicon, tab title and
-`theme-color` follow the theme, and switches cross-fade via the View
-Transitions API where supported.
+URL makes a shareable link. The choice persists in localStorage and defaults
+to `prefers-color-scheme`; favicon, tab title and `theme-color` follow the
+theme, and switches cross-fade via the View Transitions API where supported.
 
 Colour variables live at the top of `docs/assets/style.css`; per-theme details
 in the "Theme details" block below them. New theme = a `[data-theme='…']`

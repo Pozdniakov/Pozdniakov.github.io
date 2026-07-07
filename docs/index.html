@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=VT323&family=Silkscreen&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <script>
 /* set theme before first paint; ?theme=… in the URL wins (shareable links) */
 (function () {
@@ -28,6 +28,8 @@
 </script>
 </head>
 <body>
+
+<canvas id="graph" aria-hidden="true"></canvas>
 
 <main>
 
@@ -45,9 +47,13 @@
       <button data-set-theme="herbarium">herbarium</button>
       <button data-set-theme="workbench">workbench</button>
       <button data-set-theme="darkroom">darkroom</button>
+      <button data-set-theme="notebook">notebook</button>
+      <button data-set-theme="swiss">swiss</button>
+      <button data-set-theme="dawn">dawn</button>
       <button data-set-theme="ink">ink</button>
       <button data-set-theme="amber" id="amberBtn" hidden>amber</button>
       <button id="shuffle" title="Random theme" aria-label="Random theme">??</button>
+      <button id="graphToggle" title="Toggle the graph background" aria-label="Toggle graph background">graph</button>
       <span class="picker-hint" aria-hidden="true">press t</span>
     </nav>
     <div class="masthead-grid">
@@ -61,9 +67,7 @@
           <a href="https://t.me/pozdniakovivan">telegram</a>
         </nav>
       </div>
-      <button class="portrait-wrap" id="portraitToggle" title="Click me" aria-label="Toggle portrait photo">
-        <img class="portrait" src="images/profile.jpg" alt="Ivan Pozdniakov" width="667" height="1000">
-      </button>
+      <img class="portrait" src="images/profile_old.jpg" alt="Ivan Pozdniakov" width="640" height="640">
     </div>
   </header>
 
@@ -127,6 +131,6 @@
   <p class="mono">© 2026 Ivan Pozdniakov · no trackers, no cookies</p>
 </footer>
 
-<script src="assets/main.js?v=5" defer></script>
+<script src="assets/main.js?v=6" defer></script>
 </body>
 </html>

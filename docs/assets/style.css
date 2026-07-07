@@ -170,6 +170,19 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='vapor'] {
+  /* vaporwave, the grown-up cut: dusk indigo, aurora haze,
+     holographic pink–cyan, a faint horizon grid */
+  --bg: #120e1e;
+  --ink: #ece7fa;
+  --muted: #9d94bd;
+  --accent: #f472b6;
+  --accent-2: #67e8f9;
+  --rule: rgba(236, 231, 250, 0.16);
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='amber'] {
   /* secret: amber phosphor terminal */
   --bg: #100a02;
@@ -889,6 +902,81 @@ section p:last-child { margin-bottom: 0; }
   border: none;
   filter: none;
 }
+
+/* ---------- vapor: aurora haze, horizon grid, holo type ---------- */
+
+[data-theme='vapor'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(42vw 34vh at 18% 12%, rgba(244, 114, 182, 0.16), transparent 70%),
+    radial-gradient(46vw 36vh at 84% 18%, rgba(103, 232, 249, 0.13), transparent 70%),
+    radial-gradient(52vw 42vh at 55% 88%, rgba(167, 139, 250, 0.15), transparent 70%);
+  animation: aurora 46s ease-in-out infinite alternate;
+}
+@keyframes aurora {
+  to { filter: hue-rotate(28deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='vapor'] body::before { animation: none; }
+}
+
+/* the horizon grid, kept at a whisper */
+[data-theme='vapor'] body::after {
+  content: '';
+  position: fixed;
+  left: -20%;
+  right: -20%;
+  bottom: 0;
+  height: 36vh;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, rgba(244, 114, 182, 0.5) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(0deg, rgba(244, 114, 182, 0.5) 0 1px, transparent 1px 44px);
+  transform: perspective(420px) rotateX(58deg);
+  transform-origin: 50% 100%;
+  opacity: 0.14;
+  -webkit-mask-image: linear-gradient(to top, black 30%, transparent 100%);
+  mask-image: linear-gradient(to top, black 30%, transparent 100%);
+}
+
+[data-theme='vapor'] h1 {
+  background: linear-gradient(100deg, #f472b6 10%, #c4b5fd 48%, #67e8f9 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgba(244, 114, 182, 0.25));
+}
+
+[data-theme='vapor'] h2 { color: var(--accent-2); }
+
+[data-theme='vapor'] a:hover { color: var(--accent); }
+
+[data-theme='vapor'] .rule,
+[data-theme='vapor'] .rule-double {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(244, 114, 182, 0.55), rgba(103, 232, 249, 0.55), transparent);
+}
+[data-theme='vapor'] .rule-double::after {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.35), rgba(244, 114, 182, 0.35), transparent);
+}
+
+[data-theme='vapor'] .portrait {
+  border: 1px solid rgba(244, 114, 182, 0.45);
+  border-radius: 12px;
+  filter: saturate(1.15);
+  box-shadow:
+    0 0 22px -6px rgba(244, 114, 182, 0.55),
+    0 0 34px -10px rgba(103, 232, 249, 0.45);
+}
+
+[data-theme='vapor'] .project h3 { font-weight: 420; }
 
 /* ---------- dawn: gradient sky, warm haze ---------- */
 

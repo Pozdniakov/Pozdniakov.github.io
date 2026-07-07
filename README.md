@@ -21,7 +21,7 @@ docs/
 
 ## Themes
 
-Fifteen schemes (plus one secret); a theme = colours + optionally its own
+Sixteen schemes (plus one secret); a theme = colours + optionally its own
 typography and details:
 
 - **paper** — warm cream, umber ink, madder-red accent (default)
@@ -38,6 +38,7 @@ typography and details:
 - **notebook** — squared exercise book: graph paper, red margin line, QuaziNote headings
 - **swiss** — International Typographic Style: white, black, Helvetica, Swiss red
 - **dawn** — soft utopian morning: gradient sky, slate ink, terracotta gradient headline
+- **vapor** — vaporwave grown up: dusk indigo, drifting aurora haze, holographic pink–cyan headline, faint horizon grid
 - **ink** — quiet near-black, dry-sage accent
 - **amber** — hidden until a certain 10-key sequence is entered
 

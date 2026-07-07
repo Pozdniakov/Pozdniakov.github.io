@@ -14,7 +14,7 @@
   var BASE_THEMES = [
     'paper', 'manuscript', 'cyanotype', 'terminal', 'macintosh',
     'gameboy', 'riso', 'punchcard', 'herbarium', 'workbench',
-    'darkroom', 'notebook', 'swiss', 'dawn', 'ink'
+    'darkroom', 'notebook', 'swiss', 'dawn', 'vapor', 'ink'
   ];
 
   var COLORS = {
@@ -32,6 +32,7 @@
     notebook:   { bg: '#fdfdfa', fg: '#d23b2e' },
     swiss:      { bg: '#ffffff', fg: '#e30613' },
     dawn:       { bg: '#f6e7d7', fg: '#c96f4a' },
+    vapor:      { bg: '#120e1e', fg: '#f472b6' },
     ink:        { bg: '#17181c', fg: '#a4c9ab' },
     amber:      { bg: '#100a02', fg: '#ffb000' }
   };
@@ -42,7 +43,8 @@
     gameboy: '▶ Ivan Pozdniakov',
     manuscript: '❧ Ivan Pozdniakov',
     notebook: '✎ Ivan Pozdniakov',
-    darkroom: '● Ivan Pozdniakov'
+    darkroom: '● Ivan Pozdniakov',
+    vapor: '✦ Ivan Pozdniakov'
   };
 
   var picker = document.querySelector('.theme-picker');

@@ -374,18 +374,75 @@
 
   var neuron = document.getElementById('neuron');
   var impulseMove = document.getElementById('impulseMove');
+  var IMPULSE_MS = 1600;
+  var CONFETTI = ['#f472b6', '#67e8f9', '#fde047', '#a78bfa', '#4ade80', '#fb7185', '#fdba74'];
 
-  function fireNeuron() {
+  /* burst confetti from the axon terminals (viewBox point ≈ 549,40) */
+  function confettiBurst() {
+    if (reducedMotion || !neuron) return;
+    var svg = neuron.querySelector('svg');
+    var r = svg.getBoundingClientRect();
+    var ox = r.left + r.width * (549 / 600);
+    var oy = r.top + r.height * (40 / 84);
+    var accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    var palette = CONFETTI.concat(accent || '#f472b6');
+
+    var parts = [];
+    for (var i = 0; i < 20; i++) {
+      var el = document.createElement('span');
+      el.className = 'confetti';
+      el.style.background = palette[i % palette.length];
+      if (i % 3 === 0) el.style.borderRadius = '50%';
+      document.body.appendChild(el);
+      var ang = -Math.PI / 2 + (Math.random() - 0.5) * 2.1; /* fan up & outward */
+      var sp = 3.4 + Math.random() * 4.2;
+      parts.push({
+        el: el, x: ox, y: oy,
+        vx: Math.cos(ang) * sp + 1.1,        /* bias to the right, out of the terminal */
+        vy: Math.sin(ang) * sp,
+        rot: Math.random() * 360, vr: (Math.random() - 0.5) * 26,
+        life: 0
+      });
+    }
+
+    var start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var t = (ts - start) / 1000;
+      var alive = false;
+      for (var j = 0; j < parts.length; j++) {
+        var p = parts[j];
+        if (p.life > 1) continue;
+        alive = true;
+        p.vy += 0.16;                 /* gravity */
+        p.vx *= 0.99;
+        p.x += p.vx; p.y += p.vy;
+        p.rot += p.vr;
+        p.life = t / 1.1;
+        p.el.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px) rotate(' + p.rot + 'deg)';
+        p.el.style.opacity = String(Math.max(0, 1 - p.life));
+      }
+      if (alive) {
+        requestAnimationFrame(step);
+      } else {
+        for (var k = 0; k < parts.length; k++) parts[k].el.remove();
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function fireNeuron(withConfetti) {
     if (impulseMove && typeof impulseMove.beginElement === 'function') {
       try { impulseMove.beginElement(); } catch (e) {}
     }
+    if (withConfetti) setTimeout(confettiBurst, IMPULSE_MS - 60);
   }
 
   if (neuron && impulseMove) {
-    neuron.addEventListener('click', fireNeuron);
+    neuron.addEventListener('click', function () { fireNeuron(true); });
     if (!reducedMotion) {
-      setTimeout(fireNeuron, 1500); /* a greeting spike */
-      setInterval(fireNeuron, 9000 + Math.random() * 5000);
+      setTimeout(function () { fireNeuron(false); }, 1500); /* a greeting spike */
+      setInterval(function () { fireNeuron(false); }, 9000 + Math.random() * 5000);
     }
   }
 

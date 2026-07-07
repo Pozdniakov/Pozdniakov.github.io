@@ -184,13 +184,14 @@
 }
 
 [data-theme='atelier'] {
-  /* between dawn, vapor, riso and paper: warm paper with a
-     rose–lilac wash, high-contrast elegant serif */
-  --bg: #f8f1ec;
-  --ink: #38313d;
-  --muted: #8d8496;
-  --accent: #b05377;
-  --rule: #e8d9dc;
+  /* between dawn, vapor, riso and paper — but sober:
+     warm ivory, graphite-aubergine ink, muted wine accent,
+     high-contrast elegant serif */
+  --bg: #f3ede4;
+  --ink: #2f2b30;
+  --muted: #857e7a;
+  --accent: #7a3b48;
+  --rule: #ded5c7;
   --font-body: 'Cormorant Garamond', Georgia, serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
@@ -1051,23 +1052,22 @@ section p:last-child { margin-bottom: 0; }
 /* ---------- atelier: rose–lilac wash, high-contrast serif ---------- */
 
 [data-theme='atelier'] body {
-  font-size: 1.26rem;
-  line-height: 1.62;
-  background: linear-gradient(155deg, #f9f2ec 0%, #f5edf0 55%, #eeeaf4 100%) fixed;
+  font-size: 1.22rem;
+  line-height: 1.6;
+  background: linear-gradient(165deg, #f4efe7 0%, #efe8dd 100%) fixed;
 }
 
 [data-theme='atelier'] h1 {
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(2.3rem, 5.4vw, 3rem);
-  letter-spacing: 0.01em;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5.2vw, 2.9rem);
+  letter-spacing: 0;
 }
 
 [data-theme='atelier'] h2 { color: var(--accent); }
 
 [data-theme='atelier'] .project h3 {
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.42rem;
 }
 
 [data-theme='atelier'] .rule {
@@ -1075,21 +1075,19 @@ section p:last-child { margin-bottom: 0; }
   text-align: center;
 }
 [data-theme='atelier'] .rule::after {
-  content: '· ✦ ·';
-  color: var(--accent);
-  opacity: 0.6;
-  font-size: 0.85rem;
-  letter-spacing: 0.4em;
+  content: '◆';
+  color: var(--muted);
+  opacity: 0.5;
+  font-size: 0.6rem;
 }
 
 [data-theme='atelier'] .portrait {
-  border: 1px solid rgba(176, 83, 119, 0.35);
-  border-radius: 14px;
-  filter: saturate(1.05);
-  box-shadow: 0 12px 28px -16px rgba(176, 83, 119, 0.55);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  box-shadow: 0 10px 24px -16px rgba(47, 43, 48, 0.5);
 }
 
-[data-theme='atelier'] .seeking { font-size: 1.15rem; }
+[data-theme='atelier'] .seeking { font-size: 1.12rem; }
 
 /* ---------- atlas: graticule, small-caps headings ---------- */
 
@@ -1247,6 +1245,18 @@ section p:last-child { margin-bottom: 0; }
 }
 .synapse svg { display: block; width: 100%; height: auto; }
 .synapse .impulse { fill: var(--accent); }
+
+/* confetti fired from the axon terminals */
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 4px;
+  pointer-events: none;
+  z-index: 3000;
+  will-change: transform, opacity;
+}
 
 /* ---------- small screens ---------- */
 

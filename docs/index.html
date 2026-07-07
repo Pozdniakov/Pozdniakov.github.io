@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=VT323&family=Silkscreen&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=8">
+<link rel="stylesheet" href="assets/style.css?v=9">
 <script>
 /* set theme before first paint; ?theme=… in the URL wins (shareable links) */
 (function () {
@@ -90,28 +90,27 @@
   <button class="synapse" id="neuron" aria-label="Fire the neuron" title="Fire!">
     <svg viewBox="0 0 600 84" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-        <!-- dendrites -->
-        <path d="M147,34 C129,23 117,16 101,11 M121,21 C114,13 109,8 103,3"/>
-        <path d="M144,46 C126,54 111,61 95,67 M116,57 C108,64 102,70 97,76"/>
-        <path d="M151,28 C142,17 133,10 124,5"/>
-        <path d="M152,52 C144,61 137,68 129,74"/>
-        <!-- soma (slightly wobbly) -->
-        <path d="M160,40 C160,32 168,26 176,27 C185,28 190,34 189,41 C188,49 181,54 172,53 C164,52 160,47 160,40 Z"/>
-        <!-- axon -->
-        <path d="M189,41 C240,35 300,47 370,40 S480,36 520,40"/>
-        <!-- myelin ticks -->
-        <path d="M246,33 C247,38 247,42 246,46 M318,38 C319,42 319,46 318,50 M414,34 C415,38 415,42 414,46 M470,35 C471,39 471,43 470,47"/>
-        <!-- axon terminals -->
-        <path d="M520,40 C534,33 542,27 551,19 M520,40 C537,42 547,49 555,57 M520,40 C539,38 551,37 563,35"/>
+        <!-- dendrites: grow straight out of the soma -->
+        <path d="M139,35 C122,26 110,20 95,13 M112,21 C107,14 103,9 99,4"/>
+        <path d="M135,42 C117,41 103,41 86,40 M103,41 C96,37 91,34 86,31"/>
+        <path d="M139,49 C122,58 109,64 94,71 M109,64 C104,70 100,75 97,80"/>
+        <!-- soma -->
+        <path d="M135,42 C135,34 142,29 150,29 C158,29 165,35 165,42 C165,50 158,55 150,55 C142,55 135,50 135,42 Z"/>
+        <!-- axon (out of the soma) -->
+        <path d="M165,42 C225,37 300,49 380,42 C440,37 470,41 498,42"/>
+        <!-- nodes of Ranvier -->
+        <path d="M250,37 C251,40 251,45 250,48 M340,37 C341,40 341,45 340,48 M430,37 C431,40 431,45 430,48"/>
+        <!-- axon terminals / collaterals -->
+        <path d="M498,42 C514,35 524,29 536,22 M498,42 C516,44 528,50 540,57 M498,42 C520,43 532,42 547,41"/>
       </g>
-      <g fill="currentColor" opacity="0.75">
-        <circle cx="553" cy="17" r="2.4"/>
-        <circle cx="557" cy="59" r="2.4"/>
-        <circle cx="566" cy="35" r="2.4"/>
+      <g fill="currentColor" opacity="0.8">
+        <circle cx="538" cy="21" r="2.6"/>
+        <circle cx="542" cy="58" r="2.6"/>
+        <circle cx="549" cy="40" r="2.6"/>
       </g>
-      <circle class="impulse" r="3.6" opacity="0">
-        <animateMotion id="impulseMove" dur="1.4s" begin="indefinite" path="M189,41 C240,35 300,47 370,40 S480,36 520,40"/>
-        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="1.4s" begin="impulseMove.begin"/>
+      <circle class="impulse" r="3.8" opacity="0">
+        <animateMotion id="impulseMove" dur="1.6s" begin="indefinite" path="M150,42 C225,37 300,49 380,42 C440,37 470,41 498,42 C520,43 532,42 549,40"/>
+        <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.06;0.9;0.97;1" dur="1.6s" begin="impulseMove.begin"/>
       </circle>
     </svg>
   </button>
@@ -164,6 +163,6 @@
   <p class="mono">© 2026 Ivan Pozdniakov · no trackers, no cookies</p>
 </footer>
 
-<script src="assets/main.js?v=8" defer></script>
+<script src="assets/main.js?v=9" defer></script>
 </body>
 </html>

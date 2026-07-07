@@ -38,7 +38,7 @@ typography and details:
 - **notebook** — squared exercise book: graph paper, red margin line, QuaziNote headings
 - **swiss** — International Typographic Style: white, black, Helvetica, Swiss red
 - **dawn** — soft utopian morning: gradient sky, slate ink, terracotta gradient headline
-- **atelier** — rose–lilac wash on warm paper, elegant Cormorant Garamond, italic headline
+- **atelier** — sober editorial: warm ivory, graphite-aubergine ink, muted wine accent, Cormorant Garamond
 - **vapor** — vaporwave grown up: dusk indigo, drifting aurora haze, holographic pink–cyan headline, faint horizon grid
 - **atlas** — old cartography: sepia stock, graticule grid, small-caps headings, compass red
 - **opera** — velvet & gold: burgundy dark, stage-light glow, gilded gradient headline, framed portrait
@@ -52,8 +52,11 @@ from the active scheme. `[graph]` in the picker turns it off (persisted);
 it renders a single static frame under `prefers-reduced-motion` and is dimmed
 on small screens.
 
-Between About and Projects sits a hand-drawn neuron divider: an impulse fires
-along the axon on click (and occasionally on its own).
+Between About and Projects sits a hand-drawn neuron divider — dendrites,
+soma, myelinated axon, and branching terminals. Click it and an impulse
+travels the full axon and its collaterals, then bursts confetti from the
+terminals (it also fires quietly on its own; confetti only on click, and
+never under `prefers-reduced-motion`).
 
 Switching: click a name in the top-right picker · press `t` to cycle ·
 digits `1`–`9` jump directly · `??` picks at random · `?theme=terminal` in the

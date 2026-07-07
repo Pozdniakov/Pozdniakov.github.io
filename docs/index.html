@@ -4,24 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ivan Pozdniakov</title>
-<meta name="description" content="Researcher, R developer, and statistics educator based in Kiel, Germany. Interested in computational models of cognition and neural dynamics.">
+<meta name="description" content="Researcher, R developer, and statistics educator based in Kiel, Germany.">
 <link rel="canonical" href="https://pozdniakov.github.io/">
 <meta name="theme-color" content="#f6f1e6">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ivan Pozdniakov">
-<meta property="og:description" content="Researcher, R developer, and statistics educator — computational models of cognition and neural dynamics.">
+<meta property="og:description" content="Researcher, R developer, and statistics educator based in Kiel, Germany.">
 <meta property="og:url" content="https://pozdniakov.github.io/">
 <meta property="og:image" content="https://pozdniakov.github.io/images/profile.jpg">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg" id="favicon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=VT323&family=Silkscreen&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=3">
+<link rel="stylesheet" href="assets/style.css?v=4">
 <script>
-/* set theme before first paint */
+/* set theme before first paint; ?theme=… in the URL wins (shareable links) */
 (function () {
-  var t = null;
-  try { t = localStorage.getItem('theme'); } catch (e) {}
+  var t = new URLSearchParams(location.search).get('theme');
+  if (!t) { try { t = localStorage.getItem('theme'); } catch (e) {} }
   if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'ink' : 'paper';
   document.documentElement.dataset.theme = t;
 })();
@@ -39,13 +39,15 @@
       <button data-set-theme="cyanotype">cyanotype</button>
       <button data-set-theme="terminal">terminal</button>
       <button data-set-theme="macintosh">macintosh</button>
+      <button data-set-theme="gameboy">gameboy</button>
+      <button data-set-theme="riso">riso</button>
       <button data-set-theme="ink">ink</button>
+      <button id="shuffle" title="Random theme" aria-label="Random theme">??</button>
+      <span class="picker-hint" aria-hidden="true">press t</span>
     </nav>
     <div class="masthead-grid">
       <div class="masthead-text">
         <h1>Ivan Pozdniakov</h1>
-        <p class="role">Researcher, R developer &amp; statistics educator<br>Kiel, Germany</p>
-        <p class="seeking">Looking for a PhD position — computation, cognition, neural&nbsp;dynamics.</p>
         <nav class="contact-row mono" aria-label="Contact links">
           <a href="mailto:ivanspozdniakov@gmail.com">email</a>
           <a href="cv/cv_germany.pdf">cv, pdf</a>
@@ -64,9 +66,9 @@
   <!-- ============ ABOUT ============ -->
   <section id="about">
     <h2 class="mono">§ 1 · About</h2>
-    <p>By training I'm a cognitive neuroscientist. My experimental work used non-invasive brain stimulation — TMS, tACS, EEG, MEG — to ask how alternating-current stimulation entrains the motor cortex, and whether its effects outlast the stimulation itself.</p>
-    <p>I was also one of 29 analyst teams in a many-analysts project on how strongly empirical results depend on analytic choices. These days my interests are computational: models of cognition, neural dynamics, and the statistics that connect them to behavior.</p>
-    <p>Since 2015 I've taught statistics and R at universities and in industry courses; the textbook and the live stream below grew out of that. Outside work — philosophy of mind, digital humanities, photography.</p>
+    <p>Researcher, R developer, and statistics educator based in Kiel, Germany. MSc in Cognitive Sciences (HSE, Moscow); background in brain stimulation and neuroimaging — TMS, tACS, EEG, MEG.</p>
+    <p>My trajectory runs from experimental neuroscience toward computational modeling — a deliberate accumulation of empirical, statistical, and programming skills built over a decade of research and teaching. Looking for a PhD position at the intersection of computation, cognition, and neural dynamics.</p>
+    <p>My curiosity extends well beyond neuroscience — to philosophy of mind, digital humanities, history, and a few other rabbit holes.</p>
   </section>
 
   <hr class="rule">
@@ -77,47 +79,39 @@
 
     <article class="project">
       <h3>Data Analysis and Statistics in R</h3>
-      <p>Free Russian-language textbook on data analysis in R — wrangling, visualization, statistics, reproducible workflows. Continuously updated since 2020.</p>
-      <p class="project-links mono"><a href="https://pozdniakov.github.io/tidy_stats/">read online</a> <a href="https://github.com/Pozdniakov/tidy_stats">source</a></p>
+      <p>Free textbook (Russian) on wrangling, visualization, statistics, and reproducible workflows with R and the tidyverse.</p>
+      <p class="project-links mono"><a href="https://pozdniakov.github.io/tidy_stats/">read the book</a> <a href="https://github.com/Pozdniakov/tidy_stats">source</a></p>
     </article>
 
     <article class="project">
-      <h3>{rdracor}</h3>
-      <p>R client for the DraCor API — multilingual drama corpora: play texts, metadata, character networks. Published on CRAN.</p>
+      <h3>{rdracor} — CRAN package</h3>
+      <p>R client for the DraCor API — programmatic access to multilingual drama corpora in TEI-XML. Play texts, metadata, character networks.</p>
       <p class="project-links mono"><a href="https://cran.r-project.org/package=rdracor">cran</a> <a href="https://github.com/dracor-org/rdracor">github</a></p>
     </article>
 
     <article class="project">
-      <h3>DraCor Shiny</h3>
-      <p>Interactive interface for exploring drama corpora — character networks and corpus statistics.</p>
+      <h3>DraCor Shiny App</h3>
+      <p>Interactive visualization of drama corpus data — character interaction networks, corpus statistics, text exploration.</p>
       <p class="project-links mono"><a href="https://pozdniakov.shinyapps.io/Dracor/">app</a> <a href="https://github.com/dracor-org/dracor-shiny">github</a></p>
     </article>
 
     <article class="project">
-      <h3>Sunday ScReencast</h3>
-      <p>Weekly live data analysis in R — unscripted, on real datasets.</p>
-      <p class="project-links mono"><a href="https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ">youtube</a></p>
+      <h3>Live-Coding Data Analysis</h3>
+      <p>Unscripted streams working through real datasets in R: wrangling, modeling, visualization.</p>
+      <p class="project-links mono"><a href="https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ">watch on youtube</a></p>
     </article>
 
     <article class="project">
       <h3>Æsthetics Ranking</h3>
-      <p>A little side project: compare visual aesthetics from the CARI archive pair by pair, end up with a personal top 5 — and see how your taste compares to everyone else's.</p>
+      <p>A small side project: pairwise comparisons of visual aesthetics from the CARI archive — build a personal top 5, see the global ranking.</p>
       <p class="project-links mono"><a href="https://aesthetics-ranking.vercel.app">live app</a></p>
     </article>
 
     <article class="project">
       <h3 class="quazi">QuaziNote</h3>
-      <p>A free typeface in two styles, drawn by hand; this heading is set in it.</p>
-      <p class="project-links mono"><a href="fonts/QuaziNote-Regular.otf" download>regular</a> <a href="fonts/QuaziNote-Condensed.otf" download>condensed</a></p>
+      <p>A free typeface in two styles — Regular and Condensed. Available to download and use freely; this heading is set in it.</p>
+      <p class="project-links mono"><a href="fonts/QuaziNote-Regular.otf" download>download regular</a> <a href="fonts/QuaziNote-Condensed.otf" download>download condensed</a></p>
     </article>
-  </section>
-
-  <hr class="rule">
-
-  <!-- ============ CONTACT ============ -->
-  <section id="contact">
-    <h2 class="mono">§ 3 · Contact</h2>
-    <p>Email is the fastest way to reach me — <a href="mailto:ivanspozdniakov@gmail.com">ivanspozdniakov@gmail.com</a>. <a href="https://t.me/pozdniakovivan">Telegram</a> works too.</p>
   </section>
 
 </main>
@@ -127,6 +121,6 @@
   <p class="mono">© 2026 Ivan Pozdniakov · no trackers, no cookies</p>
 </footer>
 
-<script src="assets/main.js?v=3" defer></script>
+<script src="assets/main.js?v=4" defer></script>
 </body>
 </html>

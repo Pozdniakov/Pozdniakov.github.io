@@ -70,6 +70,28 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='gameboy'] {
+  /* DMG LCD: four shades of pea-soup green */
+  --bg: #9bbc0f;
+  --ink: #0f380f;
+  --muted: #306230;
+  --accent: #0f380f;
+  --rule: #8bac0f;
+  --font-body: 'VT323', 'IBM Plex Mono', monospace;
+  --font-mono: 'VT323', 'IBM Plex Mono', monospace;
+}
+
+[data-theme='riso'] {
+  /* risograph: blue soy ink + fluorescent pink, off-registration */
+  --bg: #f7f4ec;
+  --ink: #1d3fae;
+  --muted: #5c6cb4;
+  --accent: #f04e98;
+  --rule: #c9cfe8;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='ink'] {
   /* soft near-black, warm grey text, dry-sage accent */
   --bg: #17181c;
@@ -223,6 +245,14 @@ h1 {
 }
 .theme-picker button[aria-pressed='true']::before { content: '['; }
 .theme-picker button[aria-pressed='true']::after { content: ']'; }
+
+.theme-picker #shuffle { opacity: 0.55; }
+
+.picker-hint {
+  color: var(--muted);
+  opacity: 0.45;
+  user-select: none;
+}
 
 /* ---------- sections ---------- */
 
@@ -420,6 +450,64 @@ section p:last-child { margin-bottom: 0; }
 [data-theme='cyanotype'] .portrait {
   filter: grayscale(1) sepia(0.5) hue-rotate(155deg) saturate(2.1) brightness(0.92);
 }
+
+/* ---------- gameboy: LCD grid, pixel headline, DMG portrait ---------- */
+
+[data-theme='gameboy'] body {
+  font-size: 1.34rem;
+  line-height: 1.5;
+  transition: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(15, 56, 15, 0.05) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(15, 56, 15, 0.05) 0 1px, transparent 1px 3px);
+}
+
+[data-theme='gameboy'] h1 {
+  font-family: 'Silkscreen', monospace;
+  font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+[data-theme='gameboy'] .mono { font-size: 0.92rem; letter-spacing: 0.08em; }
+
+[data-theme='gameboy'] .project h3 { font-weight: 400; font-size: 1.4rem; }
+
+[data-theme='gameboy'] a { text-decoration-color: var(--muted); }
+[data-theme='gameboy'] a:hover {
+  background: var(--ink);
+  color: var(--bg);
+  text-decoration: none;
+}
+
+[data-theme='gameboy'] .rule,
+[data-theme='gameboy'] .rule-double { border-top-width: 2px; border-top-color: var(--ink); }
+[data-theme='gameboy'] .rule-double::after { border-top-width: 2px; border-top-color: var(--ink); top: 4px; }
+
+[data-theme='gameboy'] .portrait {
+  filter: grayscale(1) sepia(1) hue-rotate(35deg) saturate(2.4) brightness(1.02) contrast(1.15);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+}
+
+/* ---------- riso: off-registration overprint ---------- */
+
+[data-theme='riso'] h1,
+[data-theme='riso'] .project h3:not(.quazi) {
+  text-shadow: 2px 2px 0 rgba(240, 78, 152, 0.5);
+}
+
+[data-theme='riso'] h2 { color: var(--accent); }
+
+[data-theme='riso'] .portrait {
+  filter: grayscale(1) brightness(1.05) contrast(1.2);
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 5px 5px 0 rgba(240, 78, 152, 0.55);
+}
+
+[data-theme='riso'] .rule,
+[data-theme='riso'] .rule-double { border-top-color: var(--ink); opacity: 0.35; }
 
 /* ---------- small screens ---------- */
 

@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=VT323&family=Silkscreen&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=5">
 <script>
 /* set theme before first paint; ?theme=… in the URL wins (shareable links) */
 (function () {
@@ -41,23 +41,29 @@
       <button data-set-theme="macintosh">macintosh</button>
       <button data-set-theme="gameboy">gameboy</button>
       <button data-set-theme="riso">riso</button>
+      <button data-set-theme="punchcard">punchcard</button>
+      <button data-set-theme="herbarium">herbarium</button>
+      <button data-set-theme="workbench">workbench</button>
+      <button data-set-theme="darkroom">darkroom</button>
       <button data-set-theme="ink">ink</button>
+      <button data-set-theme="amber" id="amberBtn" hidden>amber</button>
       <button id="shuffle" title="Random theme" aria-label="Random theme">??</button>
       <span class="picker-hint" aria-hidden="true">press t</span>
     </nav>
     <div class="masthead-grid">
       <div class="masthead-text">
         <h1>Ivan Pozdniakov</h1>
-        <nav class="contact-row mono" aria-label="Contact links">
+        <nav class="contact-row mono" aria-label="Links">
           <a href="mailto:ivanspozdniakov@gmail.com">email</a>
           <a href="cv/cv_germany.pdf">cv, pdf</a>
           <a href="https://scholar.google.com/citations?user=-mCcIXEAAAAJ&amp;sortby=pubdate">google scholar</a>
           <a href="https://github.com/Pozdniakov">github</a>
           <a href="https://t.me/pozdniakovivan">telegram</a>
-          <a href="https://www.youtube.com/channel/UC9giMhVoDQ0T3TPrx3qBgOQ">youtube</a>
         </nav>
       </div>
-      <img class="portrait" src="images/profile.jpg" alt="Ivan Pozdniakov" width="667" height="1000">
+      <button class="portrait-wrap" id="portraitToggle" title="Click me" aria-label="Toggle portrait photo">
+        <img class="portrait" src="images/profile.jpg" alt="Ivan Pozdniakov" width="667" height="1000">
+      </button>
     </div>
   </header>
 
@@ -121,6 +127,6 @@
   <p class="mono">© 2026 Ivan Pozdniakov · no trackers, no cookies</p>
 </footer>
 
-<script src="assets/main.js?v=4" defer></script>
+<script src="assets/main.js?v=5" defer></script>
 </body>
 </html>

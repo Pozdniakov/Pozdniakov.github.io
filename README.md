@@ -21,27 +21,34 @@ docs/
 
 ## Themes
 
-Eight schemes; a theme = colours + optionally its own typography and details:
+Twelve schemes (plus one secret); a theme = colours + optionally its own
+typography and details:
 
 - **paper** — warm cream, umber ink, madder-red accent (default)
-- **manuscript** — parchment, EB Garamond, rubricated drop cap, justified text, fleuron dividers
+- **manuscript** — parchment, EB Garamond, rubricated drop cap, justified text, fleurons, page frame
 - **cyanotype** — Prussian blue with pale exposure, straw accent, blue-print portrait
-- **terminal** — green phosphor CRT: VT323, scanlines, blinking cursor, inverse-video links
-- **macintosh** — 1-bit early GUI: black on white, Silkscreen pixel headings, hard shadows
+- **terminal** — green phosphor CRT: VT323, scanlines, tube vignette, glow, blinking cursor
+- **macintosh** — 1-bit early GUI: title-bar stripes, Silkscreen pixel headings, hard shadows
 - **gameboy** — DMG LCD: four shades of pea-soup green, pixel headline, LCD grid
-- **riso** — risograph overprint: blue soy ink + fluorescent pink, off-registration shadows
+- **riso** — risograph overprint: blue + fluorescent pink, off-registration, halftone paper
+- **punchcard** — IBM manila card: punched top row, cut corner, IBM-blue print
+- **herbarium** — pressed-plant archive: sage paper, rust stamps, ❦ dividers, specimen portrait
+- **workbench** — Amiga 1.3: blue/white/orange/black, checker drag-bar, hard shadows
+- **darkroom** — safelight: red-on-black, heavy vignette, red-duotone portrait
 - **ink** — quiet near-black, dry-sage accent
+- **amber** — hidden until a certain 10-key sequence is entered
 
 Switching: click a name in the top-right picker · press `t` to cycle ·
-digits `1`–`8` jump directly · `??` picks at random · `?theme=terminal` in the
-URL makes a shareable link. The choice persists in localStorage and defaults
-to `prefers-color-scheme`; favicon and `theme-color` follow the theme, and
-switches cross-fade via the View Transitions API where supported.
+digits `1`–`9` jump directly · `??` picks at random · `?theme=terminal` in the
+URL makes a shareable link · the portrait swaps on click. The choice persists
+in localStorage and defaults to `prefers-color-scheme`; favicon, tab title and
+`theme-color` follow the theme, and switches cross-fade via the View
+Transitions API where supported.
 
 Colour variables live at the top of `docs/assets/style.css`; per-theme details
 in the "Theme details" block below them. New theme = a `[data-theme='…']`
-variable block + a button in `index.html` + an entry in `THEMES`/`COLORS` in
-`main.js`. Bump the `?v=` query on asset links when changing CSS/JS.
+variable block + a button in `index.html` + an entry in `BASE_THEMES`/`COLORS`
+in `main.js`. Bump the `?v=` query on asset links when changing CSS/JS.
 
 ## Editing
 

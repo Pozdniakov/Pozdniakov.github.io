@@ -1,7 +1,8 @@
 /* ================================================================
    Ivan Pozdniakov — personal site
-   Quiet academic typography, six switchable schemes:
-   paper · manuscript · cyanotype · terminal · macintosh · ink
+   Quiet academic typography, twelve switchable schemes (+1 secret):
+   paper · manuscript · cyanotype · terminal · macintosh · gameboy ·
+   riso · punchcard · herbarium · workbench · darkroom · ink · amber
    Each theme = colours + (optionally) its own typography & details.
    ================================================================ */
 
@@ -90,6 +91,61 @@
   --rule: #c9cfe8;
   --font-body: 'Newsreader', Georgia, serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='punchcard'] {
+  /* IBM manila card: buff stock, chocolate print, IBM blue */
+  --bg: #ecdfba;
+  --ink: #4a3319;
+  --muted: #8a744d;
+  --accent: #2456a6;
+  --rule: #d4c290;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='herbarium'] {
+  /* pressed-plant archive: sage paper, deep green, rust stamp */
+  --bg: #edf0e0;
+  --ink: #23402a;
+  --muted: #5d7257;
+  --accent: #96502a;
+  --rule: #ccd6b8;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='workbench'] {
+  /* Amiga Workbench 1.3: blue, white, orange, black */
+  --bg: #0055aa;
+  --ink: #ffffff;
+  --muted: #9fc3e7;
+  --accent: #ff8800;
+  --rule: rgba(255, 255, 255, 0.4);
+  --font-body: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='darkroom'] {
+  /* photographic darkroom under safelight */
+  --bg: #140b0b;
+  --ink: #ff8a72;
+  --muted: #a45646;
+  --accent: #ffb199;
+  --rule: rgba(255, 138, 114, 0.25);
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='amber'] {
+  /* secret: amber phosphor terminal */
+  --bg: #100a02;
+  --ink: #ffb000;
+  --muted: #9a6f1f;
+  --accent: #ffd166;
+  --rule: rgba(255, 176, 0, 0.3);
+  --font-body: 'VT323', 'IBM Plex Mono', monospace;
+  --font-mono: 'VT323', 'IBM Plex Mono', monospace;
 }
 
 [data-theme='ink'] {
@@ -209,13 +265,28 @@ h1 {
 .contact-row a:hover,
 .project-links a:hover { color: var(--accent); }
 
+.portrait-wrap {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  align-self: start;
+}
+.portrait-wrap:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .portrait {
   width: clamp(96px, 14vw, 128px);
   height: auto;
   border-radius: 6px;
   border: 1px solid var(--rule);
   filter: saturate(0.9);
+  transition: transform 0.15s ease;
 }
+.portrait-wrap:active .portrait { transform: scale(0.97); }
 
 /* ---------- theme picker ---------- */
 
@@ -247,6 +318,16 @@ h1 {
 .theme-picker button[aria-pressed='true']::after { content: ']'; }
 
 .theme-picker #shuffle { opacity: 0.55; }
+
+.theme-picker.wiggle { animation: wiggle 0.28s ease; }
+@keyframes wiggle {
+  25% { transform: rotate(1.2deg); }
+  50% { transform: rotate(-1.2deg); }
+  75% { transform: rotate(0.6deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-picker.wiggle { animation: none; }
+}
 
 .picker-hint {
   color: var(--muted);
@@ -339,34 +420,51 @@ section p:last-child { margin-bottom: 0; }
 
 [data-theme='manuscript'] h1 { font-weight: 500; }
 
-/* ---------- terminal: scanlines, blinking cursor,
-              inverse-video links, phosphor portrait ---------- */
+/* illuminated page frame */
+[data-theme='manuscript'] body::after {
+  content: '';
+  position: fixed;
+  inset: 10px;
+  pointer-events: none;
+  border: 1px solid var(--rule);
+  outline: 1px solid var(--rule);
+  outline-offset: 3px;
+}
+@media (max-width: 560px) {
+  [data-theme='manuscript'] body::after { display: none; }
+}
 
-[data-theme='terminal'] body {
+/* ---------- terminal & amber: scanlines + tube vignette, blinking
+              cursor, inverse-video links, phosphor portrait ---------- */
+
+[data-theme='terminal'] body,
+[data-theme='amber'] body {
   font-size: 1.38rem;
   line-height: 1.48;
   transition: none;
 }
 
-[data-theme='terminal'] body::after {
+[data-theme='terminal'] body::after,
+[data-theme='amber'] body::after {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.25) 0 1px,
-    transparent 1px 3px
-  );
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.4) 100%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0 1px, transparent 1px 3px);
 }
 
-[data-theme='terminal'] .mono {
+[data-theme='terminal'] .mono,
+[data-theme='amber'] .mono {
   font-size: 0.95rem;
   letter-spacing: 0.08em;
 }
 
-[data-theme='terminal'] h1 { letter-spacing: 0; font-weight: 400; }
-[data-theme='terminal'] h1::after {
+[data-theme='terminal'] h1,
+[data-theme='amber'] h1 { letter-spacing: 0; font-weight: 400; }
+[data-theme='terminal'] h1::after,
+[data-theme='amber'] h1::after {
   content: '▌';
   color: var(--accent);
   margin-left: 0.15em;
@@ -374,26 +472,45 @@ section p:last-child { margin-bottom: 0; }
 }
 @keyframes blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  [data-theme='terminal'] h1::after { animation: none; }
+  [data-theme='terminal'] h1::after,
+  [data-theme='amber'] h1::after { animation: none; }
 }
 
-[data-theme='terminal'] a { text-decoration-color: var(--muted); }
-[data-theme='terminal'] a:hover {
+[data-theme='terminal'] h1,
+[data-theme='terminal'] .project h3,
+[data-theme='terminal'] a { text-shadow: 0 0 7px rgba(79, 223, 120, 0.45); }
+[data-theme='amber'] h1,
+[data-theme='amber'] .project h3,
+[data-theme='amber'] a { text-shadow: 0 0 7px rgba(255, 176, 0, 0.45); }
+
+[data-theme='terminal'] a,
+[data-theme='amber'] a { text-decoration-color: var(--muted); }
+[data-theme='terminal'] a:hover,
+[data-theme='amber'] a:hover {
   background: var(--accent);
   color: var(--bg);
   text-decoration: none;
+  text-shadow: none;
 }
 
 [data-theme='terminal'] .rule,
-[data-theme='terminal'] .rule-double { border-top-style: dashed; }
-[data-theme='terminal'] .rule-double::after { border-top-style: dashed; }
+[data-theme='terminal'] .rule-double,
+[data-theme='amber'] .rule,
+[data-theme='amber'] .rule-double { border-top-style: dashed; }
+[data-theme='terminal'] .rule-double::after,
+[data-theme='amber'] .rule-double::after { border-top-style: dashed; }
 
 [data-theme='terminal'] .portrait {
   filter: grayscale(1) sepia(1) hue-rotate(65deg) saturate(1.8) contrast(1.1) brightness(0.95);
   border-radius: 0;
 }
+[data-theme='amber'] .portrait {
+  filter: grayscale(1) sepia(1) saturate(2.6) contrast(1.15) brightness(0.9);
+  border-radius: 0;
+}
 
-[data-theme='terminal'] .project h3 { font-weight: 400; font-size: 1.45rem; }
+[data-theme='terminal'] .project h3,
+[data-theme='amber'] .project h3 { font-weight: 400; font-size: 1.45rem; }
 
 /* ---------- macintosh: 1-bit, pixel headings, hard shadow ---------- */
 
@@ -445,10 +562,30 @@ section p:last-child { margin-bottom: 0; }
 
 [data-theme='macintosh'] .seeking { font-style: normal; }
 
-/* ---------- cyanotype: blue-print portrait ---------- */
+/* classic title-bar stripes across the top */
+[data-theme='macintosh'] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: repeating-linear-gradient(180deg, #000 0 2px, #fff 2px 4px);
+  border-bottom: 2px solid #000;
+}
+
+/* ---------- cyanotype: blue-print portrait, exposure vignette ---------- */
 
 [data-theme='cyanotype'] .portrait {
   filter: grayscale(1) sepia(0.5) hue-rotate(155deg) saturate(2.1) brightness(0.92);
+}
+
+[data-theme='cyanotype'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 35%, rgba(233, 241, 247, 0.07), transparent 65%);
 }
 
 /* ---------- gameboy: LCD grid, pixel headline, DMG portrait ---------- */
@@ -490,7 +627,7 @@ section p:last-child { margin-bottom: 0; }
   border-radius: 0;
 }
 
-/* ---------- riso: off-registration overprint ---------- */
+/* ---------- riso: off-registration overprint, halftone paper ---------- */
 
 [data-theme='riso'] h1,
 [data-theme='riso'] .project h3:not(.quazi) {
@@ -508,6 +645,137 @@ section p:last-child { margin-bottom: 0; }
 
 [data-theme='riso'] .rule,
 [data-theme='riso'] .rule-double { border-top-color: var(--ink); opacity: 0.35; }
+
+[data-theme='riso'] body {
+  background-image: radial-gradient(rgba(240, 78, 152, 0.08) 1px, transparent 1px);
+  background-size: 7px 7px;
+}
+
+/* ---------- punchcard: punched top row, cut corner ---------- */
+
+[data-theme='punchcard'] body::before {
+  content: '';
+  position: fixed;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 14px,
+    rgba(74, 51, 25, 0.28) 14px 20px
+  );
+}
+
+[data-theme='punchcard'] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 34px 34px 0;
+  border-color: transparent rgba(74, 51, 25, 0.16) transparent transparent;
+}
+
+[data-theme='punchcard'] h2 { letter-spacing: 0.22em; }
+
+[data-theme='punchcard'] .portrait {
+  filter: sepia(0.35) saturate(0.8) contrast(1.05);
+  border: 1px solid var(--muted);
+  border-radius: 0;
+}
+
+/* ---------- herbarium: specimen mounting ---------- */
+
+[data-theme='herbarium'] .rule,
+[data-theme='herbarium'] .rule-double { border-top-style: dotted; }
+[data-theme='herbarium'] .rule-double::after { border-top-style: dotted; }
+
+[data-theme='herbarium'] .rule {
+  border: 0;
+  text-align: center;
+}
+[data-theme='herbarium'] .rule::after {
+  content: '❦';
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+[data-theme='herbarium'] h2 { color: var(--accent); }
+
+[data-theme='herbarium'] .portrait {
+  filter: grayscale(0.4) sepia(0.35) hue-rotate(45deg) saturate(0.9);
+  border: 1px solid var(--muted);
+  border-radius: 2px;
+  box-shadow: 0 1px 0 var(--rule), 0 4px 10px -6px rgba(35, 64, 42, 0.5);
+}
+
+[data-theme='herbarium'] .project h3 { font-style: italic; font-weight: 400; }
+
+/* ---------- workbench: Amiga chrome ---------- */
+
+[data-theme='workbench'] body {
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+[data-theme='workbench'] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: repeating-linear-gradient(90deg, #ff8800 0 14px, #000 14px 28px);
+  border-bottom: 2px solid #000;
+}
+
+[data-theme='workbench'] h1 {
+  font-weight: 600;
+  letter-spacing: 0;
+  text-shadow: 2px 2px 0 #000;
+}
+
+[data-theme='workbench'] h2 { color: var(--accent); text-shadow: 1px 1px 0 #000; }
+
+[data-theme='workbench'] .project h3 { font-weight: 600; font-size: 1.05rem; }
+
+[data-theme='workbench'] a { text-decoration-color: var(--accent); }
+[data-theme='workbench'] a:hover {
+  background: var(--accent);
+  color: #000;
+  text-decoration: none;
+}
+
+[data-theme='workbench'] .rule,
+[data-theme='workbench'] .rule-double { border-top-width: 2px; }
+[data-theme='workbench'] .rule-double::after { border-top-width: 2px; top: 4px; }
+
+[data-theme='workbench'] .portrait {
+  filter: saturate(1.15) contrast(1.1);
+  border: 2px solid #fff;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* ---------- darkroom: safelight vignette, red print ---------- */
+
+[data-theme='darkroom'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+[data-theme='darkroom'] .portrait {
+  filter: grayscale(1) sepia(1) hue-rotate(-30deg) saturate(2.4) brightness(0.85) contrast(1.1);
+  border-color: var(--muted);
+}
+
+[data-theme='darkroom'] h1,
+[data-theme='darkroom'] h2 { text-shadow: 0 0 10px rgba(255, 138, 114, 0.35); }
 
 /* ---------- small screens ---------- */
 

@@ -49,8 +49,8 @@ details:
 - **sumi** — ink wash on washi paper; § headers as vermilion hanko seals
 - **pinstripe** — bespoke navy wool with a chalk stripe, small-caps headings, burgundy silk
 - **xray** — radiograph: film black, viridian marks, the portrait develops as a negative
-- **prism** — a white page in refracted light: strict justified EB Garamond, the name drifting through a soft spectrum, a faint prismatic band crossing the paper
-- **endpaper** — marbled endpapers of an old book: pastel swirls (rose, mint, lilac, butter) under delicate Cormorant
+- **prism** — a white page in refracted light: strict justified EB Garamond, ink dissolving into indigo and teal at the end of the name, a faint cool band crossing the paper
+- **endpaper** — marbled endpapers of a library book: muted swirls (indigo, olive, terracotta, slate) under delicate Cormorant, oxblood accents
 - **atelier** — sober editorial: warm ivory, graphite-aubergine ink, muted wine accent, Cormorant Garamond
 - **vapor** — vaporwave grown up: dusk indigo, drifting aurora haze, holographic pink–cyan headline, faint horizon grid
 - **atlas** — old cartography: sepia stock, graticule grid, small-caps headings, compass red

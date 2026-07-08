@@ -311,8 +311,8 @@
   --bg: #fafaf7;
   --ink: #26242c;
   --muted: #77738a;
-  --accent: #6f5bc4;
-  --rule: #e6e3ee;
+  --accent: #4d59a8;
+  --rule: #e4e3ec;
   --font-body: 'EB Garamond', Georgia, serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
@@ -323,7 +323,7 @@
   --bg: #f7f4ef;
   --ink: #33302b;
   --muted: #837c72;
-  --accent: #92496b;
+  --accent: #7d3a30;
   --rule: #e5dfd4;
   --font-body: 'Cormorant Garamond', Georgia, serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
@@ -1556,20 +1556,18 @@ section p:last-child { margin-bottom: 0; }
   pointer-events: none;
   background: linear-gradient(
     118deg,
-    transparent 52%,
-    rgba(214, 106, 142, 0.07) 60%,
-    rgba(222, 170, 92, 0.07) 66%,
-    rgba(148, 200, 158, 0.07) 72%,
-    rgba(120, 170, 220, 0.08) 78%,
-    rgba(150, 120, 214, 0.07) 84%,
-    transparent 92%
+    transparent 55%,
+    rgba(88, 108, 176, 0.06) 64%,
+    rgba(78, 140, 140, 0.06) 72%,
+    rgba(110, 96, 168, 0.06) 80%,
+    transparent 90%
   );
   animation: prism-drift 46s ease-in-out infinite alternate;
 }
 
 @keyframes prism-drift {
   from { filter: hue-rotate(0deg); }
-  to   { filter: hue-rotate(50deg); }
+  to   { filter: hue-rotate(22deg); }
 }
 
 [data-theme='prism'] section p {
@@ -1582,7 +1580,7 @@ section p:last-child { margin-bottom: 0; }
 [data-theme='prism'] h1 {
   font-weight: 500;
   font-size: clamp(2.1rem, 5vw, 2.8rem);
-  background: linear-gradient(100deg, #b25577 0%, #a8762e 30%, #4e8a62 55%, #4a72b8 78%, #7b5cc4 100%);
+  background: linear-gradient(100deg, #26242c 0%, #26242c 38%, #46549e 72%, #3e7d74 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1598,8 +1596,8 @@ section p:last-child { margin-bottom: 0; }
   border-radius: 6px;
   border: 1px solid var(--rule);
   box-shadow:
-    -8px 10px 24px -16px rgba(214, 106, 142, 0.45),
-    8px 10px 24px -16px rgba(120, 170, 220, 0.5);
+    0 10px 26px -16px rgba(38, 36, 44, 0.4),
+    7px 10px 26px -18px rgba(77, 89, 166, 0.4);
 }
 
 /* ---------- endpaper: marbled pastels under scholarly type ---------- */
@@ -1608,11 +1606,11 @@ section p:last-child { margin-bottom: 0; }
   font-size: 1.26rem;
   line-height: 1.62;
   background-image:
-    radial-gradient(34rem 26rem at 12% 6%, rgba(228, 160, 190, 0.2), transparent 62%),
-    radial-gradient(30rem 24rem at 88% 12%, rgba(158, 205, 186, 0.2), transparent 60%),
-    radial-gradient(36rem 30rem at 78% 86%, rgba(172, 160, 220, 0.18), transparent 62%),
-    radial-gradient(26rem 22rem at 18% 88%, rgba(238, 206, 148, 0.18), transparent 60%),
-    radial-gradient(20rem 18rem at 50% 45%, rgba(228, 160, 190, 0.08), transparent 65%);
+    radial-gradient(34rem 26rem at 12% 6%, rgba(78, 94, 146, 0.15), transparent 62%),
+    radial-gradient(30rem 24rem at 88% 12%, rgba(122, 124, 82, 0.14), transparent 60%),
+    radial-gradient(36rem 30rem at 78% 86%, rgba(150, 92, 64, 0.13), transparent 62%),
+    radial-gradient(26rem 22rem at 18% 88%, rgba(84, 116, 118, 0.14), transparent 60%),
+    radial-gradient(20rem 18rem at 50% 45%, rgba(78, 94, 146, 0.07), transparent 65%);
   background-attachment: fixed;
 }
 
@@ -1629,10 +1627,10 @@ section p:last-child { margin-bottom: 0; }
 }
 
 [data-theme='endpaper'] .portrait {
-  filter: saturate(1.08);
-  border-radius: 10px;
+  filter: saturate(0.95);
+  border-radius: 8px;
   border: 1px solid var(--rule);
-  box-shadow: 0 10px 26px -16px rgba(146, 73, 107, 0.45);
+  box-shadow: 0 10px 26px -16px rgba(61, 58, 52, 0.45);
 }
 
 [data-theme='endpaper'] .seeking { font-size: 1.15rem; }

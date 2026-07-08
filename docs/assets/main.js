@@ -390,33 +390,65 @@
   /* ================= neuron divider ================= */
 
   var neuron = document.getElementById('neuron');
-  var impulseMove = document.getElementById('impulseMove');
-  var IMPULSE_MS = 1600;
+  var neuronSvg = neuron ? neuron.querySelector('svg') : null;
+  var SVG_NS = 'http://www.w3.org/2000/svg';
   var CONFETTI = ['#f472b6', '#67e8f9', '#fde047', '#a78bfa', '#4ade80', '#fb7185', '#fdba74'];
 
-  /* burst confetti from the axon terminals (viewBox point ≈ 549,40) */
-  function confettiBurst() {
-    if (reducedMotion || !neuron) return;
-    var svg = neuron.querySelector('svg');
-    var r = svg.getBoundingClientRect();
-    var ox = r.left + r.width * (549 / 600);
-    var oy = r.top + r.height * (40 / 84);
+  /* nodes of Ranvier along the axon — the impulse hops between these */
+  var AXON_NODES = [
+    [170, 42], [206, 41], [244, 42], [282, 43], [320, 44],
+    [358, 43.5], [396, 41.5], [434, 40], [472, 41], [498, 42]
+  ];
+
+  /* three unmyelinated collaterals (cubic control points) + their boutons */
+  var COLLATERALS = [
+    { p: [[498, 42], [514, 35], [524, 29], [536, 22]], bouton: [538, 21], dir: [0.7, -1] },
+    { p: [[498, 42], [516, 44], [528, 50], [540, 57]], bouton: [542, 58], dir: [0.7, 1] },
+    { p: [[498, 42], [520, 43], [532, 42], [547, 41]], bouton: [549, 40], dir: [1, -0.1] }
+  ];
+
+  var HOP_MS = 68; /* dwell per node — the saltatory jump */
+
+  function cubicAt(p, t) {
+    var u = 1 - t, a = u * u * u, b = 3 * u * u * t, c = 3 * u * t * t, d = t * t * t;
+    return [
+      a * p[0][0] + b * p[1][0] + c * p[2][0] + d * p[3][0],
+      a * p[0][1] + b * p[1][1] + c * p[2][1] + d * p[3][1]
+    ];
+  }
+
+  function makeDot(vx, vy) {
+    var c = document.createElementNS(SVG_NS, 'circle');
+    c.setAttribute('class', 'impulse');
+    c.setAttribute('r', '3.4');
+    c.setAttribute('cx', vx);
+    c.setAttribute('cy', vy);
+    neuronSvg.appendChild(c);
+    return c;
+  }
+
+  /* confetti out of one bouton, fanned along the collateral's direction */
+  function confettiBurst(vx, vy, dir) {
+    if (reducedMotion || !neuronSvg) return;
+    var r = neuronSvg.getBoundingClientRect();
+    var ox = r.left + r.width * (vx / 600);
+    var oy = r.top + r.height * (vy / 84);
     var accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
     var palette = CONFETTI.concat(accent || '#f472b6');
+    var baseAng = Math.atan2(dir ? dir[1] : -1, dir ? dir[0] : 0);
 
     var parts = [];
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 12; i++) {
       var el = document.createElement('span');
       el.className = 'confetti';
       el.style.background = palette[i % palette.length];
       if (i % 3 === 0) el.style.borderRadius = '50%';
       document.body.appendChild(el);
-      var ang = -Math.PI / 2 + (Math.random() - 0.5) * 2.1; /* fan up & outward */
-      var sp = 3.4 + Math.random() * 4.2;
+      var ang = baseAng + (Math.random() - 0.5) * 1.5;
+      var sp = 3 + Math.random() * 4;
       parts.push({
         el: el, x: ox, y: oy,
-        vx: Math.cos(ang) * sp + 1.1,        /* bias to the right, out of the terminal */
-        vy: Math.sin(ang) * sp,
+        vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 0.8,
         rot: Math.random() * 360, vr: (Math.random() - 0.5) * 26,
         life: 0
       });
@@ -425,37 +457,72 @@
     var start = null;
     function step(ts) {
       if (start === null) start = ts;
-      var t = (ts - start) / 1000;
-      var alive = false;
+      var t = (ts - start) / 1000, alive = false;
       for (var j = 0; j < parts.length; j++) {
         var p = parts[j];
         if (p.life > 1) continue;
         alive = true;
         p.vy += 0.16;                 /* gravity */
         p.vx *= 0.99;
-        p.x += p.vx; p.y += p.vy;
-        p.rot += p.vr;
+        p.x += p.vx; p.y += p.vy; p.rot += p.vr;
         p.life = t / 1.1;
         p.el.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px) rotate(' + p.rot + 'deg)';
         p.el.style.opacity = String(Math.max(0, 1 - p.life));
       }
-      if (alive) {
-        requestAnimationFrame(step);
-      } else {
-        for (var k = 0; k < parts.length; k++) parts[k].el.remove();
-      }
+      if (alive) requestAnimationFrame(step);
+      else for (var k = 0; k < parts.length; k++) parts[k].el.remove();
     }
     requestAnimationFrame(step);
   }
 
-  function fireNeuron(withConfetti) {
-    if (impulseMove && typeof impulseMove.beginElement === 'function') {
-      try { impulseMove.beginElement(); } catch (e) {}
-    }
-    if (withConfetti) setTimeout(confettiBurst, IMPULSE_MS - 60);
+  /* the impulse glides down each collateral, then bursts at the bouton */
+  function branchOut(withConfetti) {
+    COLLATERALS.forEach(function (col) {
+      var dot = makeDot(col.p[0][0], col.p[0][1]);
+      var start = null, DUR = 320;
+      function glide(ts) {
+        if (start === null) start = ts;
+        var t = Math.min(1, (ts - start) / DUR);
+        var pt = cubicAt(col.p, t);
+        dot.setAttribute('cx', pt[0]);
+        dot.setAttribute('cy', pt[1]);
+        if (t < 1) {
+          requestAnimationFrame(glide);
+        } else {
+          dot.remove();
+          if (withConfetti) confettiBurst(col.bouton[0], col.bouton[1], col.dir);
+        }
+      }
+      requestAnimationFrame(glide);
+    });
   }
 
-  if (neuron && impulseMove) {
+  /* saltatory run: the dot jumps node to node down the myelinated axon */
+  function fireNeuron(withConfetti) {
+    if (reducedMotion || !neuronSvg) return;
+    var dot = makeDot(AXON_NODES[0][0], AXON_NODES[0][1]);
+    var i = 0, last = null;
+    function hop(ts) {
+      if (last === null) last = ts;
+      if (ts - last >= HOP_MS) {
+        last = ts;
+        i++;
+        if (i >= AXON_NODES.length) {
+          dot.remove();
+          branchOut(withConfetti);
+          return;
+        }
+        dot.setAttribute('cx', AXON_NODES[i][0]);
+        dot.setAttribute('cy', AXON_NODES[i][1]);
+        dot.setAttribute('r', '4.4');       /* flare at the node */
+        setTimeout(function () { if (dot.parentNode) dot.setAttribute('r', '3.4'); }, 40);
+      }
+      requestAnimationFrame(hop);
+    }
+    requestAnimationFrame(hop);
+  }
+
+  if (neuron && neuronSvg) {
     neuron.addEventListener('click', function () { fireNeuron(true); });
     if (!reducedMotion) {
       setTimeout(function () { fireNeuron(false); }, 1500); /* a greeting spike */

@@ -58,10 +58,12 @@ it renders a single static frame under `prefers-reduced-motion` and is dimmed
 on small screens.
 
 Between About and Projects sits a hand-drawn neuron divider — dendrites,
-soma, myelinated axon, and branching terminals. Click it and an impulse
-travels the full axon and its collaterals, then bursts confetti from the
-terminals (it also fires quietly on its own; confetti only on click, and
-never under `prefers-reduced-motion`).
+soma, a myelinated axon (short internodes with bare nodes of Ranvier), and
+three branching collaterals. Click it: the impulse jumps node to node down
+the axon (saltatory conduction), splits at the branch point to glide along
+all three collaterals, and bursts confetti from every bouton (it also fires
+quietly on its own; confetti only on click, and never under
+`prefers-reduced-motion`).
 
 Switching: click a name in the top-right picker · press `t` to cycle ·
 digits `1`–`9` jump directly · `??` picks at random · `?theme=terminal` in the

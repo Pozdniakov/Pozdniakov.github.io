@@ -21,7 +21,7 @@ docs/
 
 ## Themes
 
-Thirty-five schemes (plus one secret); a theme = colours + its own typography
+Thirty-eight schemes (plus one secret); a theme = colours + its own typography
 (section headings and the masthead speak each theme's display voice) + small
 details:
 
@@ -54,6 +54,9 @@ details:
 - **terrazzo** — palazzo floor: stone chips in library colours scattered across ivory, a little chip before each heading
 - **collage** — cut-paper shapes (cobalt, olive, terracotta) around strict Cormorant; headings sit at slight angles
 - **specimen** — a type-specimen sheet: justified EB Garamond, proof-mark red pilcrows, one enormous ghost ampersand
+- **moire** — op-art scholarship: two fine grids slowly interfering, red-blue double vision on the name
+- **rorschach** — a ghostly symmetric inkblot over the reading column, clinical grayscale portrait
+- **errata** — the photocopy went in crooked: the whole page tilted a third of a degree, typo-squiggles under the links, [sic] after the headings, [citation needed] after the rabbit holes
 - **atelier** — sober editorial: warm ivory, graphite-aubergine ink, muted wine accent, Cormorant Garamond
 - **vapor** — vaporwave grown up: dusk indigo, drifting aurora haze, holographic pink–cyan headline, faint horizon grid
 - **atlas** — old cartography: sepia stock, graticule grid, small-caps headings, compass red

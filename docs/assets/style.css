@@ -1035,7 +1035,8 @@ section p:last-child { margin-bottom: 0; }
   to { filter: hue-rotate(28deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-theme='vapor'] body::before { animation: none; }
+  [data-theme='vapor'] body::before,
+  [data-theme='dawn'] body::before { animation: none; }
 }
 
 /* the horizon grid, kept at a whisper */
@@ -1093,10 +1094,29 @@ section p:last-child { margin-bottom: 0; }
 
 [data-theme='vapor'] .project h3 { font-weight: 420; }
 
-/* ---------- dawn: gradient sky, warm haze ---------- */
+/* ---------- dawn: a sun rises over the gradient sky ---------- */
 
 [data-theme='dawn'] body {
-  background: linear-gradient(180deg, #f6e7d7 0%, #ecdfd6 34%, #dbe7f4 100%) fixed;
+  /* richer sky: peach → blush → lilac → cool blue */
+  background: linear-gradient(180deg, #f7dcc2 0%, #f2d7cf 30%, #e7dbe4 58%, #d9e6f4 100%) fixed;
+}
+
+/* the sun itself — a warm glow low on the horizon that slowly kindles */
+[data-theme='dawn'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(145% 78% at 80% 3%, rgba(255, 209, 152, 0.95), rgba(255, 209, 152, 0) 44%),
+    radial-gradient(42% 26% at 80% 3%, rgba(255, 171, 112, 0.6), transparent 62%);
+  animation: dawn-rise 20s ease-in-out infinite alternate;
+}
+
+@keyframes dawn-rise {
+  from { opacity: 0.68; transform: translateY(7px); }
+  to   { opacity: 1;    transform: translateY(0); }
 }
 
 [data-theme='dawn'] h1 {
@@ -1110,9 +1130,12 @@ section p:last-child { margin-bottom: 0; }
 [data-theme='dawn'] h2 { color: var(--accent); }
 
 [data-theme='dawn'] .portrait {
-  filter: saturate(1.05) sepia(0.12);
+  /* caught in the morning light */
+  filter: saturate(1.08) sepia(0.14) brightness(1.03);
   border-radius: 10px;
-  box-shadow: 0 10px 26px -14px rgba(58, 61, 82, 0.45);
+  box-shadow:
+    0 10px 30px -14px rgba(201, 111, 74, 0.5),
+    0 0 34px -6px rgba(255, 196, 140, 0.55);
 }
 
 [data-theme='dawn'] .rule,
@@ -1578,7 +1601,8 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='atlas'] body {
     background-attachment: scroll;
   }
-  [data-theme='vapor'] body::before { animation: none; }
+  [data-theme='vapor'] body::before,
+  [data-theme='dawn'] body::before { animation: none; }
 }
 
 /* ---------- print ---------- */

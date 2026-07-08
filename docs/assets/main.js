@@ -409,7 +409,8 @@
     { p: [[498, 42], [520, 43], [532, 42], [547, 41]], bouton: [549, 40], dir: [1, -0.1] }
   ];
 
-  var HOP_MS = 68; /* dwell per node — the saltatory jump */
+  var HOP_MS = 95;      /* dwell at each node before the next jump */
+  var HOP_JITTER = 70;  /* small, slightly irregular lag between jumps */
 
   function cubicAt(p, t) {
     var u = 1 - t, a = u * u * u, b = 3 * u * u * t, c = 3 * u * t * t, d = t * t * t;
@@ -512,19 +513,21 @@
     requestAnimationFrame(g);
   }
 
-  /* saltatory hops between the nodes of Ranvier */
+  /* saltatory hops between the nodes of Ranvier, with a small pause at
+     each node (the signal regenerates before jumping the next internode) */
   function hopNodes(dot, done) {
-    var i = 0, last = null;
+    var i = 0, last = null, wait = HOP_MS;
     function hop(ts) {
       if (last === null) last = ts;
-      if (ts - last >= HOP_MS) {
+      if (ts - last >= wait) {
         last = ts;
+        wait = HOP_MS + Math.random() * HOP_JITTER;
         i++;
         if (i >= AXON_NODES.length) { done(); return; }
         dot.setAttribute('cx', AXON_NODES[i][0]);
         dot.setAttribute('cy', AXON_NODES[i][1]);
-        dot.setAttribute('r', '4.4');       /* flare at the node */
-        setTimeout(function () { if (dot.parentNode) dot.setAttribute('r', '3.4'); }, 40);
+        dot.setAttribute('r', '4.6');       /* flare at the node */
+        setTimeout(function () { if (dot.parentNode) dot.setAttribute('r', '3.4'); }, 45);
       }
       requestAnimationFrame(hop);
     }

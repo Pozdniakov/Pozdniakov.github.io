@@ -21,8 +21,9 @@ docs/
 
 ## Themes
 
-Twenty-eight schemes (plus one secret); a theme = colours + its own typography
-(most themes restyle the headings too) + small details:
+Thirty schemes (plus one secret); a theme = colours + its own typography
+(section headings and the masthead speak each theme's display voice) + small
+details:
 
 - **paper** — warm cream, umber ink, madder-red accent (default)
 - **manuscript** — parchment, EB Garamond, rubricated drop cap, justified text, fleurons, page frame
@@ -41,6 +42,8 @@ Twenty-eight schemes (plus one secret); a theme = colours + its own typography
 - **matins** — a scriptorium at first light: dawn sun over parchment, scholarly EB Garamond, justified text, rubricated drop cap, gilded gradient headline
 - **lauds** — the palest hour before sunrise: cool grey-blue quiet, EB Garamond, one gold thread of first light under the name
 - **vespers** — the scriptorium at dusk: sunset embers on dark parchment, candle-gold drop cap, ember-to-violet headline
+- **compline** — the last office of the day: near-dark, a breathing pool of candlelight over the page, gold versal
+- **observatory** — a star atlas at midnight: engraved brass small caps on deep blue, night-toned portrait, the graph as a star chart
 - **bodoni** — headline-first editorial: uppercase Bodoni Moda masthead, thick-and-thin black rules, grayscale portrait, crimson on hover
 - **marble** — Roman museum: veined stone, Cinzel capitals, bronze accents
 - **sumi** — ink wash on washi paper; § headers as vermilion hanko seals

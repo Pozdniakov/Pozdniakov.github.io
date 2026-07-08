@@ -15,8 +15,9 @@
     'paper', 'manuscript', 'cyanotype', 'terminal', 'macintosh',
     'gameboy', 'riso', 'punchcard', 'herbarium', 'workbench',
     'darkroom', 'notebook', 'swiss', 'lauds', 'dawn', 'matins',
-    'vespers', 'atelier', 'bodoni', 'marble', 'sumi', 'pinstripe',
-    'vapor', 'atlas', 'opera', 'brutalist', 'xray', 'ink'
+    'vespers', 'compline', 'atelier', 'bodoni', 'marble', 'sumi',
+    'pinstripe', 'vapor', 'atlas', 'opera', 'brutalist', 'xray',
+    'observatory', 'ink'
   ];
 
   var COLORS = {
@@ -37,6 +38,8 @@
     matins:     { bg: '#f7e2ba', fg: '#ac3d24' },
     lauds:      { bg: '#e8e9ec', fg: '#96762c' },
     vespers:    { bg: '#362220', fg: '#dfa159' },
+    compline:   { bg: '#191216', fg: '#e2a94f' },
+    observatory:{ bg: '#0c1226', fg: '#e8c56a' },
     atelier:    { bg: '#f3ede4', fg: '#7a3b48' },
     bodoni:     { bg: '#faf8f3', fg: '#a31329' },
     marble:     { bg: '#f5f3ee', fg: '#8c6a3f' },

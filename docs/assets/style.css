@@ -282,6 +282,29 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='compline'] {
+  /* the last office of the day: near-dark, a single candle
+     holding a pool of light over the page */
+  --bg: #191216;
+  --ink: #e6d8bd;
+  --muted: #8f7f6c;
+  --accent: #e2a94f;
+  --rule: rgba(230, 216, 189, 0.16);
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='observatory'] {
+  /* a star atlas at midnight: engraved brass on deep blue */
+  --bg: #0c1226;
+  --ink: #dfe6f4;
+  --muted: #7d8ab0;
+  --accent: #e8c56a;
+  --rule: rgba(223, 230, 244, 0.16);
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='atelier'] {
   /* between dawn, vapor, riso and paper — but sober:
      warm ivory, graphite-aubergine ink, muted wine accent,
@@ -452,10 +475,24 @@ h1 {
 .contact-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 1.15rem;
+  align-items: center;
+  gap: 0.5rem 1.3rem;
   margin-top: 1.6rem;
   padding-top: 1.2rem;
   border-top: 1px solid var(--rule);
+}
+
+/* materials (cv · scholar · github) vs ways to reach me (email · telegram) */
+.link-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.15rem;
+}
+
+.row-sep {
+  width: 1px;
+  height: 1.05em;
+  background: var(--rule);
 }
 .contact-row a,
 .project-links a {
@@ -527,9 +564,13 @@ h1 {
 
 /* ---------- sections ---------- */
 
+/* section headings speak in each theme's own display voice —
+   the font comes from --font-body unless a theme overrides it */
 h2 {
   color: var(--accent);
   font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.2;
   margin-bottom: 1.4rem;
 }
 
@@ -868,7 +909,25 @@ section p:last-child { margin-bottom: 0; }
   border-color: transparent rgba(74, 51, 25, 0.16) transparent transparent;
 }
 
-[data-theme='punchcard'] h2 { letter-spacing: 0.22em; }
+[data-theme='punchcard'] h2 {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+
+[data-theme='cyanotype'] h2 {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+[data-theme='macintosh'] h2 {
+  font-family: 'Silkscreen', monospace;
+  font-size: 0.82rem;
+  font-weight: 400;
+}
 
 [data-theme='punchcard'] .portrait {
   filter: sepia(0.35) saturate(0.8) contrast(1.05);
@@ -1004,7 +1063,12 @@ section p:last-child { margin-bottom: 0; }
   font-size: 1.55rem;
 }
 
-[data-theme='notebook'] h2 { color: var(--accent); }
+[data-theme='notebook'] h2 {
+  color: var(--accent);
+  font-family: 'QuaziNote', var(--font-body);
+  font-size: 1.55rem;
+  font-weight: 400;
+}
 
 [data-theme='notebook'] .rule,
 [data-theme='notebook'] .rule-double { border-top-style: dashed; border-top-color: var(--rule); }
@@ -1033,6 +1097,9 @@ section p:last-child { margin-bottom: 0; }
 
 [data-theme='swiss'] h2 {
   color: var(--accent);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-transform: uppercase;
   letter-spacing: 0.18em;
 }
 
@@ -1075,7 +1142,8 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='dawn'] body::before,
   [data-theme='matins'] body::before,
   [data-theme='lauds'] body::before,
-  [data-theme='vespers'] body::before { animation: none; }
+  [data-theme='vespers'] body::before,
+  [data-theme='compline'] body::before { animation: none; }
 }
 
 /* the horizon grid, kept at a whisper */
@@ -1278,13 +1346,15 @@ section p:last-child { margin-bottom: 0; }
   -webkit-hyphens: auto;
 }
 
-/* the first light: a gold horizon thread under the name */
 [data-theme='lauds'] h1 {
   font-weight: 500;
   font-size: clamp(2rem, 4.8vw, 2.6rem);
-  padding-bottom: 0.28em;
-  border-bottom: 1px solid;
-  border-image: linear-gradient(90deg, rgba(217, 180, 94, 0), #d9b45e 35%, #b08d3e 65%, rgba(176, 141, 62, 0)) 1;
+}
+
+/* the first light: the masthead rule becomes a gold horizon */
+[data-theme='lauds'] .contact-row {
+  border-top: 1px solid;
+  border-image: linear-gradient(90deg, #b08d3e, #ddba62 50%, rgba(176, 141, 62, 0.15)) 1;
 }
 
 [data-theme='lauds'] h2 { color: var(--accent); }
@@ -1355,6 +1425,96 @@ section p:last-child { margin-bottom: 0; }
   box-shadow:
     0 12px 28px -14px rgba(0, 0, 0, 0.6),
     0 0 30px -6px rgba(223, 161, 89, 0.45);
+}
+
+/* ---------- compline: a candle over the page ---------- */
+
+[data-theme='compline'] body {
+  font-size: 1.19rem;
+}
+
+/* the candle: a breathing pool of light centred on the column */
+[data-theme='compline'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(46rem 42rem at 50% 26%, rgba(226, 169, 79, 0.14), transparent 66%);
+  animation: dawn-rise 16s ease-in-out infinite alternate;
+}
+
+[data-theme='compline'] section p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+[data-theme='compline'] h1 {
+  font-weight: 500;
+  font-size: clamp(2rem, 4.8vw, 2.7rem);
+  color: var(--accent);
+  text-shadow: 0 0 18px rgba(226, 169, 79, 0.3);
+}
+
+[data-theme='compline'] h2 { color: var(--accent); }
+
+[data-theme='compline'] .project h3 { font-weight: 500; font-size: 1.38rem; }
+
+[data-theme='compline'] #about > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.1em;
+  line-height: 0.82;
+  padding: 0.06em 0.12em 0 0;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+[data-theme='compline'] .portrait {
+  filter: sepia(0.35) saturate(0.85) brightness(0.85);
+  border-radius: 4px;
+  border: 1px solid rgba(230, 216, 189, 0.25);
+  box-shadow: 0 0 34px -8px rgba(226, 169, 79, 0.5);
+}
+
+/* ---------- observatory: a star atlas at midnight ---------- */
+
+[data-theme='observatory'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 42%, rgba(223, 230, 244, 0.05) 52%, transparent 62%),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+[data-theme='observatory'] h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-variant: small-caps;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+[data-theme='observatory'] h2 {
+  color: var(--accent);
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+}
+
+[data-theme='observatory'] .project h3 {
+  font-variant: small-caps;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+[data-theme='observatory'] .portrait {
+  filter: grayscale(0.5) brightness(0.85) sepia(0.15) hue-rotate(180deg);
+  border: 1px solid rgba(232, 197, 106, 0.4);
+  border-radius: 3px;
+  box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.7);
 }
 
 /* ---------- atelier: rose–lilac wash, high-contrast serif ---------- */
@@ -1466,7 +1626,12 @@ section p:last-child { margin-bottom: 0; }
 }
 [data-theme='opera'] .project h3 { font-size: 1.5rem; }
 
-[data-theme='opera'] h2 { color: var(--accent); }
+[data-theme='opera'] h2 {
+  color: var(--accent);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
 
 [data-theme='opera'] a:hover { color: var(--accent); }
 
@@ -1499,6 +1664,8 @@ section p:last-child { margin-bottom: 0; }
   background: #ffe600;
   display: inline-block;
   padding: 0.05em 0.4em;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 [data-theme='brutalist'] .project h3 {
@@ -1548,7 +1715,14 @@ section p:last-child { margin-bottom: 0; }
   letter-spacing: 0.005em;
 }
 
-[data-theme='bodoni'] h2 { color: var(--ink); }
+[data-theme='bodoni'] h2 {
+  color: var(--ink);
+  font-family: 'Bodoni Moda', 'Didot', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
 
 [data-theme='bodoni'] .rule-double { border-top-width: 4px; }
 [data-theme='bodoni'] .rule-double::after { top: 6px; }
@@ -1635,7 +1809,12 @@ section p:last-child { margin-bottom: 0; }
   letter-spacing: 0.05em;
 }
 
-[data-theme='marble'] h2 { color: var(--accent); }
+[data-theme='marble'] h2 {
+  color: var(--accent);
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1.02rem;
+  letter-spacing: 0.12em;
+}
 
 [data-theme='marble'] .portrait {
   filter: grayscale(0.25) sepia(0.08);
@@ -1655,8 +1834,12 @@ section p:last-child { margin-bottom: 0; }
   color: #f7f4ec;
   background: var(--accent);
   display: inline-block;
-  padding: 0.28em 0.6em;
+  padding: 0.32em 0.65em;
   border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
 
 [data-theme='sumi'] .rule {
@@ -1824,7 +2007,8 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='dawn'] body::before,
   [data-theme='matins'] body::before,
   [data-theme='lauds'] body::before,
-  [data-theme='vespers'] body::before { animation: none; }
+  [data-theme='vespers'] body::before,
+  [data-theme='compline'] body::before { animation: none; }
 }
 
 /* ---------- print ---------- */

@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=VT323&family=Silkscreen&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=15">
+<link rel="stylesheet" href="assets/style.css?v=16">
 <script>
 /* set theme before first paint; ?theme=… in the URL wins (shareable links) */
 (function () {
@@ -53,6 +53,7 @@
       <button data-set-theme="dawn">dawn</button>
       <button data-set-theme="matins">matins</button>
       <button data-set-theme="vespers">vespers</button>
+      <button data-set-theme="compline">compline</button>
       <button data-set-theme="atelier">atelier</button>
       <button data-set-theme="bodoni">bodoni</button>
       <button data-set-theme="marble">marble</button>
@@ -63,6 +64,7 @@
       <button data-set-theme="opera">opera</button>
       <button data-set-theme="brutalist">brutalist</button>
       <button data-set-theme="xray">xray</button>
+      <button data-set-theme="observatory">observatory</button>
       <button data-set-theme="ink">ink</button>
       <button data-set-theme="amber" id="amberBtn" hidden>amber</button>
       <button id="shuffle" title="Random theme" aria-label="Random theme">??</button>
@@ -76,11 +78,16 @@
       <img class="portrait" src="images/profile_old.jpg" alt="Ivan Pozdniakov" width="640" height="640">
     </div>
     <nav class="contact-row mono" aria-label="Links">
-      <a href="mailto:ivanspozdniakov@gmail.com">email</a>
-      <a href="cv/cv_germany.pdf">cv, pdf</a>
-      <a href="https://scholar.google.com/citations?user=-mCcIXEAAAAJ&amp;sortby=pubdate">google scholar</a>
-      <a href="https://github.com/Pozdniakov">github</a>
-      <a href="https://t.me/pozdniakovivan">telegram</a>
+      <span class="link-group">
+        <a href="cv/cv_germany.pdf">cv, pdf</a>
+        <a href="https://scholar.google.com/citations?user=-mCcIXEAAAAJ&amp;sortby=pubdate">google scholar</a>
+        <a href="https://github.com/Pozdniakov">github</a>
+      </span>
+      <span class="row-sep" aria-hidden="true"></span>
+      <span class="link-group">
+        <a href="mailto:ivanspozdniakov@gmail.com">email</a>
+        <a href="https://t.me/pozdniakovivan">telegram</a>
+      </span>
     </nav>
   </header>
 
@@ -88,7 +95,7 @@
 
   <!-- ============ ABOUT ============ -->
   <section id="about">
-    <h2 class="mono">§ 1 · About</h2>
+    <h2>About</h2>
     <p>Researcher, R developer, and statistics educator based in Kiel, Germany. MSc in Cognitive Sciences (HSE, Moscow); background in brain stimulation and neuroimaging — TMS, tACS, EEG, MEG.</p>
     <p>My trajectory runs from experimental neuroscience toward computational modeling — a deliberate accumulation of empirical, statistical, and programming skills built over a decade of research and teaching. Looking for a PhD position at the intersection of computation, cognition, and neural dynamics.</p>
     <p>My curiosity extends well beyond neuroscience — to philosophy of mind, digital humanities, history, and a few other rabbit holes.</p>
@@ -132,7 +139,7 @@
 
   <!-- ============ PROJECTS ============ -->
   <section id="projects">
-    <h2 class="mono">§ 2 · Projects</h2>
+    <h2>Projects</h2>
 
     <article class="project">
       <h3>Data Analysis and Statistics in R</h3>
@@ -178,6 +185,6 @@
   <p class="mono">© 2026 Ivan Pozdniakov · no trackers, no cookies</p>
 </footer>
 
-<script src="assets/main.js?v=16" defer></script>
+<script src="assets/main.js?v=17" defer></script>
 </body>
 </html>

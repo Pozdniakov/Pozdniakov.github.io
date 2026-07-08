@@ -17,6 +17,7 @@
     'darkroom', 'notebook', 'swiss', 'lauds', 'dawn', 'matins',
     'vespers', 'compline', 'atelier', 'prism', 'endpaper', 'terrazzo',
     'collage', 'specimen', 'moire', 'rorschach', 'errata',
+    'reviewer2', 'preprint', 'palimpsest',
     'bodoni', 'marble', 'sumi',
     'pinstripe', 'vapor', 'atlas', 'opera', 'brutalist', 'xray',
     'observatory', 'ink'
@@ -49,6 +50,9 @@
     collage:    { bg: '#f7f3ec', fg: '#2f5aa8' },
     specimen:   { bg: '#faf8f2', fg: '#b13a2a' },
     moire:      { bg: '#f6f3ec', fg: '#44508e' },
+    reviewer2:  { bg: '#f8f5ee', fg: '#b23c2f' },
+    preprint:   { bg: '#ffffff', fg: '#b31b1b' },
+    palimpsest: { bg: '#f2ead8', fg: '#7a4a2c' },
     rorschach:  { bg: '#f7f4ee', fg: '#4a4066' },
     errata:     { bg: '#faf7f0', fg: '#b3372a' },
     bodoni:     { bg: '#faf8f3', fg: '#a31329' },

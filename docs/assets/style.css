@@ -398,6 +398,41 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='reviewer2'] {
+  /* the manuscript came back: pencil remarks in the margin,
+     verdict attached to the name */
+  --bg: #f8f5ee;
+  --ink: #2c2924;
+  --muted: #82796b;
+  --accent: #b23c2f;
+  --rule: #e6e0d2;
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='preprint'] {
+  /* an arXiv preprint of oneself: DRAFT watermark, sidebar id,
+     numbered sections and paragraphs */
+  --bg: #ffffff;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #b31b1b;
+  --rule: #e0e0e0;
+  --font-body: 'STIX Two Text', 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='palimpsest'] {
+  /* vellum scraped and rewritten: Cicero ghosts beneath the text */
+  --bg: #f2ead8;
+  --ink: #3a2f22;
+  --muted: #8a7b64;
+  --accent: #7a4a2c;
+  --rule: #e0d5bd;
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='atelier'] {
   /* between dawn, vapor, riso and paper — but sober:
      warm ivory, graphite-aubergine ink, muted wine accent,
@@ -1981,6 +2016,194 @@ section p:last-child { margin-bottom: 0; }
 
 [data-theme='errata'] .portrait {
   transform: rotate(0.9deg);
+  border-radius: 3px;
+  border: 1px solid var(--rule);
+}
+
+/* ---------- reviewer2: the manuscript came back ---------- */
+
+[data-theme='reviewer2'] body { font-size: 1.19rem; }
+
+[data-theme='reviewer2'] section p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* the verdict */
+[data-theme='reviewer2'] h1::after {
+  content: ' (revise & resubmit)';
+  font-size: 0.34em;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+/* pencil in the right margin */
+@media (min-width: 1080px) {
+  [data-theme='reviewer2'] body::after {
+    content: 'why?\A\A\A\A citation?\A\A\A\A\A hmm\A\A\A\A really?\A\A\A\A\A\A ok, fine';
+    white-space: pre;
+    position: fixed;
+    right: 1.6vw;
+    top: 16%;
+    z-index: 0;
+    pointer-events: none;
+    font-family: 'QuaziNote', cursive, serif;
+    font-size: 1.25rem;
+    line-height: 2.1;
+    color: rgba(178, 60, 47, 0.4);
+    transform: rotate(2deg);
+  }
+}
+
+[data-theme='reviewer2'] h2 { color: var(--accent); }
+
+[data-theme='reviewer2'] .project h3 { font-weight: 500; font-size: 1.38rem; }
+
+[data-theme='reviewer2'] .portrait {
+  transform: rotate(-0.7deg);
+  border-radius: 3px;
+  border: 1px solid var(--rule);
+}
+
+/* ---------- preprint: arXiv:self ---------- */
+
+[data-theme='preprint'] body {
+  font-size: 1.06rem;
+  line-height: 1.62;
+  counter-reset: ppar psec;
+}
+
+/* the sidebar identifier, reading bottom-up */
+@media (min-width: 1080px) {
+  [data-theme='preprint'] body::before {
+    content: 'arXiv:2607.31415v2 [q-bio.NC] 9 Jul 2026';
+    position: fixed;
+    left: 0.9vw;
+    top: 24%;
+    z-index: 0;
+    pointer-events: none;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: #999;
+  }
+}
+
+/* the watermark */
+[data-theme='preprint'] body::after {
+  content: 'DRAFT';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(-24deg);
+  font-family: 'STIX Two Text', serif;
+  font-weight: 600;
+  font-size: 17vw;
+  letter-spacing: 0.12em;
+  color: rgba(26, 26, 26, 0.045);
+}
+
+/* numbered sections, LaTeX-style */
+[data-theme='preprint'] h2 {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+[data-theme='preprint'] h2::before {
+  counter-increment: psec;
+  content: counter(psec) '.\2002';
+}
+
+/* numbered paragraphs in the margin */
+@media (min-width: 1080px) {
+  [data-theme='preprint'] section p { position: relative; }
+  [data-theme='preprint'] section p::before {
+    counter-increment: ppar;
+    content: '[' counter(ppar) ']';
+    position: absolute;
+    left: -3.2rem;
+    top: 0.25em;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: #b9b9b9;
+  }
+}
+
+[data-theme='preprint'] section p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+[data-theme='preprint'] h1 {
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4.4vw, 2.3rem);
+}
+
+[data-theme='preprint'] a { color: var(--accent); text-decoration-color: var(--accent); }
+[data-theme='preprint'] .contact-row a,
+[data-theme='preprint'] .project-links a { color: var(--accent); }
+
+[data-theme='preprint'] .project h3 { font-weight: 600; font-size: 1.12rem; }
+
+[data-theme='preprint'] .portrait {
+  filter: grayscale(0.15);
+  border-radius: 2px;
+  border: 1px solid var(--rule);
+}
+
+/* ---------- palimpsest: Cicero beneath ---------- */
+
+[data-theme='palimpsest'] body { font-size: 1.21rem; }
+
+[data-theme='palimpsest'] body::before {
+  content: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.';
+  position: fixed;
+  inset: -12%;
+  z-index: 0;
+  pointer-events: none;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.7rem;
+  line-height: 2.3;
+  color: rgba(58, 47, 34, 0.055);
+  transform: rotate(-2.5deg);
+  overflow: hidden;
+}
+
+[data-theme='palimpsest'] section p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+[data-theme='palimpsest'] h1 {
+  font-weight: 500;
+  font-size: clamp(2.1rem, 5vw, 2.8rem);
+}
+
+[data-theme='palimpsest'] #about > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.1em;
+  line-height: 0.82;
+  padding: 0.06em 0.12em 0 0;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+[data-theme='palimpsest'] h2 { color: var(--accent); }
+
+[data-theme='palimpsest'] .project h3 { font-weight: 500; font-size: 1.4rem; }
+
+[data-theme='palimpsest'] .portrait {
+  filter: sepia(0.3) saturate(0.9);
   border-radius: 3px;
   border: 1px solid var(--rule);
 }

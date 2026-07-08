@@ -21,7 +21,7 @@ docs/
 
 ## Themes
 
-Thirty-eight schemes (plus one secret); a theme = colours + its own typography
+Forty-one schemes (plus one secret); a theme = colours + its own typography
 (section headings and the masthead speak each theme's display voice) + small
 details:
 
@@ -57,6 +57,9 @@ details:
 - **moire** — op-art scholarship: two fine grids slowly interfering, red-blue double vision on the name
 - **rorschach** — a ghostly symmetric inkblot over the reading column, clinical grayscale portrait
 - **errata** — the photocopy went in crooked: the whole page tilted a third of a degree, typo-squiggles under the links, [sic] after the headings, [citation needed] after the rabbit holes
+- **reviewer2** — the manuscript came back: pencil remarks down the margin (why? · citation? · hmm · really? · ok, fine), the name stamped (revise & resubmit)
+- **preprint** — an arXiv preprint of oneself: sidebar identifier, DRAFT watermark, LaTeX-numbered sections and [n] paragraph marks, arXiv-red links
+- **palimpsest** — scraped vellum: Cicero (the lorem-ipsum source) ghosts in italic beneath the text, sienna versal
 - **atelier** — sober editorial: warm ivory, graphite-aubergine ink, muted wine accent, Cormorant Garamond
 - **vapor** — vaporwave grown up: dusk indigo, drifting aurora haze, holographic pink–cyan headline, faint horizon grid
 - **atlas** — old cartography: sepia stock, graticule grid, small-caps headings, compass red

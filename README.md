@@ -21,7 +21,7 @@ docs/
 
 ## Themes
 
-Twenty-six schemes (plus one secret); a theme = colours + its own typography
+Twenty-eight schemes (plus one secret); a theme = colours + its own typography
 (most themes restyle the headings too) + small details:
 
 - **paper** — warm cream, umber ink, madder-red accent (default)
@@ -39,6 +39,8 @@ Twenty-six schemes (plus one secret); a theme = colours + its own typography
 - **swiss** — International Typographic Style: white, black, Helvetica, Swiss red
 - **dawn** — soft utopian morning: gradient sky with a slowly kindling sun, italic Cormorant headline in a terracotta gradient
 - **matins** — a scriptorium at first light: dawn sun over parchment, scholarly EB Garamond, justified text, rubricated drop cap, gilded gradient headline
+- **lauds** — the palest hour before sunrise: cool grey-blue quiet, EB Garamond, one gold thread of first light under the name
+- **vespers** — the scriptorium at dusk: sunset embers on dark parchment, candle-gold drop cap, ember-to-violet headline
 - **bodoni** — headline-first editorial: uppercase Bodoni Moda masthead, thick-and-thin black rules, grayscale portrait, crimson on hover
 - **marble** — Roman museum: veined stone, Cinzel capitals, bronze accents
 - **sumi** — ink wash on washi paper; § headers as vermilion hanko seals

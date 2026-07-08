@@ -258,6 +258,30 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='lauds'] {
+  /* the palest hour before sunrise: cool grey-blue quiet,
+     one gold thread of first light */
+  --bg: #e7e9ee;
+  --ink: #343b4d;
+  --muted: #7c8296;
+  --accent: #96762c;
+  --rule: rgba(52, 59, 77, 0.16);
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='vespers'] {
+  /* the scriptorium at dusk: sunset embers on dark parchment,
+     candle-gold rubrication */
+  --bg: #362220;
+  --ink: #ecdfc9;
+  --muted: #a78f7c;
+  --accent: #dfa159;
+  --rule: rgba(236, 223, 201, 0.2);
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='atelier'] {
   /* between dawn, vapor, riso and paper — but sober:
      warm ivory, graphite-aubergine ink, muted wine accent,
@@ -1049,7 +1073,9 @@ section p:last-child { margin-bottom: 0; }
 @media (prefers-reduced-motion: reduce) {
   [data-theme='vapor'] body::before,
   [data-theme='dawn'] body::before,
-  [data-theme='matins'] body::before { animation: none; }
+  [data-theme='matins'] body::before,
+  [data-theme='lauds'] body::before,
+  [data-theme='vespers'] body::before { animation: none; }
 }
 
 /* the horizon grid, kept at a whisper */
@@ -1225,6 +1251,110 @@ section p:last-child { margin-bottom: 0; }
   box-shadow:
     0 10px 26px -14px rgba(172, 61, 36, 0.45),
     0 0 30px -6px rgba(255, 205, 130, 0.6);
+}
+
+/* ---------- lauds: the palest hour, one gold thread ---------- */
+
+[data-theme='lauds'] body {
+  font-size: 1.19rem;
+  /* night draining out of the sky, faint warmth at the top edge */
+  background: linear-gradient(180deg, #eceade 0%, #e8e9ec 30%, #e5e8ef 70%, #e0e4ed 100%) fixed;
+}
+
+/* the promise of light, still below the horizon */
+[data-theme='lauds'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(64% 16% at 50% -5%, rgba(217, 180, 94, 0.32), transparent 72%);
+  animation: dawn-rise 24s ease-in-out infinite alternate;
+}
+
+[data-theme='lauds'] section p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* the first light: a gold horizon thread under the name */
+[data-theme='lauds'] h1 {
+  font-weight: 500;
+  font-size: clamp(2rem, 4.8vw, 2.6rem);
+  padding-bottom: 0.28em;
+  border-bottom: 1px solid;
+  border-image: linear-gradient(90deg, rgba(217, 180, 94, 0), #d9b45e 35%, #b08d3e 65%, rgba(176, 141, 62, 0)) 1;
+}
+
+[data-theme='lauds'] h2 { color: var(--accent); }
+
+[data-theme='lauds'] .project h3 { font-weight: 500; font-size: 1.38rem; }
+
+[data-theme='lauds'] .portrait {
+  filter: grayscale(0.35) brightness(1.02);
+  border-radius: 4px;
+  border: 1px solid var(--rule);
+  box-shadow: 0 10px 24px -16px rgba(52, 59, 77, 0.5);
+}
+
+/* ---------- vespers: dusk scriptorium, ember light ---------- */
+
+[data-theme='vespers'] body {
+  font-size: 1.19rem;
+  /* sunset at the head of the page, night rising from the foot */
+  background: linear-gradient(180deg, #432a24 0%, #362220 38%, #2a1c20 72%, #201822 100%) fixed;
+}
+
+[data-theme='vespers'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(130% 62% at 78% 0%, rgba(223, 161, 89, 0.34), rgba(223, 161, 89, 0) 52%),
+    radial-gradient(46% 24% at 78% 0%, rgba(199, 94, 74, 0.3), transparent 66%);
+  animation: dawn-rise 22s ease-in-out infinite alternate;
+}
+
+[data-theme='vespers'] section p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+[data-theme='vespers'] h1 {
+  font-weight: 500;
+  font-size: clamp(2.1rem, 5vw, 2.8rem);
+  background: linear-gradient(105deg, #e8b96a 5%, #d1764c 50%, #9b6b96 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+[data-theme='vespers'] h2 { color: var(--accent); }
+
+[data-theme='vespers'] .project h3 { font-weight: 500; font-size: 1.4rem; }
+
+/* candle-gold versal */
+[data-theme='vespers'] #about > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.1em;
+  line-height: 0.82;
+  padding: 0.06em 0.12em 0 0;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+[data-theme='vespers'] .portrait {
+  filter: sepia(0.3) saturate(0.9) brightness(0.92);
+  border-radius: 4px;
+  border: 1px solid rgba(236, 223, 201, 0.3);
+  box-shadow:
+    0 12px 28px -14px rgba(0, 0, 0, 0.6),
+    0 0 30px -6px rgba(223, 161, 89, 0.45);
 }
 
 /* ---------- atelier: rose–lilac wash, high-contrast serif ---------- */
@@ -1683,6 +1813,8 @@ section p:last-child { margin-bottom: 0; }
 @media (hover: none) {
   [data-theme='dawn'] body,
   [data-theme='matins'] body,
+  [data-theme='lauds'] body,
+  [data-theme='vespers'] body,
   [data-theme='atelier'] body,
   [data-theme='notebook'] body,
   [data-theme='atlas'] body {
@@ -1690,7 +1822,9 @@ section p:last-child { margin-bottom: 0; }
   }
   [data-theme='vapor'] body::before,
   [data-theme='dawn'] body::before,
-  [data-theme='matins'] body::before { animation: none; }
+  [data-theme='matins'] body::before,
+  [data-theme='lauds'] body::before,
+  [data-theme='vespers'] body::before { animation: none; }
 }
 
 /* ---------- print ---------- */

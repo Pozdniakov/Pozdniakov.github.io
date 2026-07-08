@@ -14,9 +14,9 @@
   var BASE_THEMES = [
     'paper', 'manuscript', 'cyanotype', 'terminal', 'macintosh',
     'gameboy', 'riso', 'punchcard', 'herbarium', 'workbench',
-    'darkroom', 'notebook', 'swiss', 'dawn', 'matins', 'atelier',
-    'bodoni', 'marble', 'sumi', 'pinstripe', 'vapor', 'atlas',
-    'opera', 'brutalist', 'xray', 'ink'
+    'darkroom', 'notebook', 'swiss', 'lauds', 'dawn', 'matins',
+    'vespers', 'atelier', 'bodoni', 'marble', 'sumi', 'pinstripe',
+    'vapor', 'atlas', 'opera', 'brutalist', 'xray', 'ink'
   ];
 
   var COLORS = {
@@ -35,6 +35,8 @@
     swiss:      { bg: '#ffffff', fg: '#e30613' },
     dawn:       { bg: '#f6e7d7', fg: '#c96f4a' },
     matins:     { bg: '#f7e2ba', fg: '#ac3d24' },
+    lauds:      { bg: '#e8e9ec', fg: '#96762c' },
+    vespers:    { bg: '#362220', fg: '#dfa159' },
     atelier:    { bg: '#f3ede4', fg: '#7a3b48' },
     bodoni:     { bg: '#faf8f3', fg: '#a31329' },
     marble:     { bg: '#f5f3ee', fg: '#8c6a3f' },
@@ -56,6 +58,7 @@
     manuscript: '❧ Ivan Pozdniakov',
     notebook: '✎ Ivan Pozdniakov',
     matins: '✶ Ivan Pozdniakov',
+    vespers: '☾ Ivan Pozdniakov',
     darkroom: '● Ivan Pozdniakov',
     vapor: '✦ Ivan Pozdniakov'
   };

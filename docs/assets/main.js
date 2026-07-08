@@ -15,7 +15,8 @@
     'paper', 'manuscript', 'cyanotype', 'terminal', 'macintosh',
     'gameboy', 'riso', 'punchcard', 'herbarium', 'workbench',
     'darkroom', 'notebook', 'swiss', 'lauds', 'dawn', 'matins',
-    'vespers', 'compline', 'atelier', 'prism', 'endpaper', 'bodoni', 'marble', 'sumi',
+    'vespers', 'compline', 'atelier', 'prism', 'endpaper', 'terrazzo',
+    'collage', 'specimen', 'bodoni', 'marble', 'sumi',
     'pinstripe', 'vapor', 'atlas', 'opera', 'brutalist', 'xray',
     'observatory', 'ink'
   ];
@@ -43,6 +44,9 @@
     atelier:    { bg: '#f3ede4', fg: '#7a3b48' },
     prism:      { bg: '#fafaf7', fg: '#4d59a8' },
     endpaper:   { bg: '#f7f4ef', fg: '#7d3a30' },
+    terrazzo:   { bg: '#f6f2ea', fg: '#b5542d' },
+    collage:    { bg: '#f7f3ec', fg: '#2f5aa8' },
+    specimen:   { bg: '#faf8f2', fg: '#b13a2a' },
     bodoni:     { bg: '#faf8f3', fg: '#a31329' },
     marble:     { bg: '#f5f3ee', fg: '#8c6a3f' },
     sumi:       { bg: '#f7f4ec', fg: '#c03a26' },
@@ -65,7 +69,9 @@
     matins: '✶ Ivan Pozdniakov',
     vespers: '☾ Ivan Pozdniakov',
     darkroom: '● Ivan Pozdniakov',
-    vapor: '✦ Ivan Pozdniakov'
+    vapor: '✦ Ivan Pozdniakov',
+    collage: '✂ Ivan Pozdniakov',
+    specimen: '¶ Ivan Pozdniakov'
   };
 
   var picker = document.querySelector('.theme-picker');

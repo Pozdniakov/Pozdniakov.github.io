@@ -390,7 +390,7 @@ a:hover {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 2rem;
-  align-items: start;
+  align-items: center;
 }
 
 h1 {
@@ -398,7 +398,6 @@ h1 {
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.01em;
-  margin-bottom: 0.5rem;
 }
 
 .role {
@@ -418,6 +417,9 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 1.15rem;
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
 }
 .contact-row a,
 .project-links a {

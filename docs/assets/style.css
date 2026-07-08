@@ -13,6 +13,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'QuaziNote Condensed';
+  src: url('../fonts/QuaziNote-Condensed.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+
 /* ---------- schemes ---------- */
 
 :root,
@@ -177,6 +184,51 @@
   --muted: #7a746a;
   --accent: #a31329;
   --rule: #16130f;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='marble'] {
+  /* Roman museum: veined stone, bronze, Trajan-style caps */
+  --bg: #f5f3ee;
+  --ink: #2a2723;
+  --muted: #8b857a;
+  --accent: #8c6a3f;
+  --rule: #ddd8cd;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='sumi'] {
+  /* ink wash on washi, one vermilion seal */
+  --bg: #f7f4ec;
+  --ink: #1f1d1a;
+  --muted: #7d7668;
+  --accent: #c03a26;
+  --rule: #e3ddcf;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='pinstripe'] {
+  /* bespoke navy wool, chalk stripe, burgundy silk */
+  --bg: #1b2436;
+  --ink: #ece7db;
+  --muted: #a2a89b;
+  --accent: #c0616d;
+  --rule: rgba(236, 231, 219, 0.2);
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='xray'] {
+  /* radiograph: film black, pale glow, viridian marks,
+     the portrait develops as a negative */
+  --bg: #0a0f14;
+  --ink: #d9e8ee;
+  --muted: #6f8794;
+  --accent: #62e0c0;
+  --rule: rgba(217, 232, 238, 0.16);
   --font-body: 'Newsreader', Georgia, serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
@@ -902,13 +954,17 @@ section p:last-child { margin-bottom: 0; }
   background-attachment: fixed;
 }
 
-[data-theme='notebook'] h1,
+[data-theme='notebook'] h1 {
+  /* the big headline wears the Condensed cut — it carries size well */
+  font-family: 'QuaziNote Condensed', 'QuaziNote', var(--font-body);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5.2vw, 3rem);
+}
 [data-theme='notebook'] .project h3 {
   font-family: 'QuaziNote', var(--font-body);
   font-weight: 400;
+  font-size: 1.55rem;
 }
-[data-theme='notebook'] h1 { font-size: clamp(2.1rem, 5vw, 2.9rem); }
-[data-theme='notebook'] .project h3 { font-size: 1.55rem; }
 
 [data-theme='notebook'] h2 { color: var(--accent); }
 
@@ -1316,6 +1372,133 @@ section p:last-child { margin-bottom: 0; }
   font-size: clamp(2.4rem, 5.6vw, 3.1rem);
 }
 
+/* ---------- marble: classical capitals, bronze ---------- */
+
+[data-theme='marble'] body {
+  background-image:
+    radial-gradient(90rem 40rem at 15% 8%, rgba(138, 131, 118, 0.07), transparent 60%),
+    radial-gradient(70rem 50rem at 88% 78%, rgba(138, 131, 118, 0.06), transparent 55%);
+}
+
+[data-theme='marble'] h1 {
+  font-family: 'Cinzel', 'Trajan Pro', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  font-size: clamp(1.9rem, 4.6vw, 2.5rem);
+}
+
+[data-theme='marble'] .project h3 {
+  font-family: 'Cinzel', Georgia, serif;
+  font-weight: 500;
+  font-size: 1.12rem;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='marble'] h2 { color: var(--accent); }
+
+[data-theme='marble'] .portrait {
+  filter: grayscale(0.25) sepia(0.08);
+  border-radius: 0;
+  border: 1px solid var(--rule);
+  box-shadow: 0 14px 24px -18px rgba(42, 39, 35, 0.55);
+}
+
+/* ---------- sumi: ink wash, vermilion seal ---------- */
+
+[data-theme='sumi'] h1 {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+[data-theme='sumi'] h2 {
+  color: #f7f4ec;
+  background: var(--accent);
+  display: inline-block;
+  padding: 0.28em 0.6em;
+  border-radius: 2px;
+}
+
+[data-theme='sumi'] .rule {
+  border: 0;
+  text-align: center;
+  line-height: 0;
+}
+[data-theme='sumi'] .rule::after {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+[data-theme='sumi'] .project h3 { font-weight: 500; }
+
+[data-theme='sumi'] .portrait {
+  filter: grayscale(0.2) contrast(1.03);
+  border-radius: 3px;
+  border: 1px solid var(--rule);
+}
+
+/* ---------- pinstripe: chalk-stripe wool ---------- */
+
+[data-theme='pinstripe'] body {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(236, 231, 219, 0.05) 0 1px,
+    transparent 1px 9px
+  );
+}
+
+[data-theme='pinstripe'] h1 {
+  font-variant: small-caps;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='pinstripe'] .project h3 {
+  font-variant: small-caps;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+[data-theme='pinstripe'] h2 { color: var(--accent); }
+
+[data-theme='pinstripe'] .portrait {
+  filter: saturate(0.8) contrast(1.04);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+/* ---------- xray: the portrait develops as a negative ---------- */
+
+[data-theme='xray'] .portrait {
+  filter: invert(1) grayscale(1) contrast(1.15) brightness(1.05);
+  border-radius: 2px;
+  border: 1px solid var(--rule);
+}
+
+[data-theme='xray'] h1 {
+  font-weight: 400;
+  text-shadow: 0 0 14px rgba(98, 224, 192, 0.25);
+}
+
+[data-theme='xray'] h2 { color: var(--accent); }
+
+[data-theme='xray'] .mono { letter-spacing: 0.18em; }
+
+[data-theme='xray'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+[data-theme='xray'] .rule,
+[data-theme='xray'] .rule-double { border-top-style: dashed; }
+[data-theme='xray'] .rule-double::after { border-top-style: dashed; }
+
 /* ---------- synapse divider (hand-drawn neuron) ---------- */
 
 .synapse {
@@ -1368,6 +1551,32 @@ section p:last-child { margin-bottom: 0; }
 /* dim the graph on small screens so text stays first */
 @media (max-width: 700px) {
   #graph { opacity: 0.5; }
+}
+
+/* ---------- guards ---------- */
+
+/* The QuaziNote heading must survive every theme's h3 restyling —
+   several themes set .project h3 font-family at equal specificity,
+   hence the !important. Regular cut: Condensed reads too small here. */
+.project h3.quazi {
+  font-family: 'QuaziNote', serif !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  font-variant: normal !important;
+  font-style: normal !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* In-app webviews (Telegram etc.) jitter with fixed backgrounds and
+   animated full-screen filters; hand them the calm versions. */
+@media (hover: none) {
+  [data-theme='dawn'] body,
+  [data-theme='atelier'] body,
+  [data-theme='notebook'] body,
+  [data-theme='atlas'] body {
+    background-attachment: scroll;
+  }
+  [data-theme='vapor'] body::before { animation: none; }
 }
 
 /* ---------- print ---------- */

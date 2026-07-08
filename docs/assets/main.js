@@ -15,7 +15,8 @@
     'paper', 'manuscript', 'cyanotype', 'terminal', 'macintosh',
     'gameboy', 'riso', 'punchcard', 'herbarium', 'workbench',
     'darkroom', 'notebook', 'swiss', 'dawn', 'atelier', 'bodoni',
-    'vapor', 'atlas', 'opera', 'brutalist', 'ink'
+    'marble', 'sumi', 'pinstripe', 'vapor', 'atlas', 'opera',
+    'brutalist', 'xray', 'ink'
   ];
 
   var COLORS = {
@@ -35,6 +36,10 @@
     dawn:       { bg: '#f6e7d7', fg: '#c96f4a' },
     atelier:    { bg: '#f3ede4', fg: '#7a3b48' },
     bodoni:     { bg: '#faf8f3', fg: '#a31329' },
+    marble:     { bg: '#f5f3ee', fg: '#8c6a3f' },
+    sumi:       { bg: '#f7f4ec', fg: '#c03a26' },
+    pinstripe:  { bg: '#1b2436', fg: '#c0616d' },
+    xray:       { bg: '#0a0f14', fg: '#62e0c0' },
     vapor:      { bg: '#120e1e', fg: '#f472b6' },
     atlas:      { bg: '#efe3c8', fg: '#a44a35' },
     opera:      { bg: '#1e0e14', fg: '#d4af37' },
@@ -195,10 +200,21 @@
     if (reducedMotion || !graphOn) drawFrame(true);
   }
 
+  var lastResizeW = 0;
+
   function resize() {
     if (!canvas) return;
-    W = window.innerWidth;
-    H = window.innerHeight;
+    var w = window.innerWidth;
+    /* In-app webviews (Telegram etc.) fire resize constantly while
+       their chrome collapses — height-only changes are ignored, and
+       the canvas is drawn tall enough to cover the grown viewport. */
+    if (nodes.length && Math.abs(w - lastResizeW) < 2) return;
+    lastResizeW = w;
+    W = w;
+    H = Math.max(
+      window.innerHeight,
+      window.screen ? screen.height : 0
+    );
     canvas.width = W * dpr;
     canvas.height = H * dpr;
     canvas.style.width = W + 'px';

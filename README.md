@@ -21,7 +21,7 @@ docs/
 
 ## Themes
 
-Twenty-one schemes (plus one secret); a theme = colours + its own typography
+Twenty-five schemes (plus one secret); a theme = colours + its own typography
 (most themes restyle the headings too) + small details:
 
 - **paper** — warm cream, umber ink, madder-red accent (default)
@@ -39,6 +39,10 @@ Twenty-one schemes (plus one secret); a theme = colours + its own typography
 - **swiss** — International Typographic Style: white, black, Helvetica, Swiss red
 - **dawn** — soft utopian morning: gradient sky, italic Cormorant headline in a terracotta gradient
 - **bodoni** — headline-first editorial: uppercase Bodoni Moda masthead, thick-and-thin black rules, grayscale portrait, crimson on hover
+- **marble** — Roman museum: veined stone, Cinzel capitals, bronze accents
+- **sumi** — ink wash on washi paper; § headers as vermilion hanko seals
+- **pinstripe** — bespoke navy wool with a chalk stripe, small-caps headings, burgundy silk
+- **xray** — radiograph: film black, viridian marks, the portrait develops as a negative
 - **atelier** — sober editorial: warm ivory, graphite-aubergine ink, muted wine accent, Cormorant Garamond
 - **vapor** — vaporwave grown up: dusk indigo, drifting aurora haze, holographic pink–cyan headline, faint horizon grid
 - **atlas** — old cartography: sepia stock, graticule grid, small-caps headings, compass red

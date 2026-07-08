@@ -58,11 +58,12 @@ it renders a single static frame under `prefers-reduced-motion` and is dimmed
 on small screens.
 
 Between About and Projects sits a hand-drawn neuron divider — dendrites,
-soma, a myelinated axon (short internodes with bare nodes of Ranvier), and
-three branching collaterals. Click it: the impulse jumps node to node down
-the axon (saltatory conduction), splits at the branch point to glide along
-all three collaterals, and bursts confetti from every bouton (it also fires
-quietly on its own; confetti only on click, and never under
+soma, a partly myelinated axon (a few well-spaced internodes with bare
+initial and terminal segments), and three branching collaterals. Click it:
+the impulse glides smoothly out of the soma, jumps node to node through the
+myelin (saltatory conduction), glides smoothly into the branch point, splits
+along all three collaterals, and bursts confetti from every bouton (it also
+fires quietly on its own; confetti only on click, and never under
 `prefers-reduced-motion`).
 
 Switching: click a name in the top-right picker · press `t` to cycle ·

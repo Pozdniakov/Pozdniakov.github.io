@@ -394,10 +394,12 @@
   var SVG_NS = 'http://www.w3.org/2000/svg';
   var CONFETTI = ['#f472b6', '#67e8f9', '#fde047', '#a78bfa', '#4ade80', '#fb7185', '#fdba74'];
 
-  /* nodes of Ranvier along the axon — the impulse hops between these */
+  /* bare axon ends the impulse glides smoothly (initial + terminal segments) */
+  var AXON_START = [168, 42];   /* soma → first node */
+  var BRANCH = [498, 42];       /* last node → branch point */
+  /* nodes of Ranvier in the myelinated middle — the impulse jumps between these */
   var AXON_NODES = [
-    [170, 42], [206, 41], [244, 42], [282, 43], [320, 44],
-    [358, 43.5], [396, 41.5], [434, 40], [472, 41], [498, 42]
+    [213, 41], [258, 42.5], [309, 44], [360, 43.5], [411, 40], [457, 40]
   ];
 
   /* three unmyelinated collaterals (cubic control points) + their boutons */
@@ -497,21 +499,28 @@
     });
   }
 
-  /* saltatory run: the dot jumps node to node down the myelinated axon */
-  function fireNeuron(withConfetti) {
-    if (reducedMotion || !neuronSvg) return;
-    var dot = makeDot(AXON_NODES[0][0], AXON_NODES[0][1]);
+  /* smooth glide along an unmyelinated stretch (linear) */
+  function glideSeg(dot, from, to, dur, done) {
+    var start = null;
+    function g(ts) {
+      if (start === null) start = ts;
+      var t = Math.min(1, (ts - start) / dur);
+      dot.setAttribute('cx', from[0] + (to[0] - from[0]) * t);
+      dot.setAttribute('cy', from[1] + (to[1] - from[1]) * t);
+      if (t < 1) requestAnimationFrame(g); else done();
+    }
+    requestAnimationFrame(g);
+  }
+
+  /* saltatory hops between the nodes of Ranvier */
+  function hopNodes(dot, done) {
     var i = 0, last = null;
     function hop(ts) {
       if (last === null) last = ts;
       if (ts - last >= HOP_MS) {
         last = ts;
         i++;
-        if (i >= AXON_NODES.length) {
-          dot.remove();
-          branchOut(withConfetti);
-          return;
-        }
+        if (i >= AXON_NODES.length) { done(); return; }
         dot.setAttribute('cx', AXON_NODES[i][0]);
         dot.setAttribute('cy', AXON_NODES[i][1]);
         dot.setAttribute('r', '4.4');       /* flare at the node */
@@ -520,6 +529,21 @@
       requestAnimationFrame(hop);
     }
     requestAnimationFrame(hop);
+  }
+
+  /* smooth out of the soma, saltatory through the myelin, smooth into the
+     branch, then out along every collateral */
+  function fireNeuron(withConfetti) {
+    if (reducedMotion || !neuronSvg) return;
+    var dot = makeDot(AXON_START[0], AXON_START[1]);
+    glideSeg(dot, AXON_START, AXON_NODES[0], 160, function () {
+      hopNodes(dot, function () {
+        glideSeg(dot, AXON_NODES[AXON_NODES.length - 1], BRANCH, 150, function () {
+          dot.remove();
+          branchOut(withConfetti);
+        });
+      });
+    });
   }
 
   if (neuron && neuronSvg) {

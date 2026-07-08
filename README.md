@@ -21,7 +21,7 @@ docs/
 
 ## Themes
 
-Twenty-five schemes (plus one secret); a theme = colours + its own typography
+Twenty-six schemes (plus one secret); a theme = colours + its own typography
 (most themes restyle the headings too) + small details:
 
 - **paper** — warm cream, umber ink, madder-red accent (default)
@@ -37,7 +37,8 @@ Twenty-five schemes (plus one secret); a theme = colours + its own typography
 - **darkroom** — safelight: red-on-black, heavy vignette, film grain, red-duotone portrait
 - **notebook** — squared exercise book: graph paper, red margin line, QuaziNote headings
 - **swiss** — International Typographic Style: white, black, Helvetica, Swiss red
-- **dawn** — soft utopian morning: gradient sky, italic Cormorant headline in a terracotta gradient
+- **dawn** — soft utopian morning: gradient sky with a slowly kindling sun, italic Cormorant headline in a terracotta gradient
+- **matins** — a scriptorium at first light: dawn sun over parchment, scholarly EB Garamond, justified text, rubricated drop cap, gilded gradient headline
 - **bodoni** — headline-first editorial: uppercase Bodoni Moda masthead, thick-and-thin black rules, grayscale portrait, crimson on hover
 - **marble** — Roman museum: veined stone, Cinzel capitals, bronze accents
 - **sumi** — ink wash on washi paper; § headers as vermilion hanko seals

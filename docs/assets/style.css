@@ -246,6 +246,18 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='matins'] {
+  /* a scriptorium at first light: dawn sky over parchment,
+     scholarly Garamond, gilded rubrication */
+  --bg: #f5e3c4;
+  --ink: #3f2f1e;
+  --muted: #8a765a;
+  --accent: #ac3d24;
+  --rule: rgba(63, 47, 30, 0.18);
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='atelier'] {
   /* between dawn, vapor, riso and paper — but sober:
      warm ivory, graphite-aubergine ink, muted wine accent,
@@ -1036,7 +1048,8 @@ section p:last-child { margin-bottom: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   [data-theme='vapor'] body::before,
-  [data-theme='dawn'] body::before { animation: none; }
+  [data-theme='dawn'] body::before,
+  [data-theme='matins'] body::before { animation: none; }
 }
 
 /* the horizon grid, kept at a whisper */
@@ -1140,6 +1153,79 @@ section p:last-child { margin-bottom: 0; }
 
 [data-theme='dawn'] .rule,
 [data-theme='dawn'] .rule-double { border-top-color: rgba(58, 61, 82, 0.2); }
+
+/* ---------- matins: a scriptorium at first light ---------- */
+
+[data-theme='matins'] body {
+  font-size: 1.19rem;
+  /* parchment warmed by the sunrise, cooling toward the foot of the page */
+  background: linear-gradient(180deg, #f7e2ba 0%, #f4e3c6 38%, #ece2d2 72%, #e0e2e8 100%) fixed;
+}
+
+/* morning light falling across the desk */
+[data-theme='matins'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(140% 75% at 78% 2%, rgba(255, 214, 140, 0.85), rgba(255, 214, 140, 0) 46%),
+    radial-gradient(40% 24% at 78% 2%, rgba(255, 178, 102, 0.5), transparent 64%);
+  animation: dawn-rise 20s ease-in-out infinite alternate;
+}
+
+[data-theme='matins'] section p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+[data-theme='matins'] h1 {
+  font-weight: 500;
+  font-size: clamp(2.1rem, 5vw, 2.8rem);
+  background: linear-gradient(105deg, #9e2b1e 5%, #c96f4a 48%, #a87a2c 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+[data-theme='matins'] h2 { color: var(--accent); }
+
+[data-theme='matins'] .project h3 {
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+/* rubricated versal, kindled by the light */
+[data-theme='matins'] #about > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.1em;
+  line-height: 0.82;
+  padding: 0.06em 0.12em 0 0;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+[data-theme='matins'] .rule {
+  border: 0;
+  text-align: center;
+}
+[data-theme='matins'] .rule::after {
+  content: '✶';
+  color: #a87a2c;
+  font-size: 1rem;
+}
+
+[data-theme='matins'] .portrait {
+  filter: sepia(0.28) saturate(0.95) brightness(1.03);
+  border-radius: 4px;
+  border: 1px solid rgba(63, 47, 30, 0.25);
+  box-shadow:
+    0 10px 26px -14px rgba(172, 61, 36, 0.45),
+    0 0 30px -6px rgba(255, 205, 130, 0.6);
+}
 
 /* ---------- atelier: rose–lilac wash, high-contrast serif ---------- */
 
@@ -1596,13 +1682,15 @@ section p:last-child { margin-bottom: 0; }
    animated full-screen filters; hand them the calm versions. */
 @media (hover: none) {
   [data-theme='dawn'] body,
+  [data-theme='matins'] body,
   [data-theme='atelier'] body,
   [data-theme='notebook'] body,
   [data-theme='atlas'] body {
     background-attachment: scroll;
   }
   [data-theme='vapor'] body::before,
-  [data-theme='dawn'] body::before { animation: none; }
+  [data-theme='dawn'] body::before,
+  [data-theme='matins'] body::before { animation: none; }
 }
 
 /* ---------- print ---------- */

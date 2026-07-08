@@ -305,6 +305,30 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='prism'] {
+  /* a white page in refracted light: strict Garamond scholarship,
+     one soft spectrum drifting across the paper */
+  --bg: #fafaf7;
+  --ink: #26242c;
+  --muted: #77738a;
+  --accent: #6f5bc4;
+  --rule: #e6e3ee;
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='endpaper'] {
+  /* marbled endpapers of an old book: pastel swirls under
+     delicate scholarly type */
+  --bg: #f7f4ef;
+  --ink: #33302b;
+  --muted: #837c72;
+  --accent: #92496b;
+  --rule: #e5dfd4;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='atelier'] {
   /* between dawn, vapor, riso and paper — but sober:
      warm ivory, graphite-aubergine ink, muted wine accent,
@@ -1143,7 +1167,9 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='matins'] body::before,
   [data-theme='lauds'] body::before,
   [data-theme='vespers'] body::before,
-  [data-theme='compline'] body::before { animation: none; }
+  [data-theme='compline'] body::before,
+  [data-theme='prism'] body::before,
+  [data-theme='prism'] h1 { animation: none; }
 }
 
 /* the horizon grid, kept at a whisper */
@@ -1516,6 +1542,100 @@ section p:last-child { margin-bottom: 0; }
   border-radius: 3px;
   box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.7);
 }
+
+/* ---------- prism: refracted light on a white page ---------- */
+
+[data-theme='prism'] body { font-size: 1.19rem; }
+
+/* a spectrum cast through glass, drifting very slowly */
+[data-theme='prism'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    transparent 52%,
+    rgba(214, 106, 142, 0.07) 60%,
+    rgba(222, 170, 92, 0.07) 66%,
+    rgba(148, 200, 158, 0.07) 72%,
+    rgba(120, 170, 220, 0.08) 78%,
+    rgba(150, 120, 214, 0.07) 84%,
+    transparent 92%
+  );
+  animation: prism-drift 46s ease-in-out infinite alternate;
+}
+
+@keyframes prism-drift {
+  from { filter: hue-rotate(0deg); }
+  to   { filter: hue-rotate(50deg); }
+}
+
+[data-theme='prism'] section p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* the name catches the spectrum */
+[data-theme='prism'] h1 {
+  font-weight: 500;
+  font-size: clamp(2.1rem, 5vw, 2.8rem);
+  background: linear-gradient(100deg, #b25577 0%, #a8762e 30%, #4e8a62 55%, #4a72b8 78%, #7b5cc4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: prism-drift 30s ease-in-out infinite alternate;
+}
+
+[data-theme='prism'] h2 { color: var(--accent); }
+
+[data-theme='prism'] .project h3 { font-weight: 500; font-size: 1.38rem; }
+
+[data-theme='prism'] .portrait {
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+  box-shadow:
+    -8px 10px 24px -16px rgba(214, 106, 142, 0.45),
+    8px 10px 24px -16px rgba(120, 170, 220, 0.5);
+}
+
+/* ---------- endpaper: marbled pastels under scholarly type ---------- */
+
+[data-theme='endpaper'] body {
+  font-size: 1.26rem;
+  line-height: 1.62;
+  background-image:
+    radial-gradient(34rem 26rem at 12% 6%, rgba(228, 160, 190, 0.2), transparent 62%),
+    radial-gradient(30rem 24rem at 88% 12%, rgba(158, 205, 186, 0.2), transparent 60%),
+    radial-gradient(36rem 30rem at 78% 86%, rgba(172, 160, 220, 0.18), transparent 62%),
+    radial-gradient(26rem 22rem at 18% 88%, rgba(238, 206, 148, 0.18), transparent 60%),
+    radial-gradient(20rem 18rem at 50% 45%, rgba(228, 160, 190, 0.08), transparent 65%);
+  background-attachment: fixed;
+}
+
+[data-theme='endpaper'] h1 {
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5.2vw, 3rem);
+}
+
+[data-theme='endpaper'] h2 { color: var(--accent); }
+
+[data-theme='endpaper'] .project h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+[data-theme='endpaper'] .portrait {
+  filter: saturate(1.08);
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  box-shadow: 0 10px 26px -16px rgba(146, 73, 107, 0.45);
+}
+
+[data-theme='endpaper'] .seeking { font-size: 1.15rem; }
 
 /* ---------- atelier: rose–lilac wash, high-contrast serif ---------- */
 
@@ -1998,6 +2118,7 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='matins'] body,
   [data-theme='lauds'] body,
   [data-theme='vespers'] body,
+  [data-theme='endpaper'] body,
   [data-theme='atelier'] body,
   [data-theme='notebook'] body,
   [data-theme='atlas'] body {
@@ -2008,7 +2129,9 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='matins'] body::before,
   [data-theme='lauds'] body::before,
   [data-theme='vespers'] body::before,
-  [data-theme='compline'] body::before { animation: none; }
+  [data-theme='compline'] body::before,
+  [data-theme='prism'] body::before,
+  [data-theme='prism'] h1 { animation: none; }
 }
 
 /* ---------- print ---------- */

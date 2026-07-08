@@ -14,8 +14,8 @@
   var BASE_THEMES = [
     'paper', 'manuscript', 'cyanotype', 'terminal', 'macintosh',
     'gameboy', 'riso', 'punchcard', 'herbarium', 'workbench',
-    'darkroom', 'notebook', 'swiss', 'dawn', 'atelier', 'vapor',
-    'atlas', 'opera', 'brutalist', 'ink'
+    'darkroom', 'notebook', 'swiss', 'dawn', 'atelier', 'bodoni',
+    'vapor', 'atlas', 'opera', 'brutalist', 'ink'
   ];
 
   var COLORS = {
@@ -33,7 +33,8 @@
     notebook:   { bg: '#fdfdfa', fg: '#d23b2e' },
     swiss:      { bg: '#ffffff', fg: '#e30613' },
     dawn:       { bg: '#f6e7d7', fg: '#c96f4a' },
-    atelier:    { bg: '#f8f1ec', fg: '#b05377' },
+    atelier:    { bg: '#f3ede4', fg: '#7a3b48' },
+    bodoni:     { bg: '#faf8f3', fg: '#a31329' },
     vapor:      { bg: '#120e1e', fg: '#f472b6' },
     atlas:      { bg: '#efe3c8', fg: '#a44a35' },
     opera:      { bg: '#1e0e14', fg: '#d4af37' },

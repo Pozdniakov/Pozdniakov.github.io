@@ -21,8 +21,8 @@ docs/
 
 ## Themes
 
-Twenty schemes (plus one secret); a theme = colours + optionally its own
-typography and details:
+Twenty-one schemes (plus one secret); a theme = colours + its own typography
+(most themes restyle the headings too) + small details:
 
 - **paper** — warm cream, umber ink, madder-red accent (default)
 - **manuscript** — parchment, EB Garamond, rubricated drop cap, justified text, fleurons, page frame
@@ -37,7 +37,8 @@ typography and details:
 - **darkroom** — safelight: red-on-black, heavy vignette, film grain, red-duotone portrait
 - **notebook** — squared exercise book: graph paper, red margin line, QuaziNote headings
 - **swiss** — International Typographic Style: white, black, Helvetica, Swiss red
-- **dawn** — soft utopian morning: gradient sky, slate ink, terracotta gradient headline
+- **dawn** — soft utopian morning: gradient sky, italic Cormorant headline in a terracotta gradient
+- **bodoni** — headline-first editorial: uppercase Bodoni Moda masthead, thick-and-thin black rules, grayscale portrait, crimson on hover
 - **atelier** — sober editorial: warm ivory, graphite-aubergine ink, muted wine accent, Cormorant Garamond
 - **vapor** — vaporwave grown up: dusk indigo, drifting aurora haze, holographic pink–cyan headline, faint horizon grid
 - **atlas** — old cartography: sepia stock, graticule grid, small-caps headings, compass red

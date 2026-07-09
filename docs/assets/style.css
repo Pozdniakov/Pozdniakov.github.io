@@ -433,6 +433,29 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='aubade'] {
+  /* a morning song: endpaper's marble warmed by dawn's rising sun */
+  --bg: #f8f3ea;
+  --ink: #35302c;
+  --muted: #857c70;
+  --accent: #a04a2e;
+  --rule: #e6ded0;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='ebru'] {
+  /* endpaper deepened: true paper marbling — veins, not only
+     clouds — with a single gold thread */
+  --bg: #f6f0e2;
+  --ink: #332f28;
+  --muted: #837b6b;
+  --accent: #46527e;
+  --rule: #e3dbc8;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='atelier'] {
   /* between dawn, vapor, riso and paper — but sober:
      warm ivory, graphite-aubergine ink, muted wine accent,
@@ -1274,7 +1297,8 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='compline'] body::before,
   [data-theme='prism'] body::before,
   [data-theme='prism'] h1,
-  [data-theme='moire'] body::before { animation: none; }
+  [data-theme='moire'] body::before,
+  [data-theme='aubade'] body::before { animation: none; }
 }
 
 /* the horizon grid, kept at a whisper */
@@ -2208,6 +2232,104 @@ section p:last-child { margin-bottom: 0; }
   border: 1px solid var(--rule);
 }
 
+/* ---------- aubade: marble under the morning sun ---------- */
+
+[data-theme='aubade'] body {
+  font-size: 1.26rem;
+  line-height: 1.62;
+  /* the marble: warm swirls near the light, cool ones in the shade */
+  background-image:
+    radial-gradient(30rem 24rem at 84% 10%, rgba(196, 128, 74, 0.16), transparent 62%),
+    radial-gradient(26rem 22rem at 64% 30%, rgba(190, 148, 84, 0.11), transparent 60%),
+    radial-gradient(32rem 26rem at 10% 42%, rgba(122, 124, 82, 0.13), transparent 62%),
+    radial-gradient(34rem 28rem at 16% 92%, rgba(78, 94, 146, 0.13), transparent 62%),
+    radial-gradient(26rem 22rem at 86% 84%, rgba(84, 116, 118, 0.12), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* dawn's sun, risen over the endpapers */
+[data-theme='aubade'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 65% at 84% 0%, rgba(255, 206, 148, 0.5), rgba(255, 206, 148, 0) 46%),
+    radial-gradient(38% 22% at 84% 0%, rgba(255, 172, 108, 0.38), transparent 64%);
+  animation: dawn-rise 20s ease-in-out infinite alternate;
+}
+
+[data-theme='aubade'] h1 {
+  display: inline-block;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5.2vw, 3rem);
+  background: linear-gradient(105deg, #9c4a30 0%, #b0603c 45%, #6b769c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+[data-theme='aubade'] h2 { color: var(--accent); }
+
+[data-theme='aubade'] .project h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+[data-theme='aubade'] .portrait {
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  box-shadow:
+    0 10px 26px -16px rgba(53, 48, 44, 0.4),
+    0 0 30px -8px rgba(255, 196, 130, 0.5);
+}
+
+[data-theme='aubade'] .seeking { font-size: 1.15rem; }
+
+/* ---------- ebru: true marbling ---------- */
+
+[data-theme='ebru'] body {
+  font-size: 1.26rem;
+  line-height: 1.62;
+  background-image:
+    /* one gold thread */
+    linear-gradient(112deg, transparent 30.2%, rgba(176, 141, 62, 0.34) 30.5%, rgba(217, 180, 94, 0.3) 30.8%, transparent 31.2%),
+    /* veins */
+    linear-gradient(104deg, transparent 46.5%, rgba(70, 82, 126, 0.14) 47%, transparent 47.6%),
+    linear-gradient(118deg, transparent 62.3%, rgba(150, 92, 64, 0.13) 62.8%, transparent 63.4%),
+    linear-gradient(98deg, transparent 78.4%, rgba(84, 116, 118, 0.13) 78.9%, transparent 79.5%),
+    linear-gradient(108deg, transparent 14.2%, rgba(122, 124, 82, 0.11) 14.7%, transparent 15.3%),
+    /* clouds beneath */
+    radial-gradient(30rem 24rem at 14% 10%, rgba(78, 94, 146, 0.13), transparent 62%),
+    radial-gradient(26rem 22rem at 88% 18%, rgba(122, 124, 82, 0.12), transparent 60%),
+    radial-gradient(32rem 26rem at 80% 88%, rgba(150, 92, 64, 0.11), transparent 62%),
+    radial-gradient(26rem 20rem at 12% 86%, rgba(84, 116, 118, 0.12), transparent 60%);
+  background-attachment: fixed;
+}
+
+[data-theme='ebru'] h1 {
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5.2vw, 3rem);
+}
+
+[data-theme='ebru'] h2 { color: var(--accent); }
+
+[data-theme='ebru'] .project h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+[data-theme='ebru'] .portrait {
+  filter: saturate(0.95);
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  box-shadow: 0 10px 26px -16px rgba(51, 47, 40, 0.45);
+}
+
+[data-theme='ebru'] .seeking { font-size: 1.15rem; }
+
 /* ---------- atelier: rose–lilac wash, high-contrast serif ---------- */
 
 [data-theme='atelier'] body {
@@ -2690,6 +2812,8 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='lauds'] body,
   [data-theme='vespers'] body,
   [data-theme='endpaper'] body,
+  [data-theme='aubade'] body,
+  [data-theme='ebru'] body,
   [data-theme='atelier'] body,
   [data-theme='notebook'] body,
   [data-theme='atlas'] body {
@@ -2703,7 +2827,8 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='compline'] body::before,
   [data-theme='prism'] body::before,
   [data-theme='prism'] h1,
-  [data-theme='moire'] body::before { animation: none; }
+  [data-theme='moire'] body::before,
+  [data-theme='aubade'] body::before { animation: none; }
 }
 
 /* ---------- print ---------- */

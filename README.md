@@ -21,7 +21,7 @@ docs/
 
 ## Themes
 
-Forty-one schemes (plus one secret); a theme = colours + its own typography
+Forty-three schemes (plus one secret); a theme = colours + its own typography
 (section headings and the masthead speak each theme's display voice) + small
 details:
 
@@ -51,6 +51,8 @@ details:
 - **xray** — radiograph: film black, viridian marks, the portrait develops as a negative
 - **prism** — a white page in refracted light: strict justified EB Garamond, ink dissolving into indigo and teal at the end of the name, a faint cool band crossing the paper
 - **endpaper** — marbled endpapers of a library book: muted swirls (indigo, olive, terracotta, slate) under delicate Cormorant, oxblood accents
+- **aubade** — a morning song: endpaper's marble warmed by dawn's rising sun; the name runs sienna into slate
+- **ebru** — endpaper deepened into true paper marbling: veins as well as clouds, and a single gold thread
 - **terrazzo** — palazzo floor: stone chips in library colours scattered across ivory, a little chip before each heading
 - **collage** — cut-paper shapes (cobalt, olive, terracotta) around strict Cormorant; headings sit at slight angles
 - **specimen** — a type-specimen sheet: justified EB Garamond, proof-mark red pilcrows, one enormous ghost ampersand

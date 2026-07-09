@@ -433,6 +433,21 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='lab'] {
+  /* the tuning bench: endpaper with three live knobs —
+     glow hue, glow strength, paper warmth */
+  --lab-hue: 175;
+  --lab-glow: 0.22;
+  --lab-warmth: 55%;
+  --bg: #f6f2e9;
+  --ink: #322f2c;
+  --muted: #7f7a72;
+  --accent: hsl(var(--lab-hue) 42% 34%);
+  --rule: #e4dfd3;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='noctiluca'] {
   /* endpaper, lit from within: a breathing teal-green glow
      over warm ivory — the sea at night, in daylight colours */
@@ -1324,7 +1339,8 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='moire'] body::before,
   [data-theme='aubade'] body::before,
   [data-theme='noctiluca'] body::before,
-  [data-theme='heliotrope'] body::before { animation: none; }
+  [data-theme='heliotrope'] body::before,
+  [data-theme='lab'] body::before { animation: none; }
 }
 
 /* the horizon grid, kept at a whisper */
@@ -2258,6 +2274,101 @@ section p:last-child { margin-bottom: 0; }
   border: 1px solid var(--rule);
 }
 
+/* ---------- lab: endpaper with knobs ---------- */
+
+[data-theme='lab'] body {
+  font-size: 1.26rem;
+  line-height: 1.62;
+  background-color: color-mix(in oklab, #f2f1ee, #f9efd8 var(--lab-warmth));
+  background-image:
+    radial-gradient(30rem 24rem at 78% 16%, hsl(var(--lab-hue) 40% 50% / 0.07), transparent 62%),
+    radial-gradient(32rem 26rem at 12% 50%, rgba(84, 100, 118, 0.06), transparent 62%),
+    radial-gradient(28rem 22rem at 80% 90%, rgba(90, 96, 120, 0.05), transparent 60%);
+  background-attachment: fixed;
+}
+
+[data-theme='lab'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(115% 62% at 82% 0%, hsl(var(--lab-hue) 65% 62% / var(--lab-glow)), transparent 46%),
+    radial-gradient(36% 22% at 82% 0%, hsl(var(--lab-hue) 60% 52% / calc(var(--lab-glow) * 0.8)), transparent 64%);
+  animation: dawn-rise 20s ease-in-out infinite alternate;
+}
+
+[data-theme='lab'] h1 {
+  display: inline-block;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5.2vw, 3rem);
+  background: linear-gradient(105deg, var(--ink) 0%, var(--ink) 45%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+[data-theme='lab'] h2 { color: var(--accent); }
+
+[data-theme='lab'] .project h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+[data-theme='lab'] .portrait {
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  box-shadow:
+    0 10px 26px -16px rgba(50, 47, 44, 0.4),
+    0 0 32px -8px hsl(var(--lab-hue) 60% 55% / 0.45);
+}
+
+/* the bench itself */
+.lab-panel { display: none; }
+
+[data-theme='lab'] .lab-panel {
+  display: block;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  width: 15.5rem;
+  padding: 0.9rem 1rem 0.8rem;
+  background: color-mix(in oklab, #ffffff 75%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.lab-panel label {
+  display: block;
+  margin-bottom: 0.15rem;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lab-panel input[type='range'] {
+  width: 100%;
+  margin: 0 0 0.65rem;
+  accent-color: var(--accent);
+}
+
+.lab-panel output {
+  display: block;
+  margin-top: 0.2rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--accent);
+  user-select: all;
+}
+
 /* ---------- noctiluca: a teal glow over warm ivory ---------- */
 
 [data-theme='noctiluca'] body {
@@ -2944,6 +3055,7 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='lauds'] body,
   [data-theme='vespers'] body,
   [data-theme='endpaper'] body,
+  [data-theme='lab'] body,
   [data-theme='noctiluca'] body,
   [data-theme='heliotrope'] body,
   [data-theme='aubade'] body,
@@ -2964,7 +3076,8 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='moire'] body::before,
   [data-theme='aubade'] body::before,
   [data-theme='noctiluca'] body::before,
-  [data-theme='heliotrope'] body::before { animation: none; }
+  [data-theme='heliotrope'] body::before,
+  [data-theme='lab'] body::before { animation: none; }
 }
 
 /* ---------- print ---------- */

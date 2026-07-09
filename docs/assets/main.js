@@ -15,7 +15,7 @@
     'paper', 'manuscript', 'cyanotype', 'terminal', 'macintosh',
     'gameboy', 'riso', 'punchcard', 'herbarium', 'workbench',
     'darkroom', 'notebook', 'swiss', 'lauds', 'dawn', 'matins',
-    'vespers', 'compline', 'atelier', 'prism', 'endpaper', 'noctiluca',
+    'vespers', 'compline', 'atelier', 'prism', 'endpaper', 'lab', 'noctiluca',
     'heliotrope', 'aubade',
     'ebru', 'terrazzo',
     'collage', 'specimen', 'moire', 'rorschach', 'errata',
@@ -48,6 +48,7 @@
     atelier:    { bg: '#f3ede4', fg: '#7a3b48' },
     prism:      { bg: '#fafaf7', fg: '#4d59a8' },
     endpaper:   { bg: '#f7f4ef', fg: '#7d3a30' },
+    lab:        { bg: '#f6f2e9', fg: '#2e6b60' },
     noctiluca:  { bg: '#f7f3ea', fg: '#1f7a6d' },
     heliotrope: { bg: '#f8f4ee', fg: '#6a4fa3' },
     aubade:     { bg: '#f8f3ea', fg: '#a04a2e' },
@@ -417,6 +418,44 @@
     resize();
     if (reducedMotion && graphOn) drawFrame(true);
   }
+
+  /* ================= the tuning bench ================= */
+
+  (function () {
+    var hue = document.getElementById('labHue');
+    var glow = document.getElementById('labGlow');
+    var warmth = document.getElementById('labWarmth');
+    var out = document.getElementById('labOut');
+    if (!hue || !glow || !warmth || !out) return;
+
+    var root = document.documentElement;
+
+    function load() {
+      try {
+        var saved = JSON.parse(localStorage.getItem('lab') || 'null');
+        if (saved) {
+          hue.value = saved.h; glow.value = saved.g; warmth.value = saved.w;
+        }
+      } catch (e) {}
+    }
+
+    function push() {
+      root.style.setProperty('--lab-hue', hue.value);
+      root.style.setProperty('--lab-glow', String(glow.value / 100));
+      root.style.setProperty('--lab-warmth', warmth.value + '%');
+      out.textContent = 'hue ' + hue.value + ' \u00b7 glow ' + glow.value + ' \u00b7 warmth ' + warmth.value;
+      try {
+        localStorage.setItem('lab', JSON.stringify({ h: hue.value, g: glow.value, w: warmth.value }));
+      } catch (e) {}
+    }
+
+    [hue, glow, warmth].forEach(function (el) {
+      el.addEventListener('input', push);
+    });
+
+    load();
+    push();
+  })();
 
   /* ================= neuron divider ================= */
 

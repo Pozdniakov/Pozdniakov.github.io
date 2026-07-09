@@ -47,11 +47,14 @@ body {
   background-attachment: fixed;
 }
 
-/* the glow — breathing, sea-green */
+/* the glow — breathing, sea-green.
+   A small negative inset so the layer overhangs the viewport and can
+   never expose a bare strip at an edge; the breathing is opacity only
+   (a vertical translate used to reveal an unlit band at the top). */
 body::before {
   content: '';
   position: fixed;
-  inset: 0;
+  inset: -16px;
   z-index: 0;
   pointer-events: none;
   background:
@@ -61,8 +64,8 @@ body::before {
 }
 
 @keyframes glow-breathe {
-  from { opacity: 0.68; transform: translateY(7px); }
-  to   { opacity: 1;    transform: translateY(0); }
+  from { opacity: 0.68; }
+  to   { opacity: 1; }
 }
 
 ::selection { background: var(--accent); color: var(--bg); }

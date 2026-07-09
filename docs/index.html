@@ -1,31 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="paper">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ivan Pozdniakov</title>
 <meta name="description" content="Researcher, R developer, and statistics educator based in Kiel, Germany.">
 <link rel="canonical" href="https://pozdniakov.github.io/">
-<meta name="theme-color" content="#f6f1e6">
+<meta name="theme-color" content="#f3f1ea">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ivan Pozdniakov">
 <meta property="og:description" content="Researcher, R developer, and statistics educator based in Kiel, Germany.">
 <meta property="og:url" content="https://pozdniakov.github.io/">
 <meta property="og:image" content="https://pozdniakov.github.io/images/profile_old.jpg">
-<link rel="icon" type="image/svg+xml" href="favicon.svg" id="favicon">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=VT323&family=Silkscreen&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500&family=Cinzel:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=24">
-<script>
-/* set theme before first paint; ?theme=… in the URL wins (shareable links) */
-(function () {
-  var t = new URLSearchParams(location.search).get('theme');
-  if (!t) { try { t = localStorage.getItem('theme'); } catch (e) {} }
-  if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'ink' : 'paper';
-  document.documentElement.dataset.theme = t;
-})();
-</script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=25">
 </head>
 <body>
 
@@ -35,58 +26,6 @@
 
   <!-- ============ MASTHEAD ============ -->
   <header class="masthead">
-    <nav class="theme-picker mono" aria-label="Colour scheme">
-      <button data-set-theme="paper">paper</button>
-      <button data-set-theme="manuscript">manuscript</button>
-      <button data-set-theme="cyanotype">cyanotype</button>
-      <button data-set-theme="terminal">terminal</button>
-      <button data-set-theme="macintosh">macintosh</button>
-      <button data-set-theme="gameboy">gameboy</button>
-      <button data-set-theme="riso">riso</button>
-      <button data-set-theme="punchcard">punchcard</button>
-      <button data-set-theme="herbarium">herbarium</button>
-      <button data-set-theme="workbench">workbench</button>
-      <button data-set-theme="darkroom">darkroom</button>
-      <button data-set-theme="notebook">notebook</button>
-      <button data-set-theme="swiss">swiss</button>
-      <button data-set-theme="lauds">lauds</button>
-      <button data-set-theme="dawn">dawn</button>
-      <button data-set-theme="matins">matins</button>
-      <button data-set-theme="vespers">vespers</button>
-      <button data-set-theme="compline">compline</button>
-      <button data-set-theme="atelier">atelier</button>
-      <button data-set-theme="prism">prism</button>
-      <button data-set-theme="endpaper">endpaper</button>
-      <button data-set-theme="noctiluca">noctiluca</button>
-      <button data-set-theme="heliotrope">heliotrope</button>
-      <button data-set-theme="aubade">aubade</button>
-      <button data-set-theme="ebru">ebru</button>
-      <button data-set-theme="terrazzo">terrazzo</button>
-      <button data-set-theme="collage">collage</button>
-      <button data-set-theme="specimen">specimen</button>
-      <button data-set-theme="moire">moire</button>
-      <button data-set-theme="rorschach">rorschach</button>
-      <button data-set-theme="errata">errata</button>
-      <button data-set-theme="reviewer2">reviewer2</button>
-      <button data-set-theme="preprint">preprint</button>
-      <button data-set-theme="palimpsest">palimpsest</button>
-      <button data-set-theme="bodoni">bodoni</button>
-      <button data-set-theme="marble">marble</button>
-      <button data-set-theme="sumi">sumi</button>
-      <button data-set-theme="pinstripe">pinstripe</button>
-      <button data-set-theme="vapor">vapor</button>
-      <button data-set-theme="atlas">atlas</button>
-      <button data-set-theme="opera">opera</button>
-      <button data-set-theme="brutalist">brutalist</button>
-      <button data-set-theme="xray">xray</button>
-      <button data-set-theme="observatory">observatory</button>
-      <button data-set-theme="ink">ink</button>
-      <button data-set-theme="amber" id="amberBtn" hidden>amber</button>
-      <button id="shuffle" title="Random theme" aria-label="Random theme">??</button>
-      <button id="graphToggle" title="Toggle the graph background" aria-label="Toggle graph background">graph</button>
-      <button data-set-theme="lab" title="Tune your own theme" aria-label="Theme tuning bench">lab</button>
-      <span class="picker-hint" aria-hidden="true">press t</span>
-    </nav>
     <div class="masthead-grid">
       <div class="masthead-text">
         <h1>Ivan Pozdniakov</h1>
@@ -201,17 +140,6 @@
   <p class="mono">© 2026 Ivan Pozdniakov · no trackers, no cookies</p>
 </footer>
 
-<!-- the tuning bench: visible only in the lab theme -->
-<div class="lab-panel" role="group" aria-label="Theme tuning">
-  <label for="labHue">glow hue</label>
-  <input type="range" id="labHue" min="0" max="359" value="175">
-  <label for="labGlow">glow strength</label>
-  <input type="range" id="labGlow" min="0" max="45" value="22">
-  <label for="labWarmth">paper warmth</label>
-  <input type="range" id="labWarmth" min="0" max="100" value="55">
-  <output id="labOut">hue 175 · glow 22 · warmth 55</output>
-</div>
-
-<script src="assets/main.js?v=25" defer></script>
+<script src="assets/main.js?v=26" defer></script>
 </body>
 </html>

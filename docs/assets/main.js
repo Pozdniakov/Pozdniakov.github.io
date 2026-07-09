@@ -1,201 +1,18 @@
 /* Ivan Pozdniakov — site scripts.
-   Themes: click a name · t cycles · digits 1–9 jump · ?? random ·
-   ?theme=… in the URL · one classic 10-key sequence unlocks amber.
-   Graph: an interactive node graph drifts behind the page, recoloured
-   by the active theme, linking to the cursor; [graph] toggles it. */
+   An interactive node graph drifts behind the page (linking to the
+   cursor, with signals pulsing along edges), and a hand-drawn neuron
+   divider fires a saltatory impulse on click. No theme switching —
+   the palette is fixed in style.css. */
 
 (function () {
   'use strict';
 
   var reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ================= themes ================= */
-
-  var BASE_THEMES = [
-    'paper', 'manuscript', 'cyanotype', 'terminal', 'macintosh',
-    'gameboy', 'riso', 'punchcard', 'herbarium', 'workbench',
-    'darkroom', 'notebook', 'swiss', 'lauds', 'dawn', 'matins',
-    'vespers', 'compline', 'atelier', 'prism', 'endpaper', 'lab', 'noctiluca',
-    'heliotrope', 'aubade',
-    'ebru', 'terrazzo',
-    'collage', 'specimen', 'moire', 'rorschach', 'errata',
-    'reviewer2', 'preprint', 'palimpsest',
-    'bodoni', 'marble', 'sumi',
-    'pinstripe', 'vapor', 'atlas', 'opera', 'brutalist', 'xray',
-    'observatory', 'ink'
-  ];
-
-  var COLORS = {
-    paper:      { bg: '#f6f1e6', fg: '#8a3a2c' },
-    manuscript: { bg: '#f1e6cb', fg: '#9e2b1e' },
-    cyanotype:  { bg: '#113a5d', fg: '#e5c37c' },
-    terminal:   { bg: '#060b07', fg: '#4fdf78' },
-    macintosh:  { bg: '#ffffff', fg: '#000000' },
-    gameboy:    { bg: '#9bbc0f', fg: '#0f380f' },
-    riso:       { bg: '#f7f4ec', fg: '#f04e98' },
-    punchcard:  { bg: '#ecdfba', fg: '#2456a6' },
-    herbarium:  { bg: '#edf0e0', fg: '#23402a' },
-    workbench:  { bg: '#0055aa', fg: '#ff8800' },
-    darkroom:   { bg: '#140b0b', fg: '#ff8a72' },
-    notebook:   { bg: '#fdfdfa', fg: '#d23b2e' },
-    swiss:      { bg: '#ffffff', fg: '#e30613' },
-    dawn:       { bg: '#f6e7d7', fg: '#c96f4a' },
-    matins:     { bg: '#f7e2ba', fg: '#ac3d24' },
-    lauds:      { bg: '#e8e9ec', fg: '#96762c' },
-    vespers:    { bg: '#362220', fg: '#dfa159' },
-    compline:   { bg: '#191216', fg: '#e2a94f' },
-    observatory:{ bg: '#0c1226', fg: '#e8c56a' },
-    atelier:    { bg: '#f3ede4', fg: '#7a3b48' },
-    prism:      { bg: '#fafaf7', fg: '#4d59a8' },
-    endpaper:   { bg: '#f7f4ef', fg: '#7d3a30' },
-    lab:        { bg: '#f6f2e9', fg: '#2e6b60' },
-    noctiluca:  { bg: '#f7f3ea', fg: '#1f7a6d' },
-    heliotrope: { bg: '#f8f4ee', fg: '#6a4fa3' },
-    aubade:     { bg: '#f8f3ea', fg: '#a04a2e' },
-    ebru:       { bg: '#f6f0e2', fg: '#46527e' },
-    terrazzo:   { bg: '#f6f2ea', fg: '#b5542d' },
-    collage:    { bg: '#f7f3ec', fg: '#2f5aa8' },
-    specimen:   { bg: '#faf8f2', fg: '#b13a2a' },
-    moire:      { bg: '#f6f3ec', fg: '#44508e' },
-    reviewer2:  { bg: '#f8f5ee', fg: '#b23c2f' },
-    preprint:   { bg: '#ffffff', fg: '#b31b1b' },
-    palimpsest: { bg: '#f2ead8', fg: '#7a4a2c' },
-    rorschach:  { bg: '#f7f4ee', fg: '#4a4066' },
-    errata:     { bg: '#faf7f0', fg: '#b3372a' },
-    bodoni:     { bg: '#faf8f3', fg: '#a31329' },
-    marble:     { bg: '#f5f3ee', fg: '#8c6a3f' },
-    sumi:       { bg: '#f7f4ec', fg: '#c03a26' },
-    pinstripe:  { bg: '#1b2436', fg: '#c0616d' },
-    xray:       { bg: '#0a0f14', fg: '#62e0c0' },
-    vapor:      { bg: '#120e1e', fg: '#f472b6' },
-    atlas:      { bg: '#efe3c8', fg: '#a44a35' },
-    opera:      { bg: '#1e0e14', fg: '#d4af37' },
-    brutalist:  { bg: '#ffffff', fg: '#0000ee' },
-    ink:        { bg: '#17181c', fg: '#a4c9ab' },
-    amber:      { bg: '#100a02', fg: '#ffb000' }
-  };
-
-  var TITLE = {
-    terminal: '> Ivan Pozdniakov',
-    amber: '> Ivan Pozdniakov',
-    gameboy: '▶ Ivan Pozdniakov',
-    manuscript: '❧ Ivan Pozdniakov',
-    notebook: '✎ Ivan Pozdniakov',
-    matins: '✶ Ivan Pozdniakov',
-    vespers: '☾ Ivan Pozdniakov',
-    darkroom: '● Ivan Pozdniakov',
-    vapor: '✦ Ivan Pozdniakov',
-    collage: '✂ Ivan Pozdniakov',
-    specimen: '¶ Ivan Pozdniakov',
-    errata: '※ Ivan Pozdniakov'
-  };
-
-  var picker = document.querySelector('.theme-picker');
-  var buttons = document.querySelectorAll('[data-set-theme]');
-  var meta = document.querySelector('meta[name="theme-color"]');
-  var favicon = document.getElementById('favicon');
-  var amberBtn = document.getElementById('amberBtn');
-
-  function unlocked() {
-    try { return localStorage.getItem('amber') === '1'; } catch (e) { return false; }
-  }
-
-  function themes() {
-    return unlocked() ? BASE_THEMES.concat('amber') : BASE_THEMES;
-  }
-
-  function faviconFor(theme) {
-    var c = COLORS[theme];
-    var svg =
-      "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>" +
-      "<rect width='64' height='64' rx='12' fill='" + c.bg + "'/>" +
-      "<text x='32' y='43' font-family=\"Georgia, 'Times New Roman', serif\" " +
-      "font-style='italic' font-size='28' fill='" + c.fg + "' text-anchor='middle'>ip</text>" +
-      '</svg>';
-    return 'data:image/svg+xml,' + encodeURIComponent(svg);
-  }
-
-  function current() {
-    return document.documentElement.dataset.theme || 'paper';
-  }
-
-  function apply(theme, persist) {
-    if (!COLORS.hasOwnProperty(theme)) theme = 'paper';
-    if (theme === 'amber' && amberBtn) amberBtn.hidden = false;
-    document.documentElement.dataset.theme = theme;
-    if (meta) meta.setAttribute('content', COLORS[theme].bg);
-    if (favicon) favicon.setAttribute('href', faviconFor(theme));
-    document.title = TITLE[theme] || 'Ivan Pozdniakov';
-    buttons.forEach(function (b) {
-      b.setAttribute('aria-pressed', String(b.dataset.setTheme === theme));
-    });
-    if (persist) {
-      try { localStorage.setItem('theme', theme); } catch (e) {}
-    }
-    recolorGraph();
-  }
-
-  function switchTo(theme, persist) {
-    var run = function () { apply(theme, persist); };
-    if (document.startViewTransition && !reducedMotion) {
-      document.startViewTransition(run);
-    } else {
-      run();
-    }
-  }
-
-  buttons.forEach(function (b) {
-    b.addEventListener('click', function () { switchTo(b.dataset.setTheme, true); });
-  });
-
-  var shuffle = document.getElementById('shuffle');
-  if (shuffle) {
-    shuffle.addEventListener('click', function () {
-      var pool = themes().filter(function (t) { return t !== current(); });
-      switchTo(pool[Math.floor(Math.random() * pool.length)], true);
-      if (picker) {
-        picker.classList.remove('wiggle');
-        void picker.offsetWidth; /* restart animation */
-        picker.classList.add('wiggle');
-      }
-    });
-  }
-
-  /* keyboard: t cycles · digits jump · a certain sequence unlocks amber */
-  var KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-    'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-  var kPos = 0;
-
-  document.addEventListener('keydown', function (e) {
-    if (e.metaKey || e.ctrlKey || e.altKey) return;
-    var tag = (e.target && e.target.tagName) || '';
-    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
-
-    var key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-    kPos = key === KONAMI[kPos] ? kPos + 1 : (key === KONAMI[0] ? 1 : 0);
-    if (kPos === KONAMI.length) {
-      kPos = 0;
-      try { localStorage.setItem('amber', '1'); } catch (err) {}
-      if (amberBtn) amberBtn.hidden = false;
-      switchTo('amber', true);
-      return;
-    }
-
-    if (e.key === 't' || e.key === 'T') {
-      var list = themes();
-      switchTo(list[(list.indexOf(current()) + 1) % list.length], true);
-    } else if (e.key >= '1' && e.key <= '9') {
-      var target = themes()[Number(e.key) - 1];
-      if (target) switchTo(target, true);
-    }
-  });
-
   /* ================= graph background ================= */
 
   var canvas = document.getElementById('graph');
   var ctx = canvas ? canvas.getContext('2d') : null;
-  var graphOn = true;
-  try { graphOn = localStorage.getItem('graph') !== 'off'; } catch (e) {}
 
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
   var mobile = matchMedia('(max-width: 700px)').matches;
@@ -229,7 +46,6 @@
     var cs = getComputedStyle(document.documentElement);
     inkRGB = parseColor(cs.getPropertyValue('--ink'));
     accentRGB = parseColor(cs.getPropertyValue('--accent'));
-    if (reducedMotion || !graphOn) drawFrame(true);
   }
 
   var lastResizeW = 0;
@@ -368,31 +184,11 @@
   }
 
   function startGraph() {
-    if (!ctx || raf || reducedMotion || !graphOn) return;
+    if (!ctx || raf || reducedMotion) return;
     raf = requestAnimationFrame(loop);
   }
   function stopGraph() {
     if (raf) { cancelAnimationFrame(raf); raf = null; }
-  }
-
-  function setGraph(on, persist) {
-    graphOn = on;
-    document.documentElement.dataset.graph = on ? 'on' : 'off';
-    var gt = document.getElementById('graphToggle');
-    if (gt) gt.setAttribute('aria-pressed', String(on));
-    if (persist) {
-      try { localStorage.setItem('graph', on ? 'on' : 'off'); } catch (e) {}
-    }
-    if (on) {
-      if (reducedMotion) drawFrame(true); else startGraph();
-    } else {
-      stopGraph();
-    }
-  }
-
-  var graphToggle = document.getElementById('graphToggle');
-  if (graphToggle) {
-    graphToggle.addEventListener('click', function () { setGraph(!graphOn, true); });
   }
 
   if (ctx) {
@@ -401,7 +197,7 @@
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function () {
         resize();
-        if (reducedMotion && graphOn) drawFrame(true);
+        if (reducedMotion) drawFrame(true);
       }, 120);
     });
     window.addEventListener('pointermove', function (e) {
@@ -416,46 +212,9 @@
     });
 
     resize();
-    if (reducedMotion && graphOn) drawFrame(true);
+    recolorGraph();
+    if (reducedMotion) drawFrame(true); else startGraph();
   }
-
-  /* ================= the tuning bench ================= */
-
-  (function () {
-    var hue = document.getElementById('labHue');
-    var glow = document.getElementById('labGlow');
-    var warmth = document.getElementById('labWarmth');
-    var out = document.getElementById('labOut');
-    if (!hue || !glow || !warmth || !out) return;
-
-    var root = document.documentElement;
-
-    function load() {
-      try {
-        var saved = JSON.parse(localStorage.getItem('lab') || 'null');
-        if (saved) {
-          hue.value = saved.h; glow.value = saved.g; warmth.value = saved.w;
-        }
-      } catch (e) {}
-    }
-
-    function push() {
-      root.style.setProperty('--lab-hue', hue.value);
-      root.style.setProperty('--lab-glow', String(glow.value / 100));
-      root.style.setProperty('--lab-warmth', warmth.value + '%');
-      out.textContent = 'hue ' + hue.value + ' \u00b7 glow ' + glow.value + ' \u00b7 warmth ' + warmth.value;
-      try {
-        localStorage.setItem('lab', JSON.stringify({ h: hue.value, g: glow.value, w: warmth.value }));
-      } catch (e) {}
-    }
-
-    [hue, glow, warmth].forEach(function (el) {
-      el.addEventListener('input', push);
-    });
-
-    load();
-    push();
-  })();
 
   /* ================= neuron divider ================= */
 
@@ -626,10 +385,4 @@
       setInterval(function () { fireNeuron(false); }, 9000 + Math.random() * 5000);
     }
   }
-
-  /* ================= boot ================= */
-
-  if (unlocked() && amberBtn) amberBtn.hidden = false;
-  apply(current(), false);
-  setGraph(graphOn, false);
 })();

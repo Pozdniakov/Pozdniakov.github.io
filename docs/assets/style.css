@@ -433,6 +433,30 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
+[data-theme='noctiluca'] {
+  /* endpaper, lit from within: a breathing teal-green glow
+     over warm ivory — the sea at night, in daylight colours */
+  --bg: #f7f3ea;
+  --ink: #322f2c;
+  --muted: #7f7a70;
+  --accent: #1f7a6d;
+  --rule: #e4ded1;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+[data-theme='heliotrope'] {
+  /* endpaper with a violet light source — the grey warmed
+     by an unusual glow */
+  --bg: #f8f4ee;
+  --ink: #312e33;
+  --muted: #7f7a84;
+  --accent: #6a4fa3;
+  --rule: #e6e0d8;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
 [data-theme='aubade'] {
   /* a morning song: endpaper's marble warmed by dawn's rising sun */
   --bg: #f8f3ea;
@@ -1298,7 +1322,9 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='prism'] body::before,
   [data-theme='prism'] h1,
   [data-theme='moire'] body::before,
-  [data-theme='aubade'] body::before { animation: none; }
+  [data-theme='aubade'] body::before,
+  [data-theme='noctiluca'] body::before,
+  [data-theme='heliotrope'] body::before { animation: none; }
 }
 
 /* the horizon grid, kept at a whisper */
@@ -2232,6 +2258,112 @@ section p:last-child { margin-bottom: 0; }
   border: 1px solid var(--rule);
 }
 
+/* ---------- noctiluca: a teal glow over warm ivory ---------- */
+
+[data-theme='noctiluca'] body {
+  font-size: 1.26rem;
+  line-height: 1.62;
+  /* the softest clouds, leaning toward the light */
+  background-image:
+    radial-gradient(30rem 24rem at 78% 16%, rgba(31, 122, 109, 0.08), transparent 62%),
+    radial-gradient(32rem 26rem at 12% 50%, rgba(84, 108, 118, 0.07), transparent 62%),
+    radial-gradient(28rem 22rem at 80% 90%, rgba(78, 94, 146, 0.06), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* the glow itself — breathing, sea-green */
+[data-theme='noctiluca'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(115% 62% at 82% 0%, rgba(64, 196, 176, 0.30), rgba(64, 196, 176, 0) 46%),
+    radial-gradient(36% 22% at 82% 0%, rgba(38, 166, 154, 0.24), transparent 64%);
+  animation: dawn-rise 20s ease-in-out infinite alternate;
+}
+
+[data-theme='noctiluca'] h1 {
+  display: inline-block;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5.2vw, 3rem);
+  background: linear-gradient(105deg, #322f2c 0%, #322f2c 45%, #1f7a6d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+[data-theme='noctiluca'] h2 { color: var(--accent); }
+
+[data-theme='noctiluca'] .project h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+[data-theme='noctiluca'] .portrait {
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  box-shadow:
+    0 10px 26px -16px rgba(50, 47, 44, 0.4),
+    0 0 32px -8px rgba(64, 196, 176, 0.45);
+}
+
+[data-theme='noctiluca'] .seeking { font-size: 1.15rem; }
+
+/* ---------- heliotrope: the violet light ---------- */
+
+[data-theme='heliotrope'] body {
+  font-size: 1.26rem;
+  line-height: 1.62;
+  background-image:
+    radial-gradient(30rem 24rem at 78% 16%, rgba(106, 79, 163, 0.07), transparent 62%),
+    radial-gradient(32rem 26rem at 12% 50%, rgba(84, 100, 130, 0.07), transparent 62%),
+    radial-gradient(28rem 22rem at 80% 90%, rgba(84, 116, 118, 0.06), transparent 60%);
+  background-attachment: fixed;
+}
+
+[data-theme='heliotrope'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(115% 62% at 82% 0%, rgba(148, 110, 220, 0.28), rgba(148, 110, 220, 0) 46%),
+    radial-gradient(36% 22% at 82% 0%, rgba(124, 86, 196, 0.22), transparent 64%);
+  animation: dawn-rise 20s ease-in-out infinite alternate;
+}
+
+[data-theme='heliotrope'] h1 {
+  display: inline-block;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5.2vw, 3rem);
+  background: linear-gradient(105deg, #312e33 0%, #312e33 45%, #6a4fa3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+[data-theme='heliotrope'] h2 { color: var(--accent); }
+
+[data-theme='heliotrope'] .project h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+[data-theme='heliotrope'] .portrait {
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  box-shadow:
+    0 10px 26px -16px rgba(49, 46, 51, 0.4),
+    0 0 32px -8px rgba(148, 110, 220, 0.42);
+}
+
+[data-theme='heliotrope'] .seeking { font-size: 1.15rem; }
+
 /* ---------- aubade: marble under the morning sun ---------- */
 
 [data-theme='aubade'] body {
@@ -2812,6 +2944,8 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='lauds'] body,
   [data-theme='vespers'] body,
   [data-theme='endpaper'] body,
+  [data-theme='noctiluca'] body,
+  [data-theme='heliotrope'] body,
   [data-theme='aubade'] body,
   [data-theme='ebru'] body,
   [data-theme='atelier'] body,
@@ -2828,7 +2962,9 @@ section p:last-child { margin-bottom: 0; }
   [data-theme='prism'] body::before,
   [data-theme='prism'] h1,
   [data-theme='moire'] body::before,
-  [data-theme='aubade'] body::before { animation: none; }
+  [data-theme='aubade'] body::before,
+  [data-theme='noctiluca'] body::before,
+  [data-theme='heliotrope'] body::before { animation: none; }
 }
 
 /* ---------- print ---------- */
